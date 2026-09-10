@@ -320,6 +320,20 @@ a{color:inherit}
 
     var footer = document.querySelector('eiab-footer');
     if(footer) footer.setAttribute('current', back.footerCurrent || '');
+
+    // Prefer history.back() over a fresh navigation to back.href whenever we can
+    // tell we actually arrived from that same listing page on this site — the
+    // browser then restores its scroll position on its own (right back to the
+    // card the visitor came from) instead of reopening the list at the top.
+    var backLink = document.querySelector('.back');
+    if(backLink){
+      backLink.addEventListener('click', function(e){
+        if(window.history.length > 1 && document.referrer && document.referrer.indexOf(location.origin) === 0){
+          e.preventDefault();
+          window.history.back();
+        }
+      });
+    }
   }
 
   render();
