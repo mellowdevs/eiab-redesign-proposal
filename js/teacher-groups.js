@@ -60,7 +60,7 @@ function eiabEnsureTeacherSearchStyles() {
   var style = document.createElement('style');
   style.id = EIAB_TEACHER_SEARCH_STYLE_ID;
   style.textContent =
-    '.people-search{position:relative;margin-bottom:2rem;max-width:24rem}' +
+    '.people-search{position:relative;margin-bottom:2rem;margin-left:auto;max-width:24rem}' +
     '.people-search input{width:100%;box-sizing:border-box;font:inherit;font-family:var(--sans);font-size:.92rem;' +
     'padding:.7rem 1rem .7rem 2.4rem;border:1px solid rgba(27,42,34,.25);border-radius:99px;' +
     'background:rgba(255,255,255,.6);color:var(--pine)}' +
