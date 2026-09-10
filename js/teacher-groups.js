@@ -86,6 +86,9 @@ window.EIAB_RENDER_TEACHER_LISTING = function (mountEl, categoryKey) {
 
   Object.keys(registry).forEach(function (id) {
     var t = registry[id];
+    // Entries only known as course instructors (no profile content yet) stay off
+    // this community listing — they're still reachable via the course's own link.
+    if (t.unlisted) return;
     // Missing/unrecognized subgroup falls back to the category's default bucket
     // rather than being dropped silently — safer than assuming, and shouldn't
     // come up often since real entries carry a real subgroup value.

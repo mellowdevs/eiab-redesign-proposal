@@ -674,6 +674,52 @@ window.EIAB_TEACHERS_MONASTIC = {
             }
         ] // TODO translate en/vi
     },
+
+    // The following are only known as course instructors, not (yet) with a full
+    // profile. `unlisted: true` keeps them off ueber-uns/moenche-und-nonnen.html
+    // (js/teacher-groups.js skips them) while still resolving correctly wherever a
+    // course links to them by id — person.html shows its normal "profile coming
+    // soon" fallback for the empty intro.
+    "trang-mai-thon": {
+        name: "Trăng Mai Thôn",
+        category: "monastic",
+        subgroup: "visiting",
+        unlisted: true,
+        role: {de: "", en: "", vi: ""},
+        intro: {de: [], en: [], vi: []}
+    },
+    "trang-thanh-tuu": {
+        name: "Trăng Thành Tựu",
+        category: "monastic",
+        subgroup: "visiting",
+        unlisted: true,
+        role: {de: "", en: "", vi: ""},
+        intro: {de: [], en: [], vi: []}
+    },
+    "trang-chieu-dieu": {
+        name: "Trăng Chiếu Diệu",
+        category: "monastic",
+        subgroup: "visiting",
+        unlisted: true,
+        role: {de: "", en: "", vi: ""},
+        intro: {de: [], en: [], vi: []}
+    },
+    "trang-thanh-nha": {
+        name: "Trăng Thanh Nhã",
+        category: "monastic",
+        subgroup: "visiting",
+        unlisted: true,
+        role: {de: "", en: "", vi: ""},
+        intro: {de: [], en: [], vi: []}
+    },
+    "bieu-nghiem": {
+        name: "Sr. Biểu Nghiêm",
+        category: "monastic",
+        subgroup: "visiting",
+        unlisted: true,
+        role: {de: "", en: "", vi: ""},
+        intro: {de: [], en: [], vi: []}
+    }
 };
 
 window.EIAB_TEACHERS_LAY = {
@@ -2352,6 +2398,41 @@ window.EIAB_TEACHERS_LAY = {
                 }
             }
         ]
+    },
+
+    // Only known as course instructors so far, see the note on the monastic side
+    // above: unlisted:true keeps them off ueber-uns/laien-kursleiter.html.
+    "thoai-huong-hoang": {
+        name: "Thoại Hương Hoàng",
+        category: "lay",
+        subgroup: "other",
+        unlisted: true,
+        role: {de: "", en: "", vi: ""},
+        intro: {de: [], en: [], vi: []}
+    },
+    "christiane-hackethal": {
+        name: "Christiane Hackethal",
+        category: "lay",
+        subgroup: "other",
+        unlisted: true,
+        role: {de: "", en: "", vi: ""},
+        intro: {de: [], en: [], vi: []}
+    },
+    "gisela-klockner": {
+        name: "Gisela Klöckner",
+        category: "lay",
+        subgroup: "other",
+        unlisted: true,
+        role: {de: "", en: "", vi: ""},
+        intro: {de: [], en: [], vi: []}
+    },
+    "birgit-martin": {
+        name: "Birgit Martin",
+        category: "lay",
+        subgroup: "other",
+        unlisted: true,
+        role: {de: "", en: "", vi: ""},
+        intro: {de: [], en: [], vi: []}
     }
 };
 
