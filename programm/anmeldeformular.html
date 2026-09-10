@@ -1,0 +1,615 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="icon" type="image/png" href="../img/logo.png">
+<title>Anmeldung — Die Kunst der Kalligrafie als lebendige Meditation | EIAB</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:ital,opsz,wght@0,8..60,300;0,8..60,400;0,8..60,600;1,8..60,300;1,8..60,400&family=Be+Vietnam+Pro:wght@300;400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../css/tokens.css">
+<script src="../js/nav.js"></script>
+<style>
+:root{
+  --alarm:#8E3B34;
+}
+html{-webkit-text-size-adjust:100%}
+body{margin:0;background:var(--mist);color:var(--pine);font-family:var(--serif);
+  font-size:clamp(1rem,.96rem + .2vw,1.07rem);line-height:1.62;font-variant-numeric:oldstyle-nums}
+h1,h2,h3{font-family:var(--serif);font-weight:300;line-height:1.16;margin:0;letter-spacing:-.012em}
+h1{font-size:clamp(1.8rem,1.3rem + 2vw,2.7rem)}
+h2{font-size:clamp(1.3rem,1.1rem + .9vw,1.7rem)}
+h3{font-size:1.05rem;font-weight:400}
+p{margin:0 0 1em;max-width:60ch}
+a{color:inherit}
+:focus-visible{outline:2px solid var(--plum);outline-offset:2px;border-radius:2px}
+.wrap{max-width:1160px;margin-inline:auto;padding-inline:var(--gutter)}
+.sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0)}
+
+/* progress */
+.prog{border-bottom:1px solid rgba(27,42,34,.14);background:rgba(255,255,255,.32)}
+.prog-in{display:flex;gap:2rem;font-family:var(--sans);font-size:.85rem;padding-block:.95rem}
+.prog b{display:flex;align-items:center;gap:.6rem;font-weight:400;color:var(--pine-soft)}
+.prog b i{font-style:normal;width:1.55rem;height:1.55rem;border-radius:50%;display:grid;place-items:center;
+  border:1px solid rgba(27,42,34,.3);font-size:.78rem}
+.prog b.on{color:var(--pine);font-weight:500}
+.prog b.on i{background:var(--pine);border-color:var(--pine);color:var(--mist)}
+.prog b.done i{background:var(--moss);border-color:var(--moss);color:#fff}
+
+.layout{display:grid;grid-template-columns:minmax(0,1fr) 330px;gap:clamp(2rem,5vw,4rem);
+  padding-block:clamp(2rem,5vw,3.4rem) clamp(3rem,7vw,5rem);align-items:start}
+
+.stephead{margin-bottom:1.8rem}
+.stephead p{color:var(--pine-soft);margin-top:.6rem}
+
+fieldset{border:0;margin:0 0 2.2rem;padding:0}
+legend{font-family:var(--sans);font-size:.8rem;color:var(--moss);padding:0 0 .85rem}
+
+/* counters */
+.people{border-top:1px solid rgba(27,42,34,.2)}
+.prow{display:grid;grid-template-columns:1fr auto;gap:1.5rem;align-items:center;
+  padding:.95rem 0;border-bottom:1px solid rgba(27,42,34,.13)}
+.prow .nm{font-size:1.05rem}
+.prow .nm em{display:block;font-style:normal;font-family:var(--sans);font-size:.76rem;color:var(--pine-soft);margin-top:.12rem}
+.count{display:flex;align-items:center;gap:.2rem}
+.count button{width:2.1rem;height:2.1rem;border:1px solid rgba(27,42,34,.26);background:rgba(255,255,255,.55);
+  border-radius:50%;font:inherit;font-size:1.05rem;line-height:1;cursor:pointer;color:var(--pine)}
+.count button:hover:not(:disabled){border-color:var(--moss)}
+.count button:disabled{opacity:.32;cursor:not-allowed}
+.count output{width:2.4rem;text-align:center;font-size:1.1rem;font-variant-numeric:lining-nums}
+
+/* rooms */
+.opt{display:grid;grid-template-columns:auto 1fr auto;gap:.85rem;align-items:start;
+  padding:.85rem .9rem;border:1px solid rgba(27,42,34,.18);border-radius:4px;margin-bottom:.45rem;
+  cursor:pointer;background:rgba(255,255,255,.45);transition:.15s}
+.opt:hover{border-color:var(--moss)}
+.opt input{accent-color:var(--pine);margin:.28rem 0 0}
+.opt .nm{font-size:1rem;line-height:1.3}
+.opt .nm em{display:block;font-style:normal;font-family:var(--sans);font-size:.74rem;color:var(--pine-soft);margin-top:.18rem}
+.opt .pr{font-family:var(--sans);font-size:.86rem;white-space:nowrap;text-align:right;padding-top:.1rem}
+.opt .pr em{display:block;font-style:normal;font-size:.7rem;color:var(--pine-soft);margin-top:.1rem}
+.opt:has(input:checked){border-color:var(--pine);background:#fff}
+.opt:has(input:disabled){opacity:.42;cursor:not-allowed;background:transparent}
+
+/* generic inputs */
+.grid2{display:grid;grid-template-columns:1fr 1fr;gap:.9rem 1rem}
+.grid3{display:grid;grid-template-columns:.8fr .6fr 1.4fr;gap:.9rem 1rem}
+.f{display:flex;flex-direction:column;gap:.32rem}
+.f.wide{grid-column:1/-1}
+.f label{font-family:var(--sans);font-size:.78rem;color:var(--pine-soft)}
+.f label .req{color:var(--alarm)}
+.f input,.f select,.f textarea{font:inherit;font-size:.98rem;padding:.62rem .75rem;
+  border:1px solid rgba(27,42,34,.26);background:rgba(255,255,255,.6);border-radius:4px;color:var(--pine);width:100%}
+.f textarea{min-height:96px;resize:vertical;line-height:1.5}
+.f input:disabled{background:rgba(27,42,34,.06);color:var(--pine-soft);cursor:not-allowed}
+.f .hint{font-family:var(--sans);font-size:.74rem;color:var(--pine-soft)}
+.f .err{font-family:var(--sans);font-size:.74rem;color:var(--alarm);display:none}
+.f.bad input,.f.bad select{border-color:var(--alarm)}
+.f.bad .err{display:block}
+
+/* checkboxes */
+.checks{display:grid;gap:.55rem;margin-top:.3rem}
+.chk{display:grid;grid-template-columns:auto 1fr;gap:.7rem;align-items:start;
+  font-size:.98rem;line-height:1.45;cursor:pointer}
+.chk input{accent-color:var(--pine);margin-top:.28rem}
+.chk em{display:block;font-style:normal;font-family:var(--sans);font-size:.76rem;color:var(--pine-soft);margin-top:.1rem}
+.chk.off{opacity:.4;cursor:not-allowed}
+
+/* companions */
+.mate{border:1px solid rgba(27,42,34,.16);border-radius:4px;padding:1rem 1rem .3rem;margin-bottom:.7rem;background:rgba(255,255,255,.3)}
+.mate .cap{font-family:var(--sans);font-size:.76rem;color:var(--moss);margin-bottom:.7rem}
+
+.note{background:var(--mist-deep);border-left:2px solid var(--moss);padding:1rem 1.2rem;margin:1.4rem 0;border-radius:0 3px 3px 0}
+.note p{margin:0;font-size:.94rem}
+.note p+p{margin-top:.55rem}
+
+.acts{display:flex;gap:.8rem;align-items:center;flex-wrap:wrap;margin-top:2.4rem;
+  padding-top:1.6rem;border-top:1px solid rgba(27,42,34,.16)}
+.btn{font-family:var(--sans);font-size:.92rem;font-weight:500;border:0;border-radius:99px;
+  padding:.82rem 1.7rem;cursor:pointer;background:var(--pine);color:var(--mist);text-decoration:none}
+.btn:hover{background:var(--pine-soft)}
+.btn.ghost{background:transparent;color:var(--pine-soft);border:1px solid rgba(27,42,34,.28)}
+.btn.ghost:hover{background:rgba(27,42,34,.06);color:var(--pine)}
+.legalnote{font-family:var(--sans);font-size:.78rem;color:var(--pine-soft);max-width:44ch;line-height:1.5}
+
+/* summary rail */
+.rail{position:sticky;top:1.4rem}
+.card{background:#F5F6F0;border:1px solid rgba(27,42,34,.18);border-radius:4px;padding:1.35rem 1.3rem 1.5rem}
+.card .kurs{font-size:1.08rem;line-height:1.3;margin-bottom:.5rem}
+.card .kurs em{display:block;font-style:normal;font-family:var(--sans);font-size:.75rem;color:var(--moss);margin-bottom:.35rem}
+.card .dates{font-family:var(--sans);font-size:.8rem;color:var(--pine-soft);padding-bottom:1rem;border-bottom:1px solid rgba(27,42,34,.14)}
+.lines{margin:1rem 0;font-size:.94rem}
+.lines div{display:flex;justify-content:space-between;gap:1rem;padding:.26rem 0}
+.lines .lbl{color:var(--pine-soft)}
+.lines .zero{color:var(--moss)}
+.total{display:flex;justify-content:space-between;align-items:baseline;padding:.9rem 0;
+  border-top:1px solid rgba(27,42,34,.18);border-bottom:1px solid rgba(27,42,34,.18)}
+.total b{font-weight:400;font-size:1.6rem;font-variant-numeric:lining-nums}
+.total span{font-family:var(--sans);font-size:.77rem;color:var(--pine-soft)}
+.card .incl{font-size:.85rem;color:var(--pine-soft);margin:.95rem 0 0;line-height:1.5}
+.card .incl a{font-family:var(--sans);font-size:.8rem;border-bottom:1px solid var(--moss);text-decoration:none;padding-bottom:.08rem}
+
+/* done screen */
+.done{padding-block:clamp(3rem,8vw,6rem);max-width:56ch}
+.done h1{margin-bottom:1.2rem}
+.done .steps{list-style:none;margin:2rem 0 0;padding:0;border-top:1px solid rgba(27,42,34,.18)}
+.done .steps li{padding:.9rem 0;border-bottom:1px solid rgba(27,42,34,.13);display:grid;
+  grid-template-columns:7rem 1fr;gap:1.1rem;font-size:.98rem}
+.done .steps span{font-family:var(--sans);font-size:.78rem;color:var(--moss);padding-top:.16rem}
+
+[hidden]{display:none !important}
+
+@media (max-width:940px){
+  .layout{grid-template-columns:1fr}
+  .rail{position:static;order:-1}
+  .prog-in{gap:1.2rem;font-size:.8rem}
+}
+@media (max-width:560px){
+  .grid2,.grid3{grid-template-columns:1fr}
+  .opt{grid-template-columns:auto 1fr}
+  .opt .pr{grid-column:2;text-align:left;padding-top:.3rem}
+}
+</style>
+</head>
+<body>
+
+
+<eiab-header current="programm" base="../"></eiab-header>
+
+<div class="prog" id="prog">
+  <div class="wrap prog-in">
+    <b class="on" id="p1"><i>1</i> Personen und Unterkunft</b>
+    <b id="p2"><i>2</i> Ihre Angaben</b>
+  </div>
+</div>
+
+<main class="wrap layout" id="main">
+
+  <div>
+
+    <!-- ============ STEP 1 ============ -->
+    <div id="step1">
+      <div class="stephead">
+        <h1>Wer kommt mit?</h1>
+        <p>Der Beitrag wird pro Person und pro Nacht berechnet und richtet sich nach Alter und Zimmerart. Kinder bis 5 Jahre sind frei.</p>
+      </div>
+
+      <fieldset>
+        <legend>Teilnehmende</legend>
+        <div class="people">
+          <div class="prow">
+            <div class="nm">Erwachsene<em>ab 18 Jahren</em></div>
+            <div class="count">
+              <button type="button" data-step="-1" data-who="a" aria-label="Erwachsene verringern">−</button>
+              <output id="c-a">1</output>
+              <button type="button" data-step="1" data-who="a" aria-label="Erwachsene erhöhen">+</button>
+            </div>
+          </div>
+          <div class="prow">
+            <div class="nm">Jugendliche<em>13 bis 17 Jahre</em></div>
+            <div class="count">
+              <button type="button" data-step="-1" data-who="t" aria-label="Jugendliche verringern">−</button>
+              <output id="c-t">0</output>
+              <button type="button" data-step="1" data-who="t" aria-label="Jugendliche erhöhen">+</button>
+            </div>
+          </div>
+          <div class="prow">
+            <div class="nm">Kinder<em>6 bis 12 Jahre</em></div>
+            <div class="count">
+              <button type="button" data-step="-1" data-who="k" aria-label="Kinder verringern">−</button>
+              <output id="c-k">0</output>
+              <button type="button" data-step="1" data-who="k" aria-label="Kinder erhöhen">+</button>
+            </div>
+          </div>
+          <div class="prow">
+            <div class="nm">Kleinkinder<em>0 bis 5 Jahre, kostenfrei</em></div>
+            <div class="count">
+              <button type="button" data-step="-1" data-who="b" aria-label="Kleinkinder verringern">−</button>
+              <output id="c-b">0</output>
+              <button type="button" data-step="1" data-who="b" aria-label="Kleinkinder erhöhen">+</button>
+            </div>
+          </div>
+        </div>
+        <p class="hint" id="kidnote" style="font-family:var(--sans);font-size:.8rem;color:var(--pine-soft);margin-top:.9rem" hidden>
+          Für dieses Retreat gibt es kein Kinderprogramm. Bitte schreiben Sie uns vorab, damit wir gemeinsam schauen, ob es passt.
+        </p>
+      </fieldset>
+
+      <fieldset>
+        <legend>Unterkunft</legend>
+        <div id="rooms"></div>
+        <p class="hint" style="font-family:var(--sans);font-size:.79rem;color:var(--pine-soft);margin-top:.7rem">
+          Ein Zimmer mit eigener Dusche und WC lässt sich nur buchen, wenn alle Mitreisenden jetzt gemeinsam angemeldet werden. Ein Zimmerwechsel während des Kurses ist in der Regel nicht möglich.
+        </p>
+      </fieldset>
+
+      <fieldset>
+        <legend>Bettwäsche</legend>
+        <label class="opt">
+          <input type="radio" name="linen" value="10" checked>
+          <span class="nm">Bettwäsche im EIAB mieten<em>Wird im Zimmer bereitgelegt</em></span>
+          <span class="pr">10 €<em>pro Set, einmalig</em></span>
+        </label>
+        <label class="opt">
+          <input type="radio" name="linen" value="0">
+          <span class="nm">Ich bringe eigene Bettwäsche mit<em>Bettbezug, Laken und Kissenbezug</em></span>
+          <span class="pr">0 €</span>
+        </label>
+        <p class="hint" style="font-family:var(--sans);font-size:.79rem;color:var(--pine-soft);margin-top:.7rem">
+          Handtücher stellen wir. Ein Badetuch bringen Sie bitte selbst mit.
+        </p>
+      </fieldset>
+
+      <fieldset>
+        <legend>Ermäßigung</legend>
+        <div class="checks">
+          <label class="chk" id="redwrap">
+            <input type="checkbox" id="red">
+            <span>Ich beantrage eine Ermäßigung
+              <em>Für Studierende, Auszubildende und Menschen in finanzieller Not. Nach dem Absenden schicken Sie uns bitte ein Foto eines Nachweises an registrar@eiab.eu. Wir behandeln das vertraulich.</em></span>
+          </label>
+        </div>
+        <p class="hint" id="rednote" style="font-family:var(--sans);font-size:.79rem;color:var(--pine-soft);margin-top:.7rem" hidden>
+          Eine Ermäßigung ist nur für Zimmer ohne eigene Dusche und WC möglich.
+        </p>
+      </fieldset>
+
+      <div class="acts">
+        <button class="btn" type="button" id="toStep2">Weiter zu Ihren Angaben</button>
+        <span class="legalnote">Noch keine verbindliche Buchung. Im nächsten Schritt können Sie alles prüfen.</span>
+      </div>
+    </div>
+
+    <!-- ============ STEP 2 ============ -->
+    <div id="step2" hidden>
+      <div class="stephead">
+        <h1>Ihre Angaben</h1>
+        <p>Diese Angaben brauchen wir für die Zimmerzuteilung und die Rechnung.</p>
+      </div>
+
+      <fieldset>
+        <legend>Kurs</legend>
+        <div class="f wide">
+          <label for="kurs">Kursnummer und Kursname</label>
+          <input id="kurs" type="text" value="K2639-2 · Die Kunst der Kalligrafie als lebendige Meditation" disabled>
+          <span class="hint">Automatisch übernommen. Für einen anderen Kurs gehen Sie bitte zurück ins Programm.</span>
+        </div>
+      </fieldset>
+
+      <fieldset>
+        <legend>Anmeldende Person</legend>
+        <div class="grid2">
+          <div class="f"><label for="fn">Vorname <span class="req">*</span></label>
+            <input id="fn" type="text" autocomplete="given-name" required>
+            <span class="err">Bitte ausfüllen.</span></div>
+          <div class="f"><label for="ln">Nachname <span class="req">*</span></label>
+            <input id="ln" type="text" autocomplete="family-name" required>
+            <span class="err">Bitte ausfüllen.</span></div>
+          <div class="f"><label for="dob">Geburtsdatum <span class="req">*</span></label>
+            <input id="dob" type="date" required>
+            <span class="err">Bitte ausfüllen.</span></div>
+          <div class="f"><label for="gen">Geschlecht <span class="req">*</span></label>
+            <select id="gen" required>
+              <option value="">Bitte wählen</option>
+              <option value="w">weiblich</option>
+              <option value="m">männlich</option>
+              <option value="d">divers</option>
+            </select>
+            <span class="err">Bitte auswählen.</span></div>
+        </div>
+      </fieldset>
+
+      <fieldset>
+        <legend>Kontakt</legend>
+        <div class="grid2">
+          <div class="f wide"><label for="em">E-Mail-Adresse <span class="req">*</span></label>
+            <input id="em" type="email" autocomplete="email" required>
+            <span class="hint">Die Bestätigung und die Zahlungsdaten schicken wir an diese Adresse.</span>
+            <span class="err">Bitte eine gültige E-Mail-Adresse angeben.</span></div>
+        </div>
+        <div class="grid3" style="margin-top:.9rem">
+          <div class="f"><label for="cc">Ländervorwahl <span class="req">*</span></label>
+            <select id="cc" required>
+              <option value="+49" selected>+49 Deutschland</option>
+              <option value="+43">+43 Österreich</option>
+              <option value="+41">+41 Schweiz</option>
+              <option value="+31">+31 Niederlande</option>
+              <option value="+32">+32 Belgien</option>
+              <option value="+33">+33 Frankreich</option>
+              <option value="+44">+44 Vereinigtes Königreich</option>
+              <option value="+45">+45 Dänemark</option>
+              <option value="+34">+34 Spanien</option>
+              <option value="+39">+39 Italien</option>
+              <option value="+48">+48 Polen</option>
+              <option value="+420">+420 Tschechien</option>
+              <option value="+46">+46 Schweden</option>
+              <option value="+47">+47 Norwegen</option>
+              <option value="+90">+90 Türkei</option>
+              <option value="+84">+84 Vietnam</option>
+              <option value="+1">+1 USA / Kanada</option>
+              <option value="other">Andere</option>
+            </select></div>
+          <div class="f" style="grid-column:span 2"><label for="ph">Telefonnummer <span class="req">*</span></label>
+            <input id="ph" type="tel" autocomplete="tel" required>
+            <span class="err">Bitte ausfüllen.</span></div>
+        </div>
+      </fieldset>
+
+      <fieldset>
+        <legend>Anschrift</legend>
+        <div class="grid2">
+          <div class="f wide"><label for="co">Firma oder c/o</label>
+            <input id="co" type="text"></div>
+          <div class="f wide"><label for="st">Straße und Hausnummer</label>
+            <input id="st" type="text" autocomplete="street-address"></div>
+          <div class="f"><label for="pc">Postleitzahl</label>
+            <input id="pc" type="text" autocomplete="postal-code"></div>
+          <div class="f"><label for="ci">Ort</label>
+            <input id="ci" type="text" autocomplete="address-level2"></div>
+          <div class="f wide"><label for="cn">Land</label>
+            <select id="cn" autocomplete="country-name">
+              <option value="DE" selected>Deutschland</option>
+              <option value="AT">Österreich</option>
+              <option value="CH">Schweiz</option>
+              <option value="NL">Niederlande</option>
+              <option value="BE">Belgien</option>
+              <option value="FR">Frankreich</option>
+              <option value="GB">Vereinigtes Königreich</option>
+              <option value="DK">Dänemark</option>
+              <option value="ES">Spanien</option>
+              <option value="IT">Italien</option>
+              <option value="PL">Polen</option>
+              <option value="CZ">Tschechien</option>
+              <option value="SE">Schweden</option>
+              <option value="NO">Norwegen</option>
+              <option value="TR">Türkei</option>
+              <option value="VN">Vietnam</option>
+              <option value="US">USA</option>
+              <option value="other">Anderes Land</option>
+            </select></div>
+        </div>
+      </fieldset>
+
+      <fieldset id="matesBox" hidden>
+        <legend>Mitreisende</legend>
+        <div id="mates"></div>
+      </fieldset>
+
+      <fieldset>
+        <legend>Was wir noch wissen sollten</legend>
+        <div class="checks">
+          <label class="chk"><input type="checkbox" id="stairs">
+            <span>Ich bin nicht gut zu Fuß — bitte ein Zimmer mit wenigen Treppen
+              <em>Im Erdgeschoss haben wir nur sehr wenige Zimmer. Je früher wir es wissen, desto besser können wir planen.</em></span></label>
+          <label class="chk"><input type="checkbox" id="vol">
+            <span>Ich bin als Volunteer bestätigt
+              <em>Wir passen den Beitrag für Sie an.</em></span></label>
+          <label class="chk"><input type="checkbox" id="oi">
+            <span>Ich bin Mitglied im Orden des Interseins</span></label>
+        </div>
+
+        <div class="f wide" style="margin-top:1.4rem">
+          <label for="cmt">Anmerkungen</label>
+          <textarea id="cmt" placeholder="Allergien und Unverträglichkeiten, Mitfahrgelegenheit, Wunsch nach einem gemeinsamen Zimmer mit einer bestimmten Person, alles Weitere."></textarea>
+        </div>
+
+        <div class="note">
+          <p>Alle Mahlzeiten im EIAB sind vegan. Besondere Diäten können wir leider nicht zubereiten — bringen Sie in dem Fall bitte eigene Lebensmittel mit.</p>
+          <p>Wenn Sie Bedenken wegen Ihrer körperlichen oder seelischen Verfassung haben, schreiben Sie uns bitte vor der Anmeldung an registrar@eiab.eu.</p>
+        </div>
+      </fieldset>
+
+      <fieldset>
+        <legend>Bestätigung</legend>
+        <div class="checks">
+          <label class="chk"><input type="checkbox" id="full" required>
+            <span>Ich nehme am gesamten Kurs teil <span class="req" style="color:var(--alarm)">*</span>
+              <em>Eine spätere Anreise oder frühere Abreise ist aus organisatorischen Gründen nicht möglich.</em></span></label>
+          <label class="chk"><input type="checkbox" id="terms" required>
+            <span>Ich habe die Stornobedingungen und die Hinweise zum Aufenthalt gelesen <span class="req" style="color:var(--alarm)">*</span>
+              <em><a href="anmeldung.html" style="border-bottom:1px solid var(--moss);text-decoration:none">Anmeldung und Beitrag</a> · <a href="../info/datenschutz.html" style="border-bottom:1px solid var(--moss);text-decoration:none">Datenschutz</a></em></span></label>
+        </div>
+        <p class="err" id="termerr" style="font-family:var(--sans);font-size:.8rem;color:var(--alarm);margin-top:.8rem;display:none">
+          Bitte bestätigen Sie beide Punkte, bevor Sie absenden.
+        </p>
+      </fieldset>
+
+      <div class="acts">
+        <button class="btn ghost" type="button" id="back1">Zurück</button>
+        <button class="btn" type="button" id="submit">Anmeldung absenden</button>
+      </div>
+    </div>
+
+    <!-- ============ DONE ============ -->
+    <div id="done" hidden class="done">
+      <h1>Ihre Anmeldung ist bei uns.</h1>
+      <p>Wir haben eine Eingangsbestätigung an Ihre E-Mail-Adresse geschickt. Damit ist der Platz noch nicht verbindlich — das wird er erst mit unserer offiziellen Bestätigung.</p>
+      <ul class="steps">
+        <li><span>In 2 Tagen</span><p>Sie erhalten die offizielle Bestätigung mit Zimmerzuteilung und allen Zahlungsdaten. Sollte sie ausbleiben, ist etwas schiefgegangen — bitte melden Sie sich dann bei uns.</p></li>
+        <li><span>7 Tage vorher</span><p>Wir schreiben Ihnen, ob der Kurs stattfindet, und schicken die letzten Hinweise zur Anreise.</p></li>
+        <li><span>Am Kurstag</span><p>Ankunft zwischen 15:00 und 18:00 Uhr. Abendessen um 18:00, der Kurs beginnt um 19:30 Uhr.</p></li>
+      </ul>
+      <p style="margin-top:2rem"><a href="program.html" style="font-family:var(--sans);font-size:.88rem;border-bottom:1px solid var(--moss);text-decoration:none">← Zurück zum Programm</a></p>
+    </div>
+
+  </div>
+
+  <!-- ============ SUMMARY RAIL ============ -->
+  <aside class="rail" id="rail">
+    <div class="card">
+      <div class="kurs"><em>Ihre Auswahl</em>Die Kunst der Kalligrafie als lebendige Meditation</div>
+      <div class="dates">Do 24. – So 27. September 2026 · 3 Nächte<br>Sr. Hội Nghiêm und Schwestern aus Plum Village</div>
+      <div class="lines" id="lines"></div>
+      <div class="total">
+        <span>Gesamtbeitrag</span>
+        <b id="sum">300 €</b>
+      </div>
+      <p class="incl">Enthalten sind Übernachtung, alle veganen Mahlzeiten, Kursgebühr, Material und Nebenkosten.<br>
+        <a href="anmeldung.html">Zimmer, Ermäßigung und Stornierung</a></p>
+    </div>
+  </aside>
+
+</main>
+
+<script>
+(function(){
+  var NIGHTS=3;
+  var count={a:1,t:0,k:0,b:0};
+  var LABEL={a:'Erwachsene',t:'Jugendliche',k:'Kinder',b:'Kleinkinder'};
+
+  var ROOMS=[
+    {id:'m',   nm:'Bett im Zimmer mit 3–4 Betten', sub:'Dusche und WC auf der Etage', r:{a:100,t:60,k:40,b:0}, priv:false},
+    {id:'mb',  nm:'Bett im Zimmer mit 3–4 Betten, mit eigener Dusche und WC', sub:'Eigenes Bad im Zimmer', r:{a:110,t:66,k:44,b:0}, priv:true},
+    {id:'d',   nm:'Bett im Doppelzimmer', sub:'Dusche und WC auf der Etage', r:{a:110,t:66,k:44,b:0}, priv:false},
+    {id:'db',  nm:'Bett im Doppelzimmer mit eigener Dusche und WC', sub:'Eigenes Bad im Zimmer', r:{a:125,t:75,k:50,b:0}, priv:true},
+    {id:'e',   nm:'Einzelzimmer', sub:'Dusche und WC auf der Etage', r:{a:125,t:null,k:null,b:0}, priv:false, single:true},
+    {id:'eb',  nm:'Einzelzimmer mit eigener Dusche und WC', sub:'Nur wenige vorhanden', r:{a:145,t:null,k:null,b:0}, priv:true, single:true}
+  ];
+  var picked='m';
+
+  var roomsEl=document.getElementById('rooms');
+  ROOMS.forEach(function(R){
+    var l=document.createElement('label');
+    l.className='opt';
+    l.innerHTML='<input type="radio" name="room" value="'+R.id+'"'+(R.id===picked?' checked':'')+'>'+
+      '<span class="nm">'+R.nm+'<em>'+R.sub+'</em></span>'+
+      '<span class="pr" data-pr="'+R.id+'"></span>';
+    roomsEl.appendChild(l);
+  });
+
+  function room(){return ROOMS.filter(function(R){return R.id===picked})[0]}
+  function paying(){return count.a+count.t+count.k}
+  function beds(){return count.a+count.t+count.k}
+
+  function roomTotal(R){
+    var t=0;
+    ['a','t','k'].forEach(function(w){
+      if(R.r[w]==null) return;
+      t+=count[w]*R.r[w]*NIGHTS;
+    });
+    return t;
+  }
+  function allowed(R){
+    if(R.single && (count.a!==1||count.t>0||count.k>0)) return false;
+    if(!R.single && (R.r.t==null&&count.t>0)) return false;
+    return true;
+  }
+
+  function render(){
+    ['a','t','k','b'].forEach(function(w){
+      document.getElementById('c-'+w).textContent=count[w];
+    });
+    document.querySelectorAll('.count button').forEach(function(b){
+      var w=b.dataset.who, s=Number(b.dataset.step);
+      var nv=count[w]+s;
+      b.disabled = nv<0 || (w==='a'&&nv<1) || nv>8;
+    });
+
+    document.getElementById('kidnote').hidden = !(count.t>0||count.k>0||count.b>0);
+
+    ROOMS.forEach(function(R){
+      var input=document.querySelector('input[name="room"][value="'+R.id+'"]');
+      var ok=allowed(R);
+      input.disabled=!ok;
+      if(!ok && picked===R.id){picked='m';document.querySelector('input[name="room"][value="m"]').checked=true}
+      var pr=document.querySelector('[data-pr="'+R.id+'"]');
+      pr.innerHTML = ok ? (roomTotal(R)+' €<em>für '+NIGHTS+' Nächte</em>')
+                        : '<em>Für diese Gruppe nicht wählbar</em>';
+    });
+
+    var R=room();
+    var linen=Number(document.querySelector('input[name="linen"]:checked').value)*beds();
+    var red=document.getElementById('red');
+    var redwrap=document.getElementById('redwrap');
+    if(R.priv){red.checked=false;red.disabled=true;redwrap.classList.add('off');document.getElementById('rednote').hidden=false}
+    else{red.disabled=false;redwrap.classList.remove('off');document.getElementById('rednote').hidden=true}
+
+    var lines=document.getElementById('lines');
+    lines.innerHTML='';
+    ['a','t','k','b'].forEach(function(w){
+      if(!count[w]) return;
+      var rate=R.r[w];
+      var val = (w==='b'||rate===0) ? 'kostenfrei' : (rate==null ? '—' : count[w]*rate*NIGHTS+' €');
+      lines.insertAdjacentHTML('beforeend',
+        '<div><span class="lbl">'+count[w]+'× '+LABEL[w]+'</span><span'+(val==='kostenfrei'?' class="zero"':'')+'>'+val+'</span></div>');
+    });
+    if(linen) lines.insertAdjacentHTML('beforeend',
+      '<div><span class="lbl">Bettwäsche, '+beds()+' Set'+(beds()>1?'s':'')+'</span><span>'+linen+' €</span></div>');
+    if(red.checked) lines.insertAdjacentHTML('beforeend',
+      '<div><span class="lbl">Ermäßigung beantragt</span><span class="zero">wird geprüft</span></div>');
+
+    document.getElementById('sum').textContent=(roomTotal(R)+linen)+' €';
+
+    var box=document.getElementById('matesBox'), mates=document.getElementById('mates');
+    var n=paying()+count.b-1;
+    box.hidden = n<1;
+    if(n>=1 && mates.childElementCount!==n){
+      mates.innerHTML='';
+      for(var i=1;i<=n;i++){
+        mates.insertAdjacentHTML('beforeend',
+          '<div class="mate"><div class="cap">Mitreisende Person '+i+'</div><div class="grid2">'+
+          '<div class="f"><label>Vorname</label><input type="text"></div>'+
+          '<div class="f"><label>Nachname</label><input type="text"></div>'+
+          '<div class="f"><label>Geburtsdatum</label><input type="date"></div>'+
+          '<div class="f"><label>Geschlecht</label><select><option value="">Bitte wählen</option>'+
+          '<option>weiblich</option><option>männlich</option><option>divers</option></select></div>'+
+          '</div></div>');
+      }
+    }
+  }
+
+  document.querySelectorAll('.count button').forEach(function(b){
+    b.addEventListener('click',function(){
+      var w=b.dataset.who;
+      count[w]=Math.max(w==='a'?1:0,Math.min(8,count[w]+Number(b.dataset.step)));
+      render();
+    });
+  });
+  roomsEl.addEventListener('change',function(e){
+    if(e.target.name==='room'){picked=e.target.value;render()}
+  });
+  document.querySelectorAll('input[name="linen"]').forEach(function(r){r.addEventListener('change',render)});
+  document.getElementById('red').addEventListener('change',render);
+
+  /* step navigation */
+  function go(n){
+    document.getElementById('step1').hidden = n!==1;
+    document.getElementById('step2').hidden = n!==2;
+    document.getElementById('done').hidden  = n!==3;
+    document.getElementById('rail').hidden  = n===3;
+    document.getElementById('prog').hidden  = n===3;
+    var p1=document.getElementById('p1'), p2=document.getElementById('p2');
+    p1.className = n===1?'on':'done';
+    p2.className = n===2?'on':'';
+    window.scrollTo({top:0,behavior:'smooth'});
+  }
+  document.getElementById('toStep2').addEventListener('click',function(){go(2)});
+  document.getElementById('back1').addEventListener('click',function(){go(1)});
+  document.getElementById('p1').addEventListener('click',function(){
+    if(document.getElementById('step2').hidden===false) go(1);
+  });
+
+  document.getElementById('submit').addEventListener('click',function(){
+    var ok=true;
+    ['fn','ln','dob','gen','em','ph'].forEach(function(id){
+      var el=document.getElementById(id);
+      var bad=!el.value || (id==='em' && el.value.indexOf('@')<1);
+      el.closest('.f').classList.toggle('bad',bad);
+      if(bad) ok=false;
+    });
+    var terms=document.getElementById('full').checked && document.getElementById('terms').checked;
+    document.getElementById('termerr').style.display = terms?'none':'block';
+    if(!ok||!terms){
+      var first=document.querySelector('.f.bad input, .f.bad select');
+      if(first) first.focus();
+      return;
+    }
+    go(3);
+  });
+
+  render();
+})();
+</script>
+</body>
+</html>

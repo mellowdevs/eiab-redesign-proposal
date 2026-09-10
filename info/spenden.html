@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="icon" type="image/png" href="../img/logo.png">
+<title>Spenden — EIAB</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:ital,opsz,wght@0,8..60,300;0,8..60,400;0,8..60,600;1,8..60,300;1,8..60,400&family=Be+Vietnam+Pro:wght@300;400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../css/tokens.css">
+<script src="../js/nav.js"></script>
+<script src="../js/footer.js"></script>
+<style>
+html{-webkit-text-size-adjust:100%}
+body{margin:0;background:var(--mist);color:var(--pine);font-family:var(--serif);
+  font-size:clamp(1rem,.96rem + .2vw,1.09rem);line-height:1.68;font-variant-numeric:oldstyle-nums}
+h1,h2{font-family:var(--serif);font-weight:300;line-height:1.14;margin:0;letter-spacing:-.012em}
+h1{font-size:clamp(2.3rem,1.4rem + 3.6vw,4rem)}
+h2{font-size:clamp(1.4rem,1.2rem + .8vw,1.8rem)}
+p{margin:0 0 1.1em;max-width:66ch}
+a{color:inherit}
+:focus-visible{outline:2px solid var(--plum);outline-offset:3px;border-radius:2px}
+.wrap{max-width:1240px;margin-inline:auto;padding-inline:var(--gutter)}
+.sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0)}
+
+
+.mast{padding-block:clamp(3rem,7vw,5.5rem) clamp(2rem,4vw,3rem)}
+.mast .kicker{font-family:var(--sans);font-size:.83rem;color:var(--moss);margin-bottom:1rem}
+.mast h1{max-width:16ch}
+.mast .lede{max-width:58ch;margin-top:1.4rem;font-size:1.18rem;line-height:1.6;color:var(--pine-soft)}
+
+/* dana section */
+.dana{display:grid;grid-template-columns:1fr 1fr;gap:clamp(2rem,6vw,4.5rem);
+  padding-block:clamp(3rem,6vw,4.5rem);align-items:start}
+.dana h2{max-width:16ch;grid-column:1}
+.dana .text{grid-column:2}
+.dana .text p{max-width:none}
+.dana .pull{border-left:2px solid var(--stone);padding-left:1.4rem;margin-top:1.4rem}
+.dana .pull p{font-style:italic;font-size:1.08rem;line-height:1.55;color:var(--pine-soft);margin:0}
+
+/* methods */
+.methods{padding-block:clamp(3rem,6vw,4.5rem)}
+.methods h2{max-width:18ch;margin-bottom:1.4rem}
+.mgrid{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:2.2rem}
+.method{background:#F5F6F0;border:1px solid rgba(27,42,34,.14);border-radius:4px;padding:2.2rem 2rem 2.4rem;
+  display:block;text-decoration:none;color:inherit;transition:border-color .18s,background .18s}
+.method[href]{cursor:pointer}
+.method[href]:hover{border-color:var(--moss);background:#F8FAF6}
+.method .icon{font-size:1.8rem;margin-bottom:1rem}
+.method h3{margin-bottom:.8rem}
+.method p{margin-bottom:0;font-size:.98rem;color:var(--pine-soft)}
+.method.featured{border-color:var(--moss);background:#F8FAF6}
+.method.featured .badge{font-family:var(--sans);font-size:.66rem;font-weight:600;background:var(--moss);
+  color:#fff;padding:.24rem .6rem;border-radius:2px;display:inline-block;margin-bottom:1rem}
+
+.bank-details{background:var(--mist-deep);border:1px solid rgba(27,42,34,.16);border-radius:4px;
+  padding:1.6rem 1.8rem;margin-top:1.6rem;font-family:var(--sans)}
+.bank-details dt{font-size:.74rem;color:var(--moss);font-weight:500;margin-bottom:.22rem;margin-top:1rem}
+.bank-details dt:first-child{margin-top:0}
+.bank-details dd{margin:0;font-size:1rem;line-height:1.5;color:var(--pine);word-break:break-all}
+
+/* recurring & corporate */
+.giving{display:grid;grid-template-columns:1fr 1fr;gap:clamp(2rem,6vw,3.5rem);
+  padding-block:clamp(3rem,6vw,4.5rem);align-items:start}
+.giving h2{grid-column:1/3;max-width:22ch;margin-bottom:1.4rem}
+.gblock{background:#F5F6F0;border:1px solid rgba(27,42,34,.14);border-radius:4px;padding:1.8rem 1.8rem 2rem}
+.gblock h3{font-size:1.1rem;margin-bottom:.8rem}
+.gblock p{margin-bottom:0;font-size:.98rem;color:var(--pine-soft)}
+
+/* tax info */
+.tax{background:var(--mist-deep);padding:1.8rem 2rem;border-radius:4px;margin-top:2.4rem;
+  border-left:2px solid var(--moss)}
+.tax h3{font-size:1rem;margin-bottom:.6rem}
+.tax p{margin-bottom:0;font-size:.95rem}
+
+/* closing */
+.close{background:var(--pine);color:#E9ECE3;padding-block:clamp(3rem,6vw,4.5rem)}
+.close h2{color:#F4F6EE;max-width:18ch;margin-bottom:1.4rem}
+.close .acts{display:flex;flex-wrap:wrap;gap:.8rem;font-family:var(--sans);font-size:.88rem;font-weight:500}
+.close a{text-decoration:none;padding:.7rem 1.4rem;border-radius:99px;display:inline-block}
+.a-solid{background:var(--mist);color:var(--pine)}
+.a-ghost{border:1px solid rgba(246,247,241,.5);color:#F6F7F1}
+
+
+@media (max-width:960px){
+  .dana{grid-template-columns:1fr;align-items:auto}
+  .dana h2{grid-column:1}
+  .dana .text{grid-column:1}
+  .giving{grid-template-columns:1fr}
+  .giving h2{grid-column:1}
+}
+</style>
+</head>
+<body>
+
+<eiab-header current="spenden" base="../"></eiab-header>
+
+<main>
+
+  <div class="wrap mast">
+    <div class="kicker">Unterstützen Sie uns</div>
+    <h1>Hilf uns, mehr Achtsamkeit, Mitgefühl und Frieden in die Welt zu bringen.</h1>
+    <p class="lede">Das EIAB ist ein gemeinnütziges Institut und hängt von den finanziellen Beiträgen der Kursteilnehmenden und Gäste ab. Jede Spende — egal wie groß — ist ein Geschenk aus dem Herzen und erfüllt uns mit Dankbarkeit.</p>
+  </div>
+
+  <div class="wrap dana">
+    <h2>Dana: Die Übung der Freigebigkeit</h2>
+    <div class="text">
+      <p>Dana ist eine grundlegende Praxis, die Freude und Erfüllung in unser tägliches Leben bringt. Dana bedeutet nicht nur, etwas Materielles zu geben, sondern auch Zeit, Energie, Erfahrung und Einsicht zu teilen. Ohne Freigebigkeit — sowohl materiell als auch geistig — könnten wir uns gegenseitig nicht unterstützen.</p>
+      <p>Die weltweit wachsenden Sangha-Gemeinschaften sind aktiv auf allen Kontinenten tätig. Eure Spende trägt dazu bei, dass wir Menschen helfen können, ihr Leben zu verwandeln und zu heilen.</p>
+      <div class="pull">
+        <p>Freigebigkeit ist wesentlich für die wachsende Gemeinschaft. Sie schafft Raum für tiefe Transformation — bei uns selbst und in der Welt.</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="wrap methods">
+    <h2>Wie Sie uns unterstützen können</h2>
+    <div class="mgrid">
+      <div class="method featured">
+        <div class="badge">EMPFOHLEN</div>
+        <div class="icon">🏦</div>
+        <h3>Banküberweisung</h3>
+        <p>Die sichere und transparente Methode. Alle Daten finden Sie unten. Ihre Spende ist sofort bei uns.</p>
+      </div>
+      <a class="method" href="https://www.paypal.com/donate?token=-GrMfnAYsGv7gOC9Mre6KKFLiRvulNP6foPgQn4KO3w1P6ICAoagbdyOthFrYroJbSiLQ_q1ZaV7Oyd6" target="_blank" rel="noopener noreferrer">
+        <div class="icon">💳</div>
+        <h3>PayPal</h3>
+        <p>Schnell und unkompliziert. Sie können auch regelmäßig spenden und haben volle Kostenkontrolle.</p>
+      </a>
+      <div class="method">
+        <div class="icon">📦</div>
+        <h3>Blütenbauer-Spende</h3>
+        <p>Viele EIAB-Teilnehmende haben geerbt oder haben Häuser, Kunstwerke oder andere Wertgegenstände. Diese können Sie dem EIAB vermachen.</p>
+      </div>
+    </div>
+
+    <div class="bank-details">
+      <dl>
+        <dt>Kontoinhaber</dt>
+        <dd><b>EIAB</b></dd>
+        <dt>IBAN</dt>
+        <dd>DE27 3705 0299 0341 5529 32</dd>
+        <dt>BIC / SWIFT</dt>
+        <dd>COKSDE33</dd>
+        <dt>Bank</dt>
+        <dd>Kreissparkasse Köln</dd>
+      </dl>
+    </div>
+
+    <div class="tax">
+      <h3>Spendenbescheinigung</h3>
+      <p>Ihre Spende ist steuerlich absetzbar. Wir können allerdings nur für Spenden eine Bescheinigung ausstellen, wenn als Verwendungszweck „allgemeine Spende" angegeben ist. Schreiben Sie einfach dazu — wir kümmern uns um den Rest.</p>
+    </div>
+  </div>
+
+  <div class="wrap giving">
+    <h2>Noch mehr Wege zu geben</h2>
+    <div class="gblock">
+      <h3>Regelmäßige Spende</h3>
+      <p>Wenn Sie monatlich oder jährlich spenden möchten, können Sie uns als Dauerauftrag einrichten. Auch kleine, wiederholte Beiträge helfen uns kontinuierlich, unsere Arbeit zu tragen. Sprechen Sie uns an — wir leiten Sie an.</p>
+    </div>
+    <div class="gblock">
+      <h3>Spende im Namen von jemandem</h3>
+      <p>Sie können auch im Namen eines geliebten Menschen oder zu einem Anlass (Geburtstag, Jubiläum, Trauer) spenden. Wir schreiben dem EIAB dann ein persönliches Wort dazu.</p>
+    </div>
+    <div class="gblock">
+      <h3>Unternehmens- und Stiftungsspende</h3>
+      <p>Falls Sie ein Unternehmen oder eine Stiftung vertreten: Das EIAB freut sich über große Spenden und kann diese beispielsweise für Gebäudeinvestitionen oder Programmentwicklung einsetzen. Gerne besprechen wir mit Ihnen, wo ihre Unterstützung wirkt.</p>
+    </div>
+    <div class="gblock">
+      <h3>Ehrenamtliche Arbeit</h3>
+      <p>Dana ist auch nicht-materielle Großzügigkeit. Falls Sie bei uns helfen möchten, nehmen Sie gerne Kontakt auf — beim Aufbau von Kursen, in der Verwaltung, in der Sangha.</p>
+    </div>
+  </div>
+
+</main>
+
+<div class="close">
+  <div class="wrap">
+    <h2>Sie haben Fragen?</h2>
+    <div class="acts">
+      <a class="a-solid" href="kontakt.html">Kontakt aufnehmen</a>
+      <a class="a-ghost" href="../programm/program.html">Zum Programm</a>
+    </div>
+  </div>
+</div>
+
+<eiab-footer base="../"></eiab-footer>
+
+</body>
+</html>

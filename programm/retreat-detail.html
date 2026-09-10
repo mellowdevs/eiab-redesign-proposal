@@ -1,0 +1,507 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="icon" type="image/png" href="../img/logo.png">
+<title id="page-title">Programm — EIAB Waldbröl</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:ital,opsz,wght@0,8..60,300;0,8..60,400;0,8..60,600;1,8..60,300;1,8..60,400&family=Be+Vietnam+Pro:wght@300;400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../css/tokens.css">
+<script src="../js/nav.js"></script>
+<script src="../js/footer.js"></script>
+<script src="../js/programs.js"></script>
+<script src="../js/labels.js"></script>
+<script src="../js/teachers.js"></script>
+<script src="../js/program-content.js"></script>
+<style>
+html{-webkit-text-size-adjust:100%;scroll-behavior:smooth}
+body{margin:0;background:var(--mist);color:var(--pine);font-family:var(--serif);
+  font-size:clamp(1rem,.96rem + .2vw,1.09rem);line-height:1.66;font-variant-numeric:oldstyle-nums}
+h1,h2,h3,h4{font-family:var(--serif);font-weight:300;line-height:1.14;margin:0;letter-spacing:-.012em}
+h1{font-size:clamp(2.1rem,1.3rem + 3vw,3.7rem);line-height:1.08}
+h2{font-size:clamp(1.5rem,1.2rem + 1.3vw,2.1rem)}
+h3{font-size:1.16rem;font-weight:400;line-height:1.3}
+p{margin:0 0 1.1em}
+a{color:inherit}
+:focus-visible{outline:2px solid var(--plum);outline-offset:3px;border-radius:2px}
+.wrap{max-width:1240px;margin-inline:auto;padding-inline:var(--gutter)}
+.sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0)}
+
+.tag{font-family:var(--sans);font-size:.68rem;font-weight:500;letter-spacing:.03em;padding:.2rem .52rem;border-radius:3px;background:var(--stone-pale);color:#5C5140}
+.tag.de{background:#D9E0D2;color:#3D5343}
+.tag.en{background:#DAE1E6;color:#3C4E5A}
+.tag.vi{background:#E7D9DE;color:#6B4152}
+.tag.fr{background:#DCE3EA;color:#2F4A63}
+.tag.form{background:transparent;border:1px solid rgba(27,42,34,.22);color:var(--pine-soft);font-weight:400}
+.tag.status-closed{background:rgba(27,42,34,.1);color:var(--pine-soft)}
+.tag.status-fully-booked{background:#F4E2D8;color:#8A4A25}
+.status-card{background:#F5F6F0;border:1px solid rgba(27,42,34,.18);border-radius:4px;padding:1.5rem 1.4rem 1.6rem}
+.status-card .head{display:flex;justify-content:space-between;align-items:baseline;gap:1rem;padding-bottom:1rem;border-bottom:1px solid rgba(27,42,34,.14)}
+.status-card .head b{font-family:var(--sans);font-size:.9rem;font-weight:500}
+.status-card p{margin:0;font-size:.96rem;color:var(--pine-soft)}
+
+/* ---- title zone ---- */
+.back{font-family:var(--sans);font-size:.8rem;text-decoration:none;color:var(--pine-soft);display:inline-block;padding-top:2rem}
+.back:hover{color:var(--pine)}
+.titlebox{padding-top:1.4rem}
+.tags-row{display:flex;gap:.35rem;flex-wrap:wrap;margin-bottom:1.1rem}
+.when-big{font-family:var(--sans);font-size:.95rem;font-weight:500;color:var(--moss);margin-bottom:.7rem}
+.titlebox h1{max-width:22ch;text-wrap:balance}
+.byline{margin-top:1.2rem;font-size:1.15rem;font-style:italic;color:var(--pine-soft)}
+
+.band{margin-top:2.6rem;height:clamp(200px,32vw,380px);border-radius:3px;position:relative;overflow:hidden;
+  background:linear-gradient(168deg,#D8D2C4 0%,#B9AE9C 32%,#7C8574 68%,#35473C 100%)}
+.band::after{content:"";position:absolute;inset:0;background:repeating-linear-gradient(101deg,rgba(255,255,255,.05) 0 2px,transparent 2px 38px)}
+
+/* ---- two-column body ---- */
+.layout{display:grid;grid-template-columns:minmax(0,1fr) 350px;gap:clamp(2rem,5vw,4.5rem);
+  padding-block:clamp(2.8rem,6vw,4.5rem) clamp(3.5rem,8vw,6rem);align-items:start}
+.body h2{margin-top:0}
+.body>section{padding-block:0 clamp(2.4rem,5vw,3.6rem)}
+.body>section+section{border-top:1px solid rgba(27,42,34,.15);padding-top:clamp(2.2rem,5vw,3.2rem)}
+.body p{max-width:62ch}
+.lede-p{font-size:1.18rem;line-height:1.6;color:var(--pine-soft)}
+.fallback-note{color:var(--pine-soft);max-width:56ch}
+
+/* teacher */
+.teacher{display:flex;gap:1.5rem;align-items:flex-start;margin-top:1.6rem}
+.portrait{flex:0 0 108px;width:108px;height:132px;border-radius:2px;
+  background:linear-gradient(160deg,#C8BFAD,#8B8B7A 60%,#4E6B55)}
+.portrait.has-photo{background-size:cover;background-position:center;background-repeat:no-repeat}
+.teacher h3{margin-bottom:.2rem}
+.teacher h3 a{text-decoration:none;border-bottom:1px solid transparent}
+.teacher h3 a:hover{border-bottom-color:var(--moss)}
+.teacher .role{font-family:var(--sans);font-size:.78rem;color:var(--moss);margin-bottom:.7rem}
+.teacher p{font-size:.98rem;margin-bottom:.5rem}
+
+/* schedule */
+.day{margin-top:1.6rem;border-top:1px solid rgba(27,42,34,.15);scroll-margin-top:90px}
+.day li{display:grid;grid-template-columns:6.2rem 1fr;gap:1.2rem;padding:.72rem 0;
+  border-bottom:1px solid rgba(27,42,34,.11);list-style:none;align-items:baseline}
+.day ul{margin:0;padding:0}
+.day time{font-family:var(--sans);font-size:.83rem;color:var(--moss);font-weight:500}
+.day .act{font-size:1rem}
+.day .act i{display:block;font-family:var(--sans);font-style:normal;font-size:.8rem;color:var(--pine-soft);margin-top:.15rem}
+.day-note{font-size:.92rem;color:var(--pine-soft);margin-top:1.1rem;font-style:italic}
+
+/* know */
+.know{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:1.6rem 2.2rem;margin-top:1.6rem}
+.know h3{font-size:1.04rem;margin-bottom:.35rem}
+.know p{font-size:.95rem;color:var(--pine-soft);margin:0}
+
+/* travel */
+.travel li{display:grid;grid-template-columns:7.5rem 1fr;gap:1.1rem;padding:.7rem 0;border-bottom:1px solid rgba(27,42,34,.12);list-style:none;font-size:.98rem}
+.travel ul{margin:1.4rem 0 0;padding:0;border-top:1px solid rgba(27,42,34,.15)}
+.travel span{font-family:var(--sans);font-size:.78rem;color:var(--moss);padding-top:.2rem}
+
+/* ---- booking rail ---- */
+.rail{position:sticky;top:92px}
+.card{background:#F5F6F0;border:1px solid rgba(27,42,34,.18);border-radius:4px;padding:1.5rem 1.4rem 1.6rem}
+.card .head{display:flex;justify-content:space-between;align-items:baseline;gap:1rem;padding-bottom:1rem;border-bottom:1px solid rgba(27,42,34,.14)}
+.card .head b{font-family:var(--sans);font-size:.9rem;font-weight:500}
+.io{margin:1rem 0 1.3rem;font-size:.94rem;line-height:1.55}
+.io div{display:flex;justify-content:space-between;gap:1rem;padding:.28rem 0}
+.io span{font-family:var(--sans);font-size:.78rem;color:var(--moss)}
+.total{display:flex;justify-content:space-between;align-items:baseline;padding:.95rem 0;
+  border-top:1px solid rgba(27,42,34,.18);border-bottom:1px solid rgba(27,42,34,.18);margin-bottom:1.1rem}
+.total b{font-family:var(--serif);font-weight:400;font-size:1.7rem}
+.total b.onrequest{font-family:var(--sans);font-weight:500;font-size:.98rem;color:var(--pine-soft)}
+.total span{font-family:var(--sans);font-size:.78rem;color:var(--pine-soft)}
+.book{display:block;width:100%;text-align:center;font-family:var(--sans);font-size:.94rem;font-weight:500;
+  background:var(--pine);color:var(--mist);border:0;border-radius:99px;padding:.85rem;cursor:pointer;text-decoration:none}
+.book:hover{background:var(--pine-soft)}
+.incl{font-size:.88rem;color:var(--pine-soft);margin:1.05rem 0 0;line-height:1.55}
+.helpline{margin-top:1.2rem;font-family:var(--sans);font-size:.8rem;color:var(--pine-soft);text-align:center}
+.helpline a{text-decoration:none;border-bottom:1px solid var(--moss)}
+
+/* related */
+.related{background:var(--mist-deep);padding-block:clamp(3rem,6vw,4.5rem)}
+.related h2{margin-bottom:2rem}
+.rel-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:1px;background:rgba(27,42,34,.15);border-block:1px solid rgba(27,42,34,.15)}
+.rel{position:relative;background:var(--mist-deep);padding:1.4rem 1.3rem 1.6rem;display:flex;flex-direction:column;gap:.6rem}
+.rel:hover{background:#E6E9DF}
+.rel .date{font-family:var(--sans);font-size:.79rem;color:var(--moss);font-weight:500}
+.rel h3 a{color:inherit;text-decoration:none}
+.rel h3 a::after{content:"";position:absolute;inset:0}
+.rel .who{font-size:.94rem;font-style:italic;color:var(--pine-soft);margin-top:auto;padding-top:.6rem}
+.rel .who a{position:relative;z-index:1;color:inherit;text-decoration:underline;text-decoration-color:transparent;transition:text-decoration-color .15s}
+.rel .who a:hover{text-decoration-color:currentColor}
+.byline a{position:relative;color:inherit;text-decoration:underline;text-decoration-color:transparent;transition:text-decoration-color .15s}
+.byline a:hover{text-decoration-color:currentColor}
+
+/* not-found */
+.not-found{padding-block:clamp(4rem,10vw,7rem);text-align:center}
+.not-found p{max-width:48ch;margin-inline:auto;color:var(--pine-soft)}
+
+/* sticky mobile bar */
+.mobar{display:none;position:fixed;left:0;right:0;bottom:0;z-index:70;background:rgba(245,246,240,.97);
+  backdrop-filter:blur(8px);border-top:1px solid rgba(27,42,34,.18);padding:.7rem var(--gutter);
+  align-items:center;justify-content:space-between;gap:1rem}
+.mobar .p{font-family:var(--sans);font-size:.8rem;color:var(--pine-soft)}
+.mobar .p b{display:block;font-family:var(--serif);font-weight:400;font-size:1.25rem;color:var(--pine)}
+.mobar .p b.onrequest{font-family:var(--sans);font-weight:500;font-size:.85rem;color:var(--pine)}
+.mobar a{font-family:var(--sans);font-size:.88rem;font-weight:500;background:var(--pine);color:var(--mist);
+  text-decoration:none;padding:.7rem 1.4rem;border-radius:99px}
+
+@media (max-width:1000px){
+  .layout{grid-template-columns:1fr}
+  .rail{position:static;order:-1}
+  .mobar{display:flex}
+  body{padding-bottom:74px}
+}
+@media (max-width:620px){
+  .teacher{flex-direction:column}
+  .day li,.travel li{grid-template-columns:1fr;gap:.15rem}
+  .rail{display:none}
+}
+</style>
+</head>
+<body>
+
+<eiab-header current="programm" base="../"></eiab-header>
+
+<div id="app"></div>
+
+<eiab-footer base="../"></eiab-footer>
+
+<div class="mobar" id="mobar" hidden></div>
+
+<script>
+(function(){
+  var LANG_MAP = {DE:'de', ENG:'en', VI:'vi'};
+  function currentLang(){
+    var stored = (window.EIAB_I18N && window.EIAB_I18N.getLang()) || 'DE';
+    return LANG_MAP[stored] || 'de';
+  }
+  // Look up a {de,en,vi} field in the current language, falling back to German, then to ''.
+  function tl(field){
+    if(!field) return '';
+    var lang = currentLang();
+    return field[lang] || field.de || '';
+  }
+  // Like tl(), but for {de,en,vi} objects whose values are arrays (description/intro
+  // paragraphs) — an empty array is truthy in JS, so a plain `field[lang] || field.de`
+  // would stop at an empty current-language array instead of falling through. This
+  // tries the current language, then German, then English, then Vietnamese, and only
+  // returns [] if every one of them is actually empty.
+  function tlList(field){
+    if(!field) return [];
+    var order = [currentLang(), 'de', 'en', 'vi'];
+    for(var i = 0; i < order.length; i++){
+      var v = field[order[i]];
+      if(v && v.length) return v;
+    }
+    return [];
+  }
+  function esc(s){
+    return String(s == null ? '' : s).replace(/[&<>"]/g, function(c){
+      return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c];
+    });
+  }
+  // Like esc(), but for hand-authored prose (bio/description paragraphs) where a
+  // real backslash-u-0000-a-href link may deliberately be embedded in the source text.
+  function escKeepLinks(s){
+    s = String(s == null ? '' : s);
+    var links = [];
+    var withPlaceholders = s.replace(/<a\s+href="[^"]*"[^>]*>[\s\S]*?<\/a>/g, function(match){
+      links.push(match);
+      return String.fromCharCode(0) + (links.length - 1) + String.fromCharCode(0);
+    });
+    return esc(withPlaceholders).replace(new RegExp(String.fromCharCode(0) + '(\\d+)' + String.fromCharCode(0), 'g'), function(_, i){ return links[i]; });
+  }
+
+  // course.instructor is either an array of js/teachers.js registry ids (rendered as
+  // clickable links) or a plain fallback string (e.g. "EIAB-Sangha") for courses with
+  // no single identifiable, registered instructor.
+  function instructorHtml(instructor){
+    if(Array.isArray(instructor)){
+      var registry = window.EIAB_TEACHERS || {};
+      return instructor.map(function(id){
+        var t = registry[id];
+        var name = t ? t.name : id;
+        return '<a href="../personen/person.html?id=' + encodeURIComponent(id) + '">' + esc(name) + '</a>';
+      }).join(', ');
+    }
+    return esc(instructor);
+  }
+
+  // Teacher photos are looked up by convention (img/teachers/<id>.png) and not every
+  // teacher has one yet, so we test-load before switching the placeholder to a photo —
+  // a missing file just leaves the gradient placeholder in place instead of breaking.
+  function applyPortraitPhoto(selector, filename){
+    if(!filename) return;
+    var el = document.querySelector(selector);
+    if(!el) return;
+    var url = '../img/teachers/' + encodeURIComponent(filename);
+    var probe = new Image();
+    probe.onload = function(){
+      el.classList.add('has-photo');
+      el.style.backgroundImage = "url('" + url + "')";
+    };
+    probe.src = url;
+  }
+
+  var LABELS = window.EIAB_LABELS || { type: {}, lang: {}, status: {} };
+  var TYPE_LABEL = LABELS.type;
+  var STATUS_LABEL = LABELS.status;
+  var STATUS_NOTE = {
+    closed: {de:'Die Anmeldung für diesen Kurs ist geschlossen.', en:'Registration for this course is closed.', vi:'Đã đóng đăng ký cho khóa học này.'},
+    'fully-booked': {de:'Dieser Kurs ist bereits ausgebucht.', en:'This course is already fully booked.', vi:'Khóa học này đã hết chỗ.'}
+  };
+  var LANG_LABEL = LABELS.lang;
+  var MONTHS = {
+    de: ['Januar','Februar','März','April','Mai','Juni','Juli','August','September','Oktober','November','Dezember'],
+    en: ['January','February','March','April','May','June','July','August','September','October','November','December'],
+    vi: ['Tháng 1','Tháng 2','Tháng 3','Tháng 4','Tháng 5','Tháng 6','Tháng 7','Tháng 8','Tháng 9','Tháng 10','Tháng 11','Tháng 12']
+  };
+  var STR = {
+    notFoundTitle: {de:'Kurs nicht gefunden', en:'Course not found', vi:'Không tìm thấy khóa học'},
+    notFoundBody: {de:'Dieser Kurs existiert nicht oder wurde verschoben. Sehen Sie sich das gesamte Programm an.', en:'This course does not exist or has been moved. Browse the full programme instead.', vi:'Khóa học này không tồn tại hoặc đã được thay đổi. Xem toàn bộ chương trình.'},
+    backToProgram: {de:'Zum Programm', en:'To the programme', vi:'Xem chương trình'},
+    back: {de:'Zurück zum Programm', en:'Back to the programme', vi:'Quay lại chương trình'},
+    teacherHeading: {de:'Die Kursleitung', en:'Your teacher', vi:'Giảng viên'},
+    scheduleHeading: {de:'Ein Tag im Retreat', en:'A day in the retreat', vi:'Một ngày trong khóa tu'},
+    knowHeading: {de:'Gut zu wissen', en:'Good to know', vi:'Điều cần biết'},
+    fallbackNote: {de:'Ausführliche Informationen zu diesem Kurs folgen in Kürze. Bei Fragen erreichen Sie uns unter ', en:'Detailed information about this course is coming soon. For questions, reach us at ', vi:'Thông tin chi tiết về khóa học này sẽ sớm được cập nhật. Nếu có thắc mắc, xin liên hệ '},
+    travelHeading: {de:'Anreise', en:'How to get here', vi:'Đường đến'},
+    travelIntro: {de:'Schaumburgweg 3, 51545 Waldbröl. Rund 70 Kilometer östlich von Köln.', en:'Schaumburgweg 3, 51545 Waldbröl. About 70 km east of Cologne.', vi:'Schaumburgweg 3, 51545 Waldbröl. Cách Köln khoảng 70 km về phía đông.'},
+    travelTrain: {de:'Mit der Bahn', en:'By train', vi:'Bằng tàu'},
+    travelTrainText: {de:'Nächste Bahnhöfe: Schladern (12 km) und Hennef/Sieg (32 km). Von beiden fährt ein Bus nach Waldbröl.', en:'Nearest stations: Schladern (12 km) and Hennef/Sieg (32 km). A bus runs from both to Waldbröl.', vi:'Ga gần nhất: Schladern (12 km) và Hennef/Sieg (32 km). Có xe buýt từ cả hai ga đến Waldbröl.'},
+    travelCar: {de:'Mit dem Auto', en:'By car', vi:'Bằng ô tô'},
+    travelCarText: {de:'Parkplätze stehen auf dem Gelände zur Verfügung.', en:'Parking is available on site.', vi:'Có bãi đỗ xe tại chỗ.'},
+    travelAir: {de:'Vom Flughafen', en:'From the airport', vi:'Từ sân bay'},
+    travelAirText: {de:'Köln/Bonn: Taxi Auto-Ruf Waldbröl, Tel. 02291 92100.', en:'Cologne/Bonn: Auto-Ruf Waldbröl taxi, tel. 02291 92100.', vi:'Köln/Bonn: Taxi Auto-Ruf Waldbröl, điện thoại 02291 92100.'},
+    priceLabel: {de:'Beitrag', en:'Contribution', vi:'Chi phí'},
+    priceOnRequest: {de:'siehe Anmeldung', en:'see registration page', vi:'xem trang đăng ký'},
+    reserve: {de:'Platz reservieren', en:'Reserve a place', vi:'Đăng ký chỗ'},
+    priceDetails: {de:'Zimmerpreise, Ermäßigung und Stornierung', en:'Room prices, discounts and cancellation', vi:'Giá phòng, giảm giá và hủy đăng ký'},
+    related: {de:'Im selben Zeitraum', en:'Around the same time', vi:'Cùng thời gian'}
+  };
+
+  function detailHref(course){
+    return course.detailHref || ('retreat-detail.html?code=' + encodeURIComponent(course.id));
+  }
+  function formatDateRange(startStr, endStr){
+    var lang = currentLang();
+    var s = new Date(startStr + 'T00:00:00Z'), e = new Date(endStr + 'T00:00:00Z');
+    if(startStr === endStr){
+      return s.getUTCDate() + '. ' + MONTHS[lang][s.getUTCMonth()] + ' ' + s.getUTCFullYear();
+    }
+    if(s.getUTCMonth() === e.getUTCMonth() && s.getUTCFullYear() === e.getUTCFullYear()){
+      return s.getUTCDate() + '.–' + e.getUTCDate() + '. ' + MONTHS[lang][e.getUTCMonth()] + ' ' + e.getUTCFullYear();
+    }
+    return s.getUTCDate() + '. ' + MONTHS[lang][s.getUTCMonth()] + ' – ' + e.getUTCDate() + '. ' + MONTHS[lang][e.getUTCMonth()] + ' ' + e.getUTCFullYear();
+  }
+
+  function langTags(course){
+    return course.langs.map(function(l){ return '<span class="tag ' + l + '">' + esc(tl(LANG_LABEL[l]) || l.toUpperCase()) + '</span>'; }).join('');
+  }
+
+  function renderNotFound(){
+    document.getElementById('app').innerHTML =
+      '<main class="wrap not-found">' +
+        '<h1>' + esc(tl(STR.notFoundTitle)) + '</h1>' +
+        '<p>' + esc(tl(STR.notFoundBody)) + '</p>' +
+        '<p><a class="back" href="program.html">← ' + esc(tl(STR.backToProgram)) + '</a></p>' +
+      '</main>';
+    document.getElementById('mobar').hidden = true;
+  }
+
+  function renderCourse(course){
+    var content = (window.EIAB_PROGRAM_CONTENT || {})[course.id];
+    document.title = course.title + ' — EIAB Waldbröl';
+
+    var statusTag = (course.status && course.status !== 'open')
+      ? '<span class="tag status-' + course.status + '">' + esc(tl(STATUS_LABEL[course.status])) + '</span>'
+      : '';
+    var tagsHtml = langTags(course) + '<span class="tag form">' + esc(tl(TYPE_LABEL[course.type])) + '</span>' + statusTag;
+
+    var descSection = '';
+    if(content && content.description){
+      var paras = tlList(content.description);
+      descSection =
+        '<section>' +
+          paras.map(function(p, i){ return '<p' + (i === 0 ? ' class="lede-p"' : '') + '>' + escKeepLinks(p) + '</p>'; }).join('') +
+        '</section>';
+    } else {
+      descSection =
+        '<section>' +
+          '<p class="fallback-note">' + esc(tl(STR.fallbackNote)) + '<a href="mailto:registrar@eiab.eu">registrar@eiab.eu</a>.</p>' +
+        '</section>';
+    }
+
+    var teacherSection = '';
+    var teacherIdsToPhotoCheck = [];
+    {
+      // A program-content.js entry can name one specific teacher explicitly; failing
+      // that, fall back to whichever of the course's own instructor ids (js/programs.js)
+      // are actually in the registry — so the "Kursleitung" section still shows up even
+      // for the ~36 courses that have no program-content.js entry at all.
+      var candidateIds = (content && content.teacher) ? [content.teacher]
+        : (Array.isArray(course.instructor) ? course.instructor : []);
+      var registry = window.EIAB_TEACHERS || {};
+      var resolvedTeachers = candidateIds
+        .map(function(id){ return registry[id] ? { id: id, reg: registry[id] } : null; })
+        .filter(Boolean);
+
+      if(resolvedTeachers.length){
+        var blocks = resolvedTeachers.map(function(t){
+          var bioParas = tlList(t.reg.intro);
+          teacherIdsToPhotoCheck.push(t.id);
+          var nameHtml = '<a href="../personen/person.html?id=' + encodeURIComponent(t.id) + '">' + esc(t.reg.name) + '</a>';
+          return (
+            '<div class="teacher" data-id="' + esc(t.id) + '">' +
+              '<div class="portrait" aria-hidden="true"></div>' +
+              '<div>' +
+                '<h3>' + nameHtml + '</h3>' +
+                (t.reg.role && tl(t.reg.role) ? '<div class="role">' + esc(tl(t.reg.role)) + '</div>' : '') +
+                bioParas.map(function(p){ return '<p>' + escKeepLinks(p) + '</p>'; }).join('') +
+              '</div>' +
+            '</div>'
+          );
+        });
+        teacherSection =
+          '<section>' +
+            '<h2>' + esc(tl(STR.teacherHeading)) + '</h2>' +
+            blocks.join('') +
+          '</section>';
+      }
+    }
+
+    var scheduleSection = '';
+    if(content && content.schedule){
+      var sc = content.schedule;
+      scheduleSection =
+        '<section class="day" id="tagesablauf">' +
+          '<h2>' + esc(tl(STR.scheduleHeading)) + '</h2>' +
+          (sc.note ? '<p style="margin-top:1rem;color:var(--pine-soft)">' + esc(tl(sc.note)) + '</p>' : '') +
+          '<ul>' +
+            sc.items.map(function(it){
+              return '<li><time>' + esc(it.time) + '</time><div class="act">' + esc(tl(it.act)) +
+                (it.sub ? '<i>' + esc(tl(it.sub)) + '</i>' : '') + '</div></li>';
+            }).join('') +
+          '</ul>' +
+          (sc.dayNote ? '<p class="day-note">' + esc(tl(sc.dayNote)) + '</p>' : '') +
+        '</section>';
+    }
+
+    var knowSection = '';
+    if(content && content.know && content.know.length){
+      knowSection =
+        '<section>' +
+          '<h2>' + esc(tl(STR.knowHeading)) + '</h2>' +
+          '<div class="know">' +
+            content.know.map(function(k){
+              return '<div><h3>' + esc(tl(k.title)) + '</h3><p>' + esc(tl(k.text)) + '</p></div>';
+            }).join('') +
+          '</div>' +
+        '</section>';
+    }
+
+    var travelSection =
+      '<section class="travel">' +
+        '<h2>' + esc(tl(STR.travelHeading)) + '</h2>' +
+        '<p style="margin-top:1rem">' + esc(tl(STR.travelIntro)) + '</p>' +
+        '<ul>' +
+          '<li><span>' + esc(tl(STR.travelTrain)) + '</span>' + esc(tl(STR.travelTrainText)) + '</li>' +
+          '<li><span>' + esc(tl(STR.travelCar)) + '</span>' + esc(tl(STR.travelCarText)) + '</li>' +
+          '<li><span>' + esc(tl(STR.travelAir)) + '</span>' + esc(tl(STR.travelAirText)) + '</li>' +
+        '</ul>' +
+      '</section>';
+
+    var isOpen = !course.status || course.status === 'open';
+    var priceRaw = (content && content.price) || null;
+    var priceValue = priceRaw ? (typeof priceRaw === 'string' ? priceRaw : tl(priceRaw)) : null;
+    var railHtml = isOpen
+      ? ('<aside class="rail">' +
+          '<div class="card">' +
+            '<div class="head"><b>' + esc(formatDateRange(course.dateStart, course.dateEnd)) + '</b></div>' +
+            '<div class="total">' +
+              '<span>' + esc(tl(STR.priceLabel)) + '</span>' +
+              '<b' + (priceValue ? '' : ' class="onrequest"') + '>' + (priceValue ? esc(priceValue) : esc(tl(STR.priceOnRequest))) + '</b>' +
+            '</div>' +
+            (content && content.priceNote ? '<p class="incl">' + esc(tl(content.priceNote)) + '</p>' : '') +
+            '<a class="book" href="anmeldeformular.html">' + esc(tl(STR.reserve)) + '</a>' +
+            '<p class="helpline"><a href="anmeldung.html">' + esc(tl(STR.priceDetails)) + '</a></p>' +
+          '</div>' +
+        '</aside>')
+      : ('<aside class="rail">' +
+          '<div class="status-card">' +
+            '<div class="head"><b>' + esc(formatDateRange(course.dateStart, course.dateEnd)) + '</b></div>' +
+            '<p style="margin-top:1rem">' + esc(tl(STATUS_NOTE[course.status])) + '</p>' +
+          '</div>' +
+        '</aside>');
+    document.getElementById('app').innerHTML =
+      '<main class="wrap">' +
+        '<a class="back" href="program.html">← ' + esc(tl(STR.back)) + '</a>' +
+        '<div class="titlebox">' +
+          '<div class="when-big">' + esc(formatDateRange(course.dateStart, course.dateEnd)) + '</div>' +
+          '<div class="tags-row">' + tagsHtml + '</div>' +
+          '<h1>' + esc(course.title) + '</h1>' +
+          '<p class="byline">' + instructorHtml(course.instructor) + '</p>' +
+        '</div>' +
+        '<div class="band" aria-hidden="true"></div>' +
+        '<div class="layout">' +
+          '<div class="body">' + descSection + teacherSection + scheduleSection + knowSection + travelSection + '</div>' +
+          railHtml +
+        '</div>' +
+      '</main>' +
+      renderRelated(course);
+
+    teacherIdsToPhotoCheck.forEach(function(id){
+      var reg = (window.EIAB_TEACHERS || {})[id];
+      var imgFile = reg && (reg.img || (id + '.png'));
+      applyPortraitPhoto('.teacher[data-id="' + id + '"] .portrait', imgFile);
+    });
+
+    var mobar = document.getElementById('mobar');
+    if(isOpen){
+      mobar.hidden = false;
+      mobar.innerHTML =
+        '<div class="p"><b' + (priceValue ? '' : ' class="onrequest"') + '>' + (priceValue ? esc(priceValue) : esc(tl(STR.priceOnRequest))) + '</b></div>' +
+        '<a href="anmeldeformular.html">' + esc(tl(STR.reserve)) + '</a>';
+    } else {
+      mobar.hidden = true;
+      mobar.innerHTML = '';
+    }
+  }
+
+  function renderRelated(course){
+    var all = (window.EIAB_PROGRAMS || []).filter(function(c){ return c.id !== course.id; });
+    all.sort(function(a, b){
+      return Math.abs(new Date(a.dateStart) - new Date(course.dateStart)) - Math.abs(new Date(b.dateStart) - new Date(course.dateStart));
+    });
+    var nearby = all.slice(0, 3);
+    if(!nearby.length) return '';
+    return (
+      '<div class="related"><div class="wrap">' +
+        '<h2>' + esc(tl(STR.related)) + '</h2>' +
+        '<div class="rel-grid">' +
+          nearby.map(function(c){
+            return '<div class="rel">' +
+              '<div class="date">' + esc(formatDateRange(c.dateStart, c.dateEnd)) + '</div>' +
+              '<div class="tags-row" style="margin:0">' + langTags(c) + '</div>' +
+              '<h3><a href="' + detailHref(c) + '">' + esc(c.title) + '</a></h3>' +
+              '<div class="who">' + instructorHtml(c.instructor) + '</div>' +
+            '</div>';
+          }).join('') +
+        '</div>' +
+      '</div></div>'
+    );
+  }
+
+  function render(){
+    var code = new URLSearchParams(location.search).get('code');
+    var course = (window.EIAB_PROGRAMS || []).find(function(c){ return c.id === code; });
+    if(!course){ renderNotFound(); return; }
+    renderCourse(course);
+  }
+
+  render();
+  window.addEventListener('eiab:langchange', render);
+})();
+</script>
+</body>
+</html>

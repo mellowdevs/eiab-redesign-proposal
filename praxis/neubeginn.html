@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="icon" type="image/png" href="../img/logo.png">
+<title>Neubeginn — EIAB Waldbröl</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:ital,opsz,wght@0,8..60,300;0,8..60,400;0,8..60,600;1,8..60,300;1,8..60,400&family=Be+Vietnam+Pro:wght@300;400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../css/tokens.css">
+<script src="../js/nav.js"></script>
+<script src="../js/footer.js"></script>
+<style>
+html{-webkit-text-size-adjust:100%}
+body{margin:0;background:var(--mist);color:var(--pine);font-family:var(--serif);
+  font-size:clamp(1rem,.96rem + .2vw,1.09rem);line-height:1.66;font-variant-numeric:oldstyle-nums}
+h1,h2,h3{font-family:var(--serif);font-weight:300;line-height:1.14;margin:0;letter-spacing:-.012em}
+h1{font-size:clamp(2.3rem,1.4rem + 3.6vw,4rem)}
+p{margin:0 0 1.1em}
+a{color:inherit}
+:focus-visible{outline:2px solid var(--plum);outline-offset:3px;border-radius:2px}
+.wrap{max-width:1240px;margin-inline:auto;padding-inline:var(--gutter)}
+.sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0)}
+
+.subnav{border-bottom:1px solid rgba(27,42,34,.15);background:rgba(255,255,255,.3)}
+.subnav-in{display:flex;gap:1.6rem;font-family:var(--sans);font-size:.83rem;overflow-x:auto}
+.subnav a{white-space:nowrap;text-decoration:none;color:var(--pine-soft);padding:.85rem 0;border-bottom:2px solid transparent}
+.subnav a:hover{color:var(--pine)}
+.subnav a[aria-current]{color:var(--pine);border-bottom-color:var(--plum);font-weight:500}
+
+.mast{padding-block:clamp(2.6rem,6vw,4.4rem) clamp(1.6rem,3vw,2.2rem)}
+.mast .kicker{font-family:var(--sans);font-size:.83rem;color:var(--moss);margin-bottom:1rem}
+.mast h1{max-width:16ch}
+.mast .lede{max-width:60ch;margin-top:1.3rem;font-size:1.16rem;color:var(--pine-soft)}
+
+.intro{padding-block:0 clamp(1.4rem,3vw,2rem)}
+.intro p{max-width:64ch}
+
+.steps{counter-reset:s;margin:1.7rem 0 0;padding:0;list-style:none;display:grid;gap:0;max-width:64ch}
+.steps li{counter-increment:s;display:grid;grid-template-columns:2.4rem 1fr;gap:1.2rem;
+  padding:1.15rem 0;border-bottom:1px solid rgba(27,42,34,.13)}
+.steps li:first-child{border-top:1px solid rgba(27,42,34,.2)}
+.steps li::before{content:counter(s);font-family:var(--sans);font-size:.85rem;color:var(--moss);
+  border:1px solid rgba(78,107,85,.45);border-radius:50%;width:1.9rem;height:1.9rem;
+  display:grid;place-items:center;margin-top:.1rem}
+.steps b{display:block;font-weight:400;font-size:1.08rem;margin-bottom:.25rem}
+.steps p{font-size:.96rem;color:var(--pine-soft);margin:0;max-width:56ch}
+
+.note{background:var(--mist-deep);border-left:2px solid var(--moss);padding:1.2rem 1.4rem;margin:2.2rem 0 3rem;border-radius:0 3px 3px 0;max-width:64ch}
+.note p{margin:0;font-size:.98rem}
+
+.source{font-family:var(--sans);font-size:.8rem;color:var(--pine-soft);max-width:62ch;margin-bottom:3rem}
+.source a{border-bottom:1px solid var(--moss);text-decoration:none}
+
+
+@media (max-width:560px){
+  .steps li{grid-template-columns:1fr}
+  .steps li::before{display:none}
+}
+</style>
+</head>
+<body>
+
+<eiab-header current="praxis" base="../"></eiab-header>
+
+<eiab-subnav section="praxis" current="neubeginn.html" base="../"></eiab-subnav>
+
+<div class="wrap mast">
+  <div class="kicker">Praxis</div>
+  <h1>Neubeginn</h1>
+  <p class="lede">Eine Praxis der ehrlichen Rückschau auf die eigenen Worte, Taten und Gedanken — um in sich selbst und in Beziehungen immer wieder neu anzufangen. Viele Sanghas üben sie alle zwei Wochen: Eine Person spricht, die anderen hören zu, ohne zu unterbrechen.</p>
+</div>
+
+<main class="wrap">
+
+  <section class="intro">
+    <p>Ziel des Neubeginns ist es, den Geist zu klären, die Praxis frisch zu halten und Harmonie wiederherzustellen, wenn zwischen Mitgliedern einer Gemeinschaft Spannungen entstanden sind. Der Neubeginn verläuft in vier Schritten.</p>
+
+    <ol class="steps">
+      <li>
+        <div>
+          <b>Blumen gießen</b>
+          <p>Man benennt konkret, was man an einer anderen Person schätzt — ihre Worte, ihre Taten, ihre Eigenschaften. Wertschätzung auszusprechen lässt die „Blumen" in der Beziehung wachsen.</p>
+        </div>
+      </li>
+      <li>
+        <div>
+          <b>Bedauern ausdrücken</b>
+          <p>Man spricht offen aus, welche eigene ungeschickte Handlung, welches Wort oder welchen Gedanken man noch nicht anerkannt oder wofür man sich noch nicht entschuldigt hat.</p>
+        </div>
+      </li>
+      <li>
+        <div>
+          <b>Verletzungen ausdrücken</b>
+          <p>Man teilt, wie das Verhalten einer anderen Person Schmerz ausgelöst hat — im Idealfall erst, nachdem man zwei positive Eigenschaften dieser Person benannt hat. Dieser Schritt findet oft im vertraulichen Gespräch statt, nicht in der großen Gruppe.</p>
+        </div>
+      </li>
+      <li>
+        <div>
+          <b>Anhaltende Schwierigkeiten teilen</b>
+          <p>Man macht sichtbar, welche gegenwärtigen Schwierigkeiten mit früherem Schmerz zusammenhängen, und lädt die Gemeinschaft ein, mitzutragen und zu verstehen.</p>
+        </div>
+      </li>
+    </ol>
+
+    <div class="note">
+      <p>Wer die „Blumen" der Wertschätzung gießt, lässt die „Unkräuter" von Ärger und Fehlwahrnehmung verblassen — zum Wohl des Einzelnen wie der ganzen Gemeinschaft.</p>
+    </div>
+  </section>
+
+  <p class="source">Die Praxis des Neubeginns ist Teil der Übungstradition von Zen-Meister Thích Nhất Hạnh und wird in Sanghas weltweit geübt, so auch im EIAB. Mehr dazu bei <a href="https://plumvillage.org" target="_blank" rel="noopener noreferrer">Plum Village</a>.</p>
+
+</main>
+
+<eiab-footer base="../"></eiab-footer>
+
+</body>
+</html>

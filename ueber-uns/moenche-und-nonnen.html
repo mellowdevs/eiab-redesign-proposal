@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="icon" type="image/png" href="../img/logo.png">
+<title>Mönche und Nonnen im EIAB</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:ital,opsz,wght@0,8..60,300;0,8..60,400;0,8..60,600;1,8..60,300;1,8..60,400&family=Be+Vietnam+Pro:wght@300;400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../css/tokens.css">
+<script src="../js/nav.js"></script>
+<script src="../js/footer.js"></script>
+<script src="../js/teachers.js"></script>
+<script src="../js/teacher-groups.js"></script>
+<style>
+html{-webkit-text-size-adjust:100%}
+body{margin:0;background:var(--mist);color:var(--pine);font-family:var(--serif);
+  font-size:clamp(1rem,.96rem + .2vw,1.07rem);line-height:1.6;font-variant-numeric:oldstyle-nums}
+h1,h2{font-family:var(--serif);font-weight:300;line-height:1.14;margin:0;letter-spacing:-.012em}
+h1{font-size:clamp(2.3rem,1.4rem + 3.6vw,4rem)}
+h2{font-size:1.35rem;font-weight:400}
+p{margin:0 0 1.1em}
+a{color:inherit}
+:focus-visible{outline:2px solid var(--plum);outline-offset:3px;border-radius:2px}
+.wrap{max-width:1240px;margin-inline:auto;padding-inline:var(--gutter)}
+.sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0)}
+
+
+.subnav{border-bottom:1px solid rgba(27,42,34,.15);background:rgba(255,255,255,.3)}
+.subnav-in{display:flex;gap:1.6rem;font-family:var(--sans);font-size:.83rem;overflow-x:auto}
+.subnav a{white-space:nowrap;text-decoration:none;color:var(--pine-soft);padding:.85rem 0;border-bottom:2px solid transparent}
+.subnav a:hover{color:var(--pine)}
+.subnav a[aria-current]{color:var(--pine);border-bottom-color:var(--plum);font-weight:500}
+
+.mast{padding-block:clamp(2.6rem,6vw,4.4rem) clamp(1.6rem,3vw,2.2rem)}
+.mast .kicker{font-family:var(--sans);font-size:.83rem;color:var(--moss);margin-bottom:1rem}
+.mast h1{max-width:16ch}
+.mast .lede{max-width:56ch;margin-top:1.3rem;font-size:1.12rem;color:var(--pine-soft)}
+
+section{padding-block:clamp(2rem,5vw,3.2rem)}
+.grouphead{display:flex;align-items:baseline;justify-content:space-between;gap:1rem;
+  margin-bottom:1.8rem;padding-bottom:.9rem;border-bottom:1px solid rgba(27,42,34,.18)}
+.grouphead p{margin:0;font-family:var(--sans);font-size:.83rem;color:var(--pine-soft);max-width:38ch;text-align:right}
+
+.people{display:grid;grid-template-columns:repeat(auto-fill,minmax(168px,1fr));gap:1.8rem 1.4rem}
+.person{text-decoration:none;color:var(--pine);display:block}
+.pic{aspect-ratio:1/1;border-radius:3px;position:relative;overflow:hidden;margin-bottom:.75rem;
+  background:linear-gradient(155deg,#C8BFAD 0%,#8B8B7A 55%,#4E6B55 100%);transition:transform .25s}
+.person:hover .pic{transform:translateY(-3px)}
+.person .pic::after{content:"";position:absolute;inset:0;
+  background:repeating-linear-gradient(105deg,rgba(255,255,255,.05) 0 2px,transparent 2px 30px)}
+.pic.has-photo{background-size:cover;background-position:center;background-repeat:no-repeat}
+.pic.has-photo::after{content:none}
+.person .nm{font-size:1.02rem;line-height:1.28}
+.person .role{font-family:var(--sans);font-size:.76rem;color:var(--pine-soft);margin-top:.2rem}
+
+.other .people{margin-top:.4rem}
+.other .pic{aspect-ratio:3/4}
+
+
+@media (max-width:960px){
+  .grouphead{flex-direction:column;align-items:flex-start}
+  .grouphead p{text-align:left}
+}
+@media (max-width:560px){
+  .people{grid-template-columns:repeat(2,1fr)}
+}
+</style>
+</head>
+<body>
+
+<eiab-header current="ueber-uns" base="../"></eiab-header>
+
+<eiab-subnav section="ueber-uns" current="moenche-und-nonnen.html" base="../"></eiab-subnav>
+
+<div class="wrap mast">
+  <div class="kicker">Die Gemeinschaft</div>
+  <h1>Mönche und Nonnen</h1>
+  <p class="lede">Rund 20 Mönche und 30 Nonnen leben als Schülerinnen und Schüler von Zen-Meister Thích Nhất Hạnh im EIAB. Kursteilnehmende wohnen während ihres Aufenthalts mit ihnen zusammen — das gemeinsame Leben ist Teil der Übung.</p>
+</div>
+
+<main class="wrap" id="app"></main>
+
+<eiab-footer current="moenche" base="../"></eiab-footer>
+
+<script>
+window.EIAB_RENDER_TEACHER_LISTING(document.getElementById('app'), 'monastic');
+</script>
+
+</body>
+</html>

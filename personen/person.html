@@ -1,0 +1,330 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="icon" type="image/png" href="../img/logo.png">
+<title id="page-title">Team — EIAB Waldbröl</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:ital,opsz,wght@0,8..60,300;0,8..60,400;0,8..60,600;1,8..60,300;1,8..60,400&family=Be+Vietnam+Pro:wght@300;400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../css/tokens.css">
+<script src="../js/nav.js"></script>
+<script src="../js/footer.js"></script>
+<script src="../js/programs.js"></script>
+<script src="../js/labels.js"></script>
+<script src="../js/teachers.js"></script>
+<style>
+html{-webkit-text-size-adjust:100%}
+body{margin:0;background:var(--mist);color:var(--pine);font-family:var(--serif);
+  font-size:clamp(1rem,.96rem + .2vw,1.09rem);line-height:1.68;font-variant-numeric:oldstyle-nums}
+h1,h2,h3{font-family:var(--serif);font-weight:300;line-height:1.15;margin:0;letter-spacing:-.012em}
+h1{font-size:clamp(2.1rem,1.4rem + 2.6vw,3.4rem)}
+h2{font-size:clamp(1.35rem,1.15rem + .9vw,1.7rem)}
+h3{font-size:1.05rem;font-weight:400}
+p{margin:0 0 1.1em;max-width:64ch}
+a{color:inherit}
+:focus-visible{outline:2px solid var(--plum);outline-offset:3px;border-radius:2px}
+.wrap{max-width:1240px;margin-inline:auto;padding-inline:var(--gutter)}
+.sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0)}
+
+.back{font-family:var(--sans);font-size:.8rem;text-decoration:none;color:var(--pine-soft);display:inline-block;padding-top:1.8rem}
+.back:hover{color:var(--pine)}
+
+/* heading (name/role/tags) — no portrait alongside it anymore, that's in the rail */
+.headtext{padding-block:1.8rem clamp(2.6rem,5vw,3.6rem)}
+.headtext .role{font-family:var(--sans);font-size:.88rem;color:var(--moss);margin-bottom:.6rem}
+.headtext h1{max-width:20ch}
+.taglist{display:flex;flex-wrap:wrap;gap:.4rem;margin-top:1.2rem}
+.tagx{font-family:var(--sans);font-size:.74rem;color:var(--pine-soft);border:1px solid rgba(27,42,34,.24);
+  padding:.28rem .7rem;border-radius:99px}
+
+/* portrait, now stacked above the facts in the rail */
+.portrait{width:100%;aspect-ratio:1/1;border-radius:3px;position:relative;overflow:hidden;margin-bottom:1.6rem;
+  background:linear-gradient(155deg,#C8BFAD 0%,#8B8B7A 55%,#4E6B55 100%)}
+.portrait::after{content:"";position:absolute;inset:0;
+  background:repeating-linear-gradient(105deg,rgba(255,255,255,.05) 0 2px,transparent 2px 30px)}
+.portrait.has-photo{background-size:cover;background-position:center;background-repeat:no-repeat}
+.portrait.has-photo::after{content:none}
+
+/* body layout */
+.layout{display:grid;grid-template-columns:minmax(0,1fr) 300px;gap:clamp(2rem,5vw,4rem);
+  padding-block:0 clamp(3rem,7vw,5rem);align-items:start}
+
+.bio>section{padding-bottom:clamp(2rem,4vw,2.8rem)}
+.bio>section+section{border-top:1px solid rgba(27,42,34,.15);padding-top:clamp(1.8rem,4vw,2.6rem)}
+.bio h2{margin-bottom:1rem}
+.bio p a{color:var(--moss);text-decoration:none;border-bottom:1px solid var(--moss)}
+.bio p a:hover{color:var(--pine)}
+.lede-p{font-size:1.14rem;line-height:1.62;color:var(--pine-soft)}
+
+/* sidebar: portrait + facts */
+.rail{position:sticky;top:96px}
+.facts{margin:0;padding:0;list-style:none;border-top:1px solid rgba(27,42,34,.2)}
+.facts li{padding:.85rem 0;border-bottom:1px solid rgba(27,42,34,.13)}
+.facts span{display:block;font-family:var(--sans);font-size:.75rem;color:var(--moss);margin-bottom:.22rem}
+.facts p{margin:0;font-size:.95rem;line-height:1.45;max-width:none}
+
+/* course grid */
+.courses{display:flex;flex-wrap:wrap;gap:1px;
+  background:rgba(27,42,34,.14);border-block:1px solid rgba(27,42,34,.14);margin-top:1.6rem}
+.course{flex:1 1 260px;background:var(--mist);padding:1.3rem 1.3rem 1.5rem;text-decoration:none;
+  display:flex;flex-direction:column;gap:.5rem;transition:background .18s}
+.course:hover{background:#F5F6F0}
+.course .tag{font-family:var(--sans);font-size:.72rem;font-weight:500;color:var(--moss)}
+.course h3{font-size:1rem;line-height:1.32}
+.course .more{margin-top:auto;padding-top:.5rem;font-family:var(--sans);font-size:.78rem;
+  color:var(--pine-soft);border-top:1px solid rgba(27,42,34,.1)}
+
+/* not-found / fallback */
+.not-found{padding-block:clamp(4rem,10vw,7rem);text-align:center}
+.not-found p{max-width:48ch;margin-inline:auto;color:var(--pine-soft)}
+.fallback-note{color:var(--pine-soft);max-width:56ch}
+
+@media (max-width:900px){
+  .layout{grid-template-columns:1fr;gap:1.6rem}
+  .rail{position:static}
+  .back{margin-bottom:1.6rem}
+  .portrait{max-width:280px;margin-bottom:0}
+  .headtext{padding-block:0}
+  /* On mobile the visual order should be: portrait, headtext, bio text, facts —
+     display:contents dissolves the main-col/rail wrappers so their children become
+     direct grid items of .layout, which the order values below can then interleave,
+     without touching the desktop 2-column layout at all. The uniform 1.6rem gap
+     above (instead of each block's own margin/padding) keeps the rhythm consistent
+     between every stacked block on mobile. */
+  .main-col,.rail{display:contents}
+  .portrait{order:1}
+  .headtext{order:2}
+  .bio{order:3}
+  .facts{order:4}
+}
+</style>
+</head>
+<body>
+
+<eiab-header current="ueber-uns" base="../"></eiab-header>
+
+<div id="app"></div>
+
+<eiab-footer base="../"></eiab-footer>
+
+<script>
+(function(){
+  var LANG_MAP = {DE:'de', ENG:'en', VI:'vi'};
+  function currentLang(){
+    var stored = (window.EIAB_I18N && window.EIAB_I18N.getLang()) || 'DE';
+    return LANG_MAP[stored] || 'de';
+  }
+  function tl(field){
+    if(!field) return '';
+    var lang = currentLang();
+    return field[lang] || field.de || '';
+  }
+  // Like tl(), but for {de,en,vi} objects whose values are arrays (intro/section
+  // paragraphs) — an empty array is truthy in JS, so a plain `field[lang] || field.de`
+  // would stop at an empty current-language array instead of falling through. This
+  // tries the current language, then German, then English, then Vietnamese, and only
+  // returns [] if every one of them is actually empty.
+  function tlList(field){
+    if(!field) return [];
+    var order = [currentLang(), 'de', 'en', 'vi'];
+    for(var i = 0; i < order.length; i++){
+      var v = field[order[i]];
+      if(v && v.length) return v;
+    }
+    return [];
+  }
+  function esc(s){
+    return String(s == null ? '' : s).replace(/[&<>"]/g, function(c){
+      return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c];
+    });
+  }
+  // Like esc(), but for hand-authored prose (bio paragraphs) where a real
+  // <a href="...">...</a> link may deliberately be embedded in the source text —
+  // pull those out first so they survive intact, escape everything else as usual,
+  // then put the (already-safe, author-written) links back in place.
+  function escKeepLinks(s){
+    s = String(s == null ? '' : s);
+    var links = [];
+    var withPlaceholders = s.replace(/<a\s+href="[^"]*"[^>]*>[\s\S]*?<\/a>/g, function(match){
+      links.push(match);
+      return '\u0000' + (links.length - 1) + '\u0000';
+    });
+    return esc(withPlaceholders).replace(/\u0000(\d+)\u0000/g, function(_, i){ return links[i]; });
+  }
+
+  // Teacher photos are looked up by convention (img/teachers/<id>.png) and not every
+  // teacher has one yet, so we test-load before switching the placeholder to a photo —
+  // a missing file just leaves the gradient placeholder in place instead of breaking.
+  function applyPortraitPhoto(selector, filename){
+    if(!filename) return;
+    var el = document.querySelector(selector);
+    if(!el) return;
+    var url = '../img/teachers/' + encodeURIComponent(filename);
+    var probe = new Image();
+    probe.onload = function(){
+      el.classList.add('has-photo');
+      el.style.backgroundImage = "url('" + url + "')";
+    };
+    probe.src = url;
+  }
+
+  var CATEGORY_BACK = {
+    monastic: { href: '../ueber-uns/moenche-und-nonnen.html', label: { de: 'Zurück zu Mönche und Nonnen', en: 'Back to Monks and Nuns', vi: 'Quay lại Tăng Ni' }, footerCurrent: 'moenche' },
+    lay:      { href: '../ueber-uns/laien-kursleiter.html', label: { de: 'Zurück zu Lehrerinnen und Lehrer', en: 'Back to teachers', vi: 'Quay lại giảng viên' }, footerCurrent: 'lehrer' }
+  };
+  var DEFAULT_BACK = { href: '../ueber-uns/ueber-uns.html', label: { de: 'Zurück zu Über uns', en: 'Back to About us', vi: 'Quay lại Giới thiệu' }, footerCurrent: '' };
+
+  var STR = {
+    notFoundTitle: { de: 'Person nicht gefunden', en: 'Person not found', vi: 'Không tìm thấy người này' },
+    notFoundBody: { de: 'Diese Seite existiert nicht oder wurde verschoben.', en: 'This page does not exist or has been moved.', vi: 'Trang này không tồn tại hoặc đã được thay đổi.' },
+    fallbackNote: { de: 'Eine ausführliche Vorstellung folgt in Kürze. Bei Fragen erreichen Sie uns unter ', en: 'A detailed profile is coming soon. For questions, reach us at ', vi: 'Giới thiệu chi tiết sẽ sớm được cập nhật. Nếu có thắc mắc, xin liên hệ ' },
+    coursesHeading: { de: 'Kurse mit ', en: 'Courses with ', vi: 'Các khóa học cùng ' },
+    more: { de: 'Mehr erfahren', en: 'Learn more', vi: 'Tìm hiểu thêm' }
+  };
+
+  function esc_(s){ return esc(s); }
+
+  function langTagLabel(l){
+    var LANG_LABEL = (window.EIAB_LABELS && window.EIAB_LABELS.lang) || {};
+    return tl(LANG_LABEL[l]) || l.toUpperCase();
+  }
+
+  function renderNotFound(){
+    document.getElementById('app').innerHTML =
+      '<main class="wrap not-found">' +
+        '<h1>' + esc(tl(STR.notFoundTitle)) + '</h1>' +
+        '<p>' + esc(tl(STR.notFoundBody)) + '</p>' +
+        '<p><a class="back" href="' + DEFAULT_BACK.href + '">← ' + esc(tl(DEFAULT_BACK.label)) + '</a></p>' +
+      '</main>';
+  }
+
+  // course.instructor is an array of js/teachers.js registry ids (or, for a few courses
+  // with no single identifiable instructor, a plain fallback string that never matches here).
+  function coursesFor(id){
+    return (window.EIAB_PROGRAMS || []).filter(function(c){
+      return Array.isArray(c.instructor) && c.instructor.indexOf(id) !== -1;
+    });
+  }
+
+  function detailHref(course){
+    return '../programm/' + (course.detailHref || ('retreat-detail.html?code=' + encodeURIComponent(course.id)));
+  }
+
+  function formatDateShort(startStr, endStr){
+    var lang = currentLang();
+    var MONTHS = {
+      de: ['Jan.','Feb.','März','Apr.','Mai','Juni','Juli','Aug.','Sep.','Okt.','Nov.','Dez.'],
+      en: ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'],
+      vi: ['Th1','Th2','Th3','Th4','Th5','Th6','Th7','Th8','Th9','Th10','Th11','Th12']
+    };
+    var s = new Date(startStr + 'T00:00:00Z'), e = new Date(endStr + 'T00:00:00Z');
+    if(startStr === endStr) return s.getUTCDate() + '. ' + MONTHS[lang][s.getUTCMonth()] + ' ' + s.getUTCFullYear();
+    return s.getUTCDate() + '.–' + e.getUTCDate() + '. ' + MONTHS[lang][e.getUTCMonth()] + ' ' + e.getUTCFullYear();
+  }
+
+  function render(){
+    var params = new URLSearchParams(location.search);
+    var idParam = params.get('id');
+    var nameParam = params.get('name');
+    var catParam = params.get('cat');
+
+    // Prefer the stable id (js/teachers.js key); fall back to a name lookup for
+    // people not yet in the registry, or links written before ids existed.
+    var reg = null;
+    if(idParam && window.EIAB_TEACHERS && window.EIAB_TEACHERS[idParam]){
+      reg = window.EIAB_TEACHERS[idParam];
+      reg = Object.assign({id: idParam}, reg);
+    } else if(nameParam && window.EIAB_FIND_TEACHER_BY_NAME){
+      reg = window.EIAB_FIND_TEACHER_BY_NAME(nameParam);
+    }
+
+    var name = (reg && reg.name) || nameParam;
+    if(!name){ renderNotFound(); return; }
+
+    var back = CATEGORY_BACK[(reg && reg.category) || catParam] || DEFAULT_BACK;
+
+    document.title = name + ' — EIAB Waldbröl';
+
+    var roleHtml = reg && reg.role && tl(reg.role) ? '<div class="role">' + esc(tl(reg.role)) + '</div>' : '';
+    var tagsHtml = (reg && reg.tags && reg.tags.length)
+      ? '<div class="taglist">' + reg.tags.map(function(t){ return '<span class="tagx">' + esc(tl(t)) + '</span>'; }).join('') + '</div>'
+      : '';
+
+    var introParas = reg ? tlList(reg.intro) : [];
+    var introHtml = introParas.length
+      ? introParas.map(function(p, i){ return '<p' + (i === 0 ? ' class="lede-p"' : '') + '>' + escKeepLinks(p) + '</p>'; }).join('')
+      : '<p class="fallback-note">' + esc(tl(STR.fallbackNote)) + '<a href="mailto:registrar@eiab.eu">registrar@eiab.eu</a>.</p>';
+
+    var sectionsHtml = (reg && reg.sections && reg.sections.length)
+      ? reg.sections.map(function(sec){
+          var paras = tlList(sec.paragraphs);
+          return '<section><h2>' + esc(tl(sec.heading)) + '</h2>' +
+            paras.map(function(p){ return '<p>' + escKeepLinks(p) + '</p>'; }).join('') +
+            '</section>';
+        }).join('')
+      : '';
+
+    var factsHtml = (reg && reg.facts && reg.facts.length)
+      ? '<ul class="facts">' + reg.facts.map(function(f){
+          var valueText = tl(f.value);
+          var isWebsite = f.label && (f.label.de === 'Website' || f.label.en === 'Website');
+          var valueHtml = (isWebsite && valueText)
+            ? '<a href="' + esc(/^https?:\/\//i.test(valueText) ? valueText : 'https://' + valueText) + '" target="_blank" rel="noopener">' + esc(valueText) + '</a>'
+            : esc(valueText);
+          return '<li><span>' + esc(tl(f.label)) + '</span><p>' + valueHtml + '</p></li>';
+        }).join('') + '</ul>'
+      : '';
+
+    var courses = reg && reg.id ? coursesFor(reg.id) : [];
+    var coursesHtml = courses.length
+      ? '<section style="padding-bottom:clamp(3rem,7vw,5rem)">' +
+          '<h2>' + esc(tl(STR.coursesHeading)) + name + '</h2>' +
+          '<div class="courses">' +
+            courses.map(function(c){
+              var langTags = c.langs.map(function(l){ return langTagLabel(l); }).join(' / ');
+              return '<a class="course" href="' + detailHref(c) + '">' +
+                '<div class="tag">' + esc(formatDateShort(c.dateStart, c.dateEnd)) + ' · ' + esc(langTags) + '</div>' +
+                '<h3>' + esc(c.title) + '</h3>' +
+                '<div class="more">' + esc(tl(STR.more)) + '</div>' +
+              '</a>';
+            }).join('') +
+          '</div>' +
+        '</section>'
+      : '';
+
+    var imgFile = reg && (reg.img || (reg.id ? reg.id + '.png' : null));
+
+    document.getElementById('app').innerHTML =
+      '<main class="wrap">' +
+        '<a class="back" href="' + back.href + '">← ' + esc(tl(back.label)) + '</a>' +
+        '<div class="layout">' +
+          '<div class="main-col">' +
+            '<div class="headtext">' +
+              roleHtml +
+              '<h1>' + esc(name) + '</h1>' +
+              tagsHtml +
+            '</div>' +
+            '<div class="bio"><section>' + introHtml + '</section>' + sectionsHtml + '</div>' +
+          '</div>' +
+          '<aside class="rail">' +
+            '<div class="portrait" aria-hidden="true"></div>' +
+            factsHtml +
+          '</aside>' +
+        '</div>' +
+        coursesHtml +
+      '</main>';
+
+    applyPortraitPhoto('.rail .portrait', imgFile);
+
+    var footer = document.querySelector('eiab-footer');
+    if(footer) footer.setAttribute('current', back.footerCurrent || '');
+  }
+
+  render();
+  window.addEventListener('eiab:langchange', render);
+})();
+</script>
+</body>
+</html>

@@ -1,0 +1,274 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="icon" type="image/png" href="../img/logo.png">
+<title>Nachrichten — EIAB Waldbröl</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:ital,opsz,wght@0,8..60,300;0,8..60,400;0,8..60,600;1,8..60,300;1,8..60,400&family=Be+Vietnam+Pro:wght@300;400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../css/tokens.css">
+<script src="../js/nav.js"></script>
+<script src="../js/footer.js"></script>
+<style>
+:root{
+  --measure:64ch;
+}
+html{-webkit-text-size-adjust:100%}
+body{margin:0;background:var(--mist);color:var(--pine);font-family:var(--serif);font-weight:400;font-size:clamp(1rem,.96rem + .2vw,1.09rem);line-height:1.66;font-variant-numeric:oldstyle-nums}
+h1,h2,h3,h4{font-family:var(--serif);font-weight:300;line-height:1.14;margin:0;letter-spacing:-.012em}
+h1{font-size:clamp(2.6rem,1.4rem + 4.6vw,5.1rem)}
+h2{font-size:clamp(1.95rem,1.2rem + 2.6vw,3.1rem)}
+h3{font-size:clamp(1.2rem,1.05rem + .6vw,1.5rem);font-weight:400;line-height:1.24}
+p{margin:0 0 1.1em}
+a{color:inherit}
+img{max-width:100%;display:block}
+:focus-visible{outline:2px solid var(--plum);outline-offset:3px;border-radius:2px}
+
+.wrap{max-width:1240px;margin-inline:auto;padding-inline:var(--gutter)}
+.sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0)}
+
+
+.mast{padding-block:clamp(2.6rem,6vw,4.4rem) clamp(1.6rem,3vw,2.2rem)}
+.mast .kicker{font-family:var(--sans);font-size:.83rem;color:var(--moss);margin-bottom:1rem}
+.mast h1{max-width:16ch}
+.mast .lede{max-width:56ch;margin-top:1.3rem;font-size:1.12rem;color:var(--pine-soft)}
+
+.subnav{border-bottom:1px solid rgba(27,42,34,.15);background:rgba(255,255,255,.3)}
+.subnav-in{display:flex;gap:1.6rem;font-family:var(--sans);font-size:.83rem;overflow-x:auto}
+.subnav a{white-space:nowrap;text-decoration:none;color:var(--pine-soft);padding:.85rem 0;border-bottom:2px solid transparent}
+.subnav a:hover{color:var(--pine)}
+.subnav a[aria-current]{color:var(--pine);border-bottom-color:var(--plum);font-weight:500}
+
+
+.news-section{padding-block:clamp(2rem,5vw,3.2rem)}
+.news-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(320px,1fr));gap:2rem}
+.news-card{background:#fff;border-radius:4px;overflow:hidden;border:1px solid rgba(27,42,34,.1);transition:all .2s;cursor:pointer}
+.news-card:hover{border-color:var(--moss);box-shadow:0 8px 24px rgba(27,42,34,.12);transform:translateY(-4px)}
+.news-thumb{aspect-ratio:16/9;background:linear-gradient(135deg,#C8BFAD 0%,#8B8B7A 50%,#4E6B55 100%);display:flex;align-items:center;justify-content:center;font-size:3rem;position:relative}
+.news-thumb::after{content:"";position:absolute;inset:0;background:repeating-linear-gradient(105deg,rgba(255,255,255,.05) 0 2px,transparent 2px 30px)}
+.news-card-body{padding:1.6rem}
+.news-date{font-family:var(--sans);font-size:.8rem;color:var(--moss);font-weight:600;margin-bottom:.6rem}
+.news-title{font-size:1.1rem;line-height:1.3;margin-bottom:.8rem;color:var(--pine);font-weight:400}
+.news-excerpt{font-size:.95rem;color:var(--pine-soft);line-height:1.6;margin-bottom:1rem}
+.news-link{display:inline-block;font-family:var(--sans);font-size:.85rem;font-weight:600;color:var(--moss);border-bottom:1.5px solid transparent;transition:.15s}
+.news-link:hover{border-bottom-color:var(--moss)}
+
+
+@media (max-width:900px){
+  .news-grid{grid-template-columns:repeat(2,1fr)}
+}
+@media (max-width:560px){
+  .news-grid{grid-template-columns:1fr}
+}
+</style>
+</head>
+<body>
+
+<eiab-header current="medien" base="../"></eiab-header>
+
+<eiab-subnav section="medien" current="news.html" base="../"></eiab-subnav>
+
+<div class="wrap mast">
+    <div class="kicker">Medien</div>
+    <h1>Nachrichten</h1>
+    <p class="lede">Neuigkeiten, Ankündigungen und Geschichten aus dem Leben des EIAB — von neuen Kursen über Zeremonien bis zu Bauprojekten.</p>
+</div>
+
+
+<div class="news-section">
+  <div class="wrap">
+    <div class="news-grid" id="news-grid"></div>
+  </div>
+</div>
+
+<eiab-footer current="news" base="../"></eiab-footer>
+
+<script>
+const NEWS = [
+  {
+    id: 1,
+    date: "2026-02-05",
+    icon: "🙏",
+    title: {
+      de: "Die Gedenkezeremonie",
+      en: "The Commemorative Ceremony",
+      vi: "Lễ Hiệp Kỳ Tưởng niệm Sư Cố & Sư Ông"
+    },
+    excerpt: {
+      de: "Eine Gedenkzeremonie für unsere verstorbenen spirituellen Lehrer.",
+      en: "A commemorative ceremony for our late spiritual teachers.",
+      vi: "Một buổi lễ tưởng niệm dành cho các bậc thầy tâm linh đã viên tịch."
+    },
+    langs: ["de", "en", "vi"]
+  },
+  {
+    id: 2,
+    date: "2026-01-03",
+    icon: "🕊️",
+    title: {
+      de: "Neujahrsgebet um Frieden 2026",
+      en: "New Year's Prayer for Peace 2026"
+    },
+    excerpt: {
+      de: "Gemeinsames Gebet zum Jahresbeginn für Frieden in der Welt.",
+      en: "A shared prayer at the start of the year for peace in the world."
+    },
+    langs: ["de", "en"]
+  },
+  {
+    id: 3,
+    date: "2025-12-10",
+    icon: "💌",
+    title: {
+      de: "Dankesbrief 2025",
+      en: "Letter of Thanks 2025"
+    },
+    excerpt: {
+      de: "Ein Dankesbrief an alle, die das EIAB im Jahr 2025 unterstützt haben.",
+      en: "A letter of thanks to everyone who supported EIAB in 2025."
+    },
+    langs: ["de", "en"]
+  },
+  {
+    id: 4,
+    date: "2025-11-27",
+    icon: "📄",
+    title: {
+      de: "EIAB-Programm 2026 für Download, Lesen und Drucken"
+    },
+    excerpt: {
+      de: "Das neue Jahresprogramm steht ab sofort als PDF zum Download bereit."
+    },
+    langs: ["de"]
+  },
+  {
+    id: 5,
+    date: "2025-11-01",
+    icon: "📸",
+    title: {
+      de: "News, Fotos und Videos"
+    },
+    excerpt: {
+      de: "Neue Fotos und Videos aus dem Klosterleben sind jetzt online."
+    },
+    langs: ["de"]
+  },
+  {
+    id: 6,
+    date: "2025-01-22",
+    icon: "🏛️",
+    title: {
+      de: "Eine Einladung, die \"Zen-Meister Thich Nhat Hanh – Große Halle des Friedens\" im EIAB mit uns zu bauen",
+      en: "An Invitation to Join Us in Building the \"Zen Master Thich Nhat Hanh – Great Hall of Peace\" at the EIAB"
+    },
+    excerpt: {
+      de: "Wir laden Sie ein, gemeinsam mit uns eine neue Halle des Friedens zu Ehren von Zen-Meister Thich Nhat Hanh zu errichten.",
+      en: "Join us in building a new hall of peace dedicated to Zen Master Thich Nhat Hanh."
+    },
+    langs: ["de", "en"]
+  },
+  {
+    id: 7,
+    date: "2025-01-22",
+    icon: "🏛️",
+    title: {
+      en: "An Invitation to Join Us in Building The Zen Master Thich Nhat Hanh Great Hall of Peace at the EIAB"
+    },
+    excerpt: {
+      en: "Read more about the invitation to help build the new Great Hall of Peace."
+    },
+    langs: ["en"]
+  },
+  {
+    id: 8,
+    date: "2025-01-07",
+    icon: "🏗️",
+    title: {
+      de: "Wir haben die Genehmigung erhalten, mit dem Bau der lang erwarteten Meditationshalle des EIAB zu beginnen",
+      en: "We Have Received Permission to Proceed with Construction of EIAB's Long-Awaited Meditation Hall"
+    },
+    excerpt: {
+      de: "Der Bau der lang erwarteten Meditationshalle, der Großen Friedenshalle des Zen-Meisters Thich Nhat Hanh, kann nun beginnen.",
+      en: "Construction of the long-awaited meditation hall can now move forward."
+    },
+    langs: ["de", "en"]
+  },
+  {
+    id: 9,
+    date: "2024-11-28",
+    icon: "📄",
+    title: {
+      de: "Programm 2025 (Stand vom November 2025)"
+    },
+    excerpt: {
+      de: "Das aktualisierte Jahresprogramm 2025 steht zum Download bereit."
+    },
+    langs: ["de"]
+  },
+  {
+    id: 10,
+    date: "2024-03-19",
+    icon: "📄",
+    title: {
+      de: "Hier ist unser Programm 2024 im PDF-Format - zum Speichern, Ausdrucken oder Durchblättern."
+    },
+    excerpt: {
+      de: "Das Jahresprogramm 2024 zum Speichern, Ausdrucken oder Durchblättern."
+    },
+    langs: ["de"]
+  },
+  {
+    id: 11,
+    date: "2024-02-01",
+    icon: "🕊️",
+    title: {
+      de: "Neujahrsgebet 2024"
+    },
+    excerpt: {
+      de: "Ein gemeinsames Gebet zum Beginn des Jahres 2024."
+    },
+    langs: ["de"]
+  },
+  {
+    id: 12,
+    date: "2023-10-19",
+    icon: "✉️",
+    title: {
+      en: "Socially Engaged Buddhism — Letters and Prayers"
+    },
+    excerpt: {
+      en: "A collection of letters and prayers on socially engaged Buddhism."
+    },
+    langs: ["en"]
+  }
+];
+
+function renderNews() {
+  const grid = document.getElementById('news-grid');
+  grid.innerHTML = '';
+
+  NEWS.forEach(news => {
+    const lang = news.title.de ? 'de' : (news.title.en ? 'en' : 'vi');
+    const date = new Date(news.date).toLocaleDateString('de-DE', {day: '2-digit', month: '2-digit', year: 'numeric'});
+    const card = document.createElement('div');
+    card.className = 'news-card';
+    card.onclick = () => window.location.href = `news-detail.html?id=${news.id}`;
+    card.innerHTML = `
+      <div class="news-thumb"></div>
+      <div class="news-card-body">
+        <div class="news-date">${date}</div>
+        <h3 class="news-title">${news.title[lang]}</h3>
+        <p class="news-excerpt">${news.excerpt[lang]}</p>
+        <a class="news-link">Mehr lesen →</a>
+      </div>
+    `;
+    grid.appendChild(card);
+  });
+}
+
+renderNews();
+</script>
+</body>
+</html>

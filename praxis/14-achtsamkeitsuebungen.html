@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="icon" type="image/png" href="../img/logo.png">
+<title>Die 14 Achtsamkeitsübungen — EIAB Waldbröl</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:ital,opsz,wght@0,8..60,300;0,8..60,400;0,8..60,600;1,8..60,300;1,8..60,400&family=Be+Vietnam+Pro:wght@300;400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../css/tokens.css">
+<script src="../js/nav.js"></script>
+<script src="../js/footer.js"></script>
+<script src="../js/mindfulness-trainings.js"></script>
+<style>
+html{-webkit-text-size-adjust:100%}
+body{margin:0;background:var(--mist);color:var(--pine);font-family:var(--serif);
+  font-size:clamp(1rem,.96rem + .2vw,1.09rem);line-height:1.66;font-variant-numeric:oldstyle-nums}
+h1,h2,h3{font-family:var(--serif);font-weight:300;line-height:1.14;margin:0;letter-spacing:-.012em}
+h1{font-size:clamp(2.3rem,1.4rem + 3.6vw,4rem)}
+h3{font-size:1.2rem;font-weight:400}
+p{margin:0 0 1.1em}
+a{color:inherit}
+:focus-visible{outline:2px solid var(--plum);outline-offset:3px;border-radius:2px}
+.wrap{max-width:1240px;margin-inline:auto;padding-inline:var(--gutter)}
+.sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0)}
+
+.subnav{border-bottom:1px solid rgba(27,42,34,.15);background:rgba(255,255,255,.3)}
+.subnav-in{display:flex;gap:1.6rem;font-family:var(--sans);font-size:.83rem;overflow-x:auto}
+.subnav a{white-space:nowrap;text-decoration:none;color:var(--pine-soft);padding:.85rem 0;border-bottom:2px solid transparent}
+.subnav a:hover{color:var(--pine)}
+.subnav a[aria-current]{color:var(--pine);border-bottom-color:var(--plum);font-weight:500}
+
+.mast{padding-block:clamp(2.6rem,6vw,4.4rem) clamp(1.6rem,3vw,2.2rem)}
+.mast .kicker{font-family:var(--sans);font-size:.83rem;color:var(--moss);margin-bottom:1rem}
+.mast h1{max-width:18ch}
+.mast .lede{max-width:60ch;margin-top:1.3rem;font-size:1.16rem;color:var(--pine-soft)}
+
+.trainings{margin:1rem 0 3rem;padding-top:.4rem;border-top:1px solid rgba(27,42,34,.18)}
+.training{display:grid;grid-template-columns:2.6rem 1fr;gap:1.3rem;padding:1.5rem 0;border-bottom:1px solid rgba(27,42,34,.13)}
+.tnum{font-family:var(--sans);font-size:.8rem;color:var(--moss);border:1px solid rgba(78,107,85,.45);
+  border-radius:50%;width:2.1rem;height:2.1rem;display:grid;place-items:center;margin-top:.15rem}
+.training h3{margin-bottom:.4rem;font-size:1.08rem}
+.training p{color:var(--pine-soft);max-width:62ch;margin:0}
+
+.source{font-family:var(--sans);font-size:.8rem;color:var(--pine-soft);max-width:62ch;margin-bottom:3rem}
+.source a{border-bottom:1px solid var(--moss);text-decoration:none}
+
+
+@media (max-width:560px){
+  .training{grid-template-columns:1fr;gap:.6rem}
+  .tnum{display:none}
+}
+</style>
+</head>
+<body>
+
+<eiab-header current="praxis" base="../"></eiab-header>
+
+<eiab-subnav section="praxis" current="14-achtsamkeitsuebungen.html" base="../"></eiab-subnav>
+
+<div class="wrap mast">
+  <div class="kicker">Praxis</div>
+  <h1>Die 14 Achtsamkeitsübungen</h1>
+  <div class="lede" id="intro"></div>
+</div>
+
+<main class="wrap">
+
+  <div class="trainings" id="trainings"></div>
+
+  <p class="source">Die 14 Achtsamkeitsübungen sind die Grundordnung des Ordens des Interseins, begründet von Zen-Meister Thích Nhất Hạnh. Der vollständige, autorisierte Wortlaut ist bei <a href="https://plumvillage.org" target="_blank" rel="noopener noreferrer">Plum Village</a> nachzulesen.</p>
+
+</main>
+
+<eiab-footer base="../"></eiab-footer>
+
+<script>
+window.EIAB_RENDER_TRAININGS_INTRO(document.getElementById('intro'), window.EIAB_FOURTEEN_MINDFULNESS_INTRO);
+window.EIAB_RENDER_TRAININGS(document.getElementById('trainings'), window.EIAB_FOURTEEN_MINDFULNESS_TRAININGS);
+</script>
+
+</body>
+</html>

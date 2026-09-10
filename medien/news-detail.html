@@ -1,0 +1,483 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="icon" type="image/png" href="../img/logo.png">
+<title>Nachricht — EIAB Waldbröl</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:ital,opsz,wght@0,8..60,300;0,8..60,400;0,8..60,600;1,8..60,300;1,8..60,400&family=Be+Vietnam+Pro:wght@300;400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../css/tokens.css">
+<script src="../js/nav.js"></script>
+<script src="../js/footer.js"></script>
+<style>
+:root{
+  --measure:64ch;
+}
+html{-webkit-text-size-adjust:100%}
+body{margin:0;background:var(--mist);color:var(--pine);font-family:var(--serif);font-weight:400;font-size:clamp(1rem,.96rem + .2vw,1.09rem);line-height:1.66;font-variant-numeric:oldstyle-nums}
+h1,h2,h3,h4{font-family:var(--serif);font-weight:300;line-height:1.14;margin:0;letter-spacing:-.012em}
+h1{font-size:clamp(2.6rem,1.4rem + 4.6vw,5.1rem)}
+h2{font-size:clamp(1.95rem,1.2rem + 2.6vw,3.1rem)}
+h3{font-size:clamp(1.2rem,1.05rem + .6vw,1.5rem);font-weight:400;line-height:1.24}
+p{margin:0 0 1.1em}
+a{color:inherit}
+img{max-width:100%;display:block}
+:focus-visible{outline:2px solid var(--plum);outline-offset:3px;border-radius:2px}
+.wrap{max-width:1240px;margin-inline:auto;padding-inline:var(--gutter)}
+
+
+.back{display:inline-flex;align-items:center;gap:.4rem;font-family:var(--sans);font-size:.85rem;text-decoration:none;color:var(--moss);margin-bottom:2rem;border-bottom:1px solid transparent;transition:.15s}
+.back:hover{border-bottom-color:var(--moss)}
+
+.article-layout{display:grid;grid-template-columns:minmax(0,1fr) 300px;gap:clamp(1.5rem,4vw,3.6rem);align-items:start}
+
+.article-media{position:sticky;top:calc(70px + 2.4rem);aspect-ratio:3/4;border-radius:6px;overflow:hidden;background:linear-gradient(160deg,#C8BFAD 0%,#8B8B7A 50%,#4E6B55 100%);display:flex;align-items:center;justify-content:center;font-size:3.4rem}
+.article-media::after{content:"";position:absolute;inset:0;background:repeating-linear-gradient(105deg,rgba(255,255,255,.06) 0 2px,transparent 2px 30px)}
+.article-media .caption{position:absolute;left:.9rem;right:.9rem;bottom:.8rem;font-family:var(--sans);font-size:.7rem;color:rgba(255,255,255,.9);text-shadow:0 1px 4px rgba(0,0,0,.35)}
+
+.article-head{margin-bottom:2.6rem}
+.article-date{font-family:var(--sans);font-size:.8rem;color:var(--moss);font-weight:600;margin-bottom:.7rem}
+.article-title{margin-bottom:1.2rem;color:var(--pine);font-size:clamp(1.9rem,1.3rem + 2vw,2.7rem);max-width:22ch}
+.article-meta{display:flex;gap:1.8rem;flex-wrap:wrap;font-family:var(--sans);font-size:.85rem;color:var(--pine-soft);margin-bottom:2rem}
+
+.article-body{margin-bottom:4rem}
+.article-body h2{font-size:1.42rem;margin:2rem 0 1.2rem;color:var(--pine)}
+.article-body h3{font-size:1.15rem;margin:1.8rem 0 .8rem;color:var(--pine-soft)}
+.article-body p{margin-bottom:1.3em}
+.article-body ul,.article-body ol{margin:1.4em 0;padding-left:1.8em;color:var(--pine)}
+.article-body li{margin-bottom:.5em}
+.article-body blockquote{border-left:3px solid var(--moss);padding-left:1.5rem;font-style:italic;color:var(--pine-soft);margin:1.8em 0}
+.article-body strong{font-weight:600}
+.article-body em{font-style:italic}
+.article-body a{color:var(--moss);border-bottom:1px solid rgba(78,107,85,.4);text-decoration:none;transition:border-color .15s}
+.article-body a:hover{border-color:var(--moss)}
+.article-body .lede{font-size:1.08em;color:var(--pine-soft);margin-bottom:1.8em}
+.article-body .signoff{margin-top:2.2em;padding-top:1.6em;border-top:1px solid rgba(27,42,34,.1);color:var(--pine-soft)}
+
+.news-nav{display:flex;justify-content:space-between;gap:2rem;margin-top:3.5rem;padding-top:2rem;border-top:1px solid rgba(27,42,34,.1)}
+.news-nav a{display:block;text-decoration:none;font-family:var(--sans);font-size:.85rem;padding:.8rem 1.4rem;background:rgba(237,238,231,.6);border-radius:4px;transition:.15s;border:1px solid rgba(27,42,34,.1)}
+.news-nav a:hover{background:rgba(78,107,85,.1);border-color:var(--moss)}
+.news-nav .prev::before{content:"← "}
+.news-nav .next::after{content:" →"}
+
+
+@media (max-width:900px){
+  .news-nav{flex-direction:column}
+  .article-layout{grid-template-columns:1fr}
+  .article-media{position:static;order:-1;aspect-ratio:16/9;margin-bottom:.5rem}
+}
+</style>
+</head>
+<body>
+
+<eiab-header current="medien" base="../"></eiab-header>
+
+<div class="wrap" style="padding-top:2rem">
+  <a class="back" href="news.html">← Zurück zu Nachrichten</a>
+
+  <div class="article-layout">
+    <article id="article"></article>
+    <aside class="article-media" id="article-media"></aside>
+  </div>
+
+  <div class="news-nav" id="news-nav"></div>
+</div>
+
+<eiab-footer current="news" base="../"></eiab-footer>
+
+<script>
+const NEWS_ARTICLES = {
+  1: {
+    icon: "📖",
+    title: {
+      de: "Neue Achtsamkeitskurse im Herbst",
+      en: "New Mindfulness Courses in Autumn",
+      vi: "Các khóa học Chánh niệm mới vào mùa thu"
+    },
+    date: "2026-10-15",
+    body: {
+      de: `<h2>Erweitertes Angebot für alle Ebenen</h2>
+<p>Das EIAB freut sich, eine erweiterte Reihe von Achtsamkeitskursen für den Herbst 2026 anzukündigen. Diese neuen Kurse wurden speziell entwickelt, um sowohl Anfänger als auch erfahrene Praktizierende zu unterstützen.</p>
+
+<h3>Kurse für Anfänger</h3>
+<p>Unsere neuen Anfängerkurse bieten eine sanfte Einführung in die Grundlagen der Achtsamkeitsmeditation. Keine vorherige Erfahrung erforderlich – nur Offenheit und Bereitschaft, präsent zu sein.</p>
+
+<h3>Kurse für Fortgeschrittene</h3>
+<p>Für praktizierende mit mehr Erfahrung bieten wir spezialisierte Kurse an, die tiefere Aspekte der Achtsamkeitspraxis erforschen.</p>
+
+<p><strong>Alle Kurse finden in unserer wunderschönen Umgebung statt und beinhalten vegetarische Mahlzeiten sowie Unterkunft.</strong></p>
+
+<h3>Termine:</h3>
+<ul>
+  <li>Anfänger: 20. - 23. September 2026</li>
+  <li>Fortgeschrittene: 27. - 30. September 2026</li>
+  <li>Achtsamkeit im Alltag: 4. - 7. Oktober 2026</li>
+</ul>`,
+      en: `<h2>Expanded Offerings for All Levels</h2>
+<p>EIAB is delighted to announce an expanded series of mindfulness courses for autumn 2026. These new courses have been specially designed to support both beginners and experienced practitioners.</p>
+
+<h3>Courses for Beginners</h3>
+<p>Our new beginner courses offer a gentle introduction to the fundamentals of mindfulness meditation. No prior experience required – just openness and willingness to be present.</p>
+
+<h3>Advanced Courses</h3>
+<p>For practitioners with more experience, we offer specialized courses that explore deeper aspects of mindfulness practice.</p>
+
+<p><strong>All courses take place in our beautiful surroundings and include vegetarian meals and accommodation.</strong></p>
+
+<h3>Dates:</h3>
+<ul>
+  <li>Beginners: September 20-23, 2026</li>
+  <li>Advanced: September 27-30, 2026</li>
+  <li>Mindfulness in Daily Life: October 4-7, 2026</li>
+</ul>`,
+      vi: `<h2>Các khóa học Chánh niệm mới vào mùa thu</h2>
+<p>EIAB vui mừng thông báo một loạt các khóa học Chánh niệm mở rộng cho mùa thu 2026. Những khóa học mới này được thiết kế đặc biệt để hỗ trợ cả người mới bắt đầu và những người đã có kinh nghiệm tu tập.</p>
+
+<h3>Khóa học cho người mới bắt đầu</h3>
+<p>Các khóa học của chúng tôi dành cho người mới bắt đầu cung cấp một sự giới thiệu nhẹ nhàng về những nguyên tắc cơ bản của thiền Chánh niệm. Không cần kinh nghiệm trước – chỉ cần sự mở cửa và sẵn sàng hiện diện.</p>
+
+<h3>Khóa học nâng cao</h3>
+<p>Đối với những người đã tu tập với kinh nghiệm hơn, chúng tôi cung cấp các khóa học chuyên biệt khám phá các khía cạnh sâu hơn của tu tập Chánh niệm.</p>
+
+<p><strong>Tất cả các khóa học diễn ra trong môi trường đẹp lạ của chúng tôi và bao gồm các bữa ăn chay và chỗ ở.</strong></p>`
+    }
+  },
+  2: {
+    icon: "🙏",
+    title: {
+      de: "Gedenkezeremonie für verstorbene Mitglieder",
+      en: "Commemorative Ceremony for Deceased Members",
+      vi: "Lễ tưởng niệm các thành viên đã khuất"
+    },
+    date: "2026-09-28",
+    body: {
+      de: `<h2>Eine Zeit der Stille und des Gedenkens</h2>
+<p>Das EIAB lädt Sie zu einer feierlichen Gedenkezeremonie für die verstorbenen Mitglieder unserer Sangha ein. Dies ist eine Gelegenheit, sich zu erinnern, zu würdigen und die Kontinuität des Dharma in unseren Herzen zu bewahren.</p>
+
+<h3>Über die Zeremonie</h3>
+<p>Die Gedenkezeremonie ist eine stille und meditative Veranstaltung, in der wir als Sangha zusammenkommen, um derer zu gedenken, die uns vorausgegangen sind. Wir singen gemeinsame Gathas und sitzen in stiller Meditation.</p>
+
+<blockquote>"Alles ist gesprächsweise und konstant ändernd, doch die Wahrheit bleibt ewig."</blockquote>
+
+<h3>Zeitplan</h3>
+<ul>
+  <li><strong>Samstag, 28. September 2026</strong></li>
+  <li>15:00 Uhr: Beginn der Zeremonie</li>
+  <li>Anschließend: Stille Reflexion und Tee</li>
+</ul>
+
+<p>Alle Sangha-Mitglieder, Freunde und Familie sind herzlich eingeladen, an dieser bedeutsamen Veranstaltung teilzunehmen.</p>`,
+      en: `<h2>A Time of Silence and Remembrance</h2>
+<p>EIAB invites you to a solemn commemorative ceremony for the deceased members of our Sangha. This is an opportunity to remember, honor, and preserve the continuity of the Dharma in our hearts.</p>
+
+<h3>About the Ceremony</h3>
+<p>The commemorative ceremony is a silent and meditative gathering where we come together as Sangha to remember those who have gone before us. We sing shared gathas and sit in silent meditation.</p>
+
+<blockquote>"Everything is transient and constantly changing, yet truth remains eternal."</blockquote>
+
+<h3>Schedule</h3>
+<ul>
+  <li><strong>Saturday, September 28, 2026</strong></li>
+  <li>3:00 PM: Ceremony begins</li>
+  <li>Following: Silent reflection and tea</li>
+</ul>
+
+<p>All Sangha members, friends and family are warmly invited to participate in this meaningful event.</p>`,
+      vi: `<h2>Một thời gian im lặng và tưởng niệm</h2>
+<p>EIAB mời bạn tham dự một buổi lễ tưởng niệm trang trọng cho các thành viên đã khuất của Sangha của chúng tôi. Đây là một cơ hội để nhớ, tôn vinh, và bảo tồn sự tiếp tục của Dharma trong trái tim của chúng tôi.</p>
+
+<h3>Về buổi lễ</h3>
+<p>Buổi lễ tưởng niệm là một cuộc tụ tập im lặng và thiền định nơi chúng ta cùng nhau thành Sangha để tưởng niệm những người đã đi trước chúng ta. Chúng ta hát những gatha chung và ngồi trong thiền định im lặng.</p>
+
+<blockquote>"Tất cả mọi thứ đều chuyển hóa và thay đổi liên tục, nhưng chân lý vẫn tồn tại mãi mãi."</blockquote>`
+    }
+  },
+  3: {
+    icon: "🌳",
+    title: {
+      de: "Naturschutzprojekt: Neubepflanzung des Waldes",
+      en: "Nature Conservation Project: Forest Replanting",
+      vi: "Dự án bảo tồn thiên nhiên: Trồng lại rừng"
+    },
+    date: "2026-09-10",
+    body: {
+      de: `<h2>Ein Projekt der Achtsamkeit und Sorge</h2>
+<p>Das EIAB startet ein ehrgeiziges Naturschutzprojekt zur Wiederaufforstung des umliegenden Waldes. Dieses Projekt verkörpert unseren Einsatz für den Umweltschutz und unsere Verantwortung gegenüber der Erde.</p>
+
+<h3>Warum dieses Projekt?</h3>
+<p>Der Wald um Waldbröl ist ein wichtiger Lebensraum für die lokale Flora und Fauna. Durch gezielte Neubepflanzung möchten wir die Biodiversität fördern und einen gesunden Wald für zukünftige Generationen erhalten.</p>
+
+<h3>Unsere Ziele</h3>
+<ul>
+  <li>Bepflanzung von 5.000 neuen Bäumen in den nächsten zwei Jahren</li>
+  <li>Förderung der Biodiversität durch einheimische Baumarten</li>
+  <li>Bindung von CO₂ und Unterstützung des Klimaschutzes</li>
+  <li>Schaffung von Möglichkeiten für die Gemeinschaft, sich zu beteiligen</li>
+</ul>
+
+<h3>Wie Sie helfen können</h3>
+<p>Wir laden Sie ein, bei unserem Pflanzveranstaltungen teilzunehmen oder das Projekt durch Spenden zu unterstützen.</p>`,
+      en: `<h2>A Project of Mindfulness and Care</h2>
+<p>EIAB is launching an ambitious nature conservation project to reforest the surrounding forest. This project embodies our commitment to environmental protection and our responsibility to the Earth.</p>
+
+<h3>Why This Project?</h3>
+<p>The forest around Waldbröl is an important habitat for local flora and fauna. Through targeted replanting, we aim to promote biodiversity and preserve a healthy forest for future generations.</p>
+
+<h3>Our Goals</h3>
+<ul>
+  <li>Plant 5,000 new trees over the next two years</li>
+  <li>Promote biodiversity through native tree species</li>
+  <li>Sequester CO₂ and support climate protection</li>
+  <li>Create opportunities for the community to participate</li>
+</ul>
+
+<h3>How You Can Help</h3>
+<p>We invite you to participate in our planting events or support the project through donations.</p>`,
+      vi: `<h2>Một Dự án của Chánh niệm và Chăm sóc</h2>
+<p>EIAB đang khởi động một dự án bảo tồn thiên nhiên ranh giới để trồng lại rừng xung quanh. Dự án này thể hiện cam kết của chúng tôi đối với bảo vệ môi trường và trách nhiệm của chúng tôi đối với Trái đất.</p>
+
+<h3>Tại sao Dự án này?</h3>
+<p>Rừng xung quanh Waldbröl là một môi trường sống quan trọng đối với thực vật và động vật địa phương. Thông qua trồng lại có mục tiêu, chúng tôi muốn thúc đẩy đa dạng sinh học và bảo tồn một khu rừng khỏe mạnh cho các thế hệ tương lai.</p>`
+    }
+  },
+  4: {
+    icon: "🏛️",
+    title: {
+      de: "Renovierung der Großen Halle abgeschlossen",
+      en: "Renovation of the Great Hall Completed",
+      vi: "Công việc Sửa chữa Hội trường Lớn hoàn thành"
+    },
+    date: "2026-08-15",
+    body: {
+      de: `<h2>Ein Meilenstein für das EIAB</h2>
+<p>Nach Monaten intensiver Renovierungsarbeiten ist die Große Halle des EIAB nun vollständig erneuert und bereit für ihre vielfältigen Funktionen. Die Halle ist ein zentraler Ort für unsere Gemeinschaft und spielt eine wichtige Rolle in unserem Gemeinschaftsleben.</p>
+
+<h3>Was wurde renoviert?</h3>
+<ul>
+  <li>Neues Dach mit verbesserter Wärmeisolation</li>
+  <li>Moderne Beleuchtung mit LED-Technologie</li>
+  <li>Verbesserte Akustik für Vorträge und Sitzungen</li>
+  <li>Neue Böden und Wandbeläge</li>
+  <li>Erhöhte Barrierefreiheit</li>
+</ul>
+
+<h3>Danksagung</h3>
+<p>Wir danken allen Spendern, Handwerkern und Freiwilligen, die zu dieser wichtigen Renovierung beigetragen haben. Ihre Unterstützung ermöglichte uns, diesen bedeutsamen Raum zu verbessern.</p>`,
+      en: `<h2>A Milestone for EIAB</h2>
+<p>After months of intensive renovation work, EIAB's Great Hall is now fully restored and ready for its many functions. The hall is a central gathering place for our community and plays an important role in our communal life.</p>
+
+<h3>What Was Renovated?</h3>
+<ul>
+  <li>New roof with improved thermal insulation</li>
+  <li>Modern lighting with LED technology</li>
+  <li>Improved acoustics for lectures and meetings</li>
+  <li>New flooring and wall coverings</li>
+  <li>Enhanced accessibility</li>
+</ul>
+
+<h3>Thanks and Gratitude</h3>
+<p>We thank all donors, craftspeople and volunteers who contributed to this important renovation. Your support enabled us to improve this meaningful space.</p>`,
+      vi: `<h2>Một cột mốc cho EIAB</h2>
+<p>Sau nhiều tháng công việc sửa chữa chuyên sâu, Hội trường Lớn của EIAB hiện đã được khôi phục hoàn toàn và sẵn sàng cho các chức năng của nó. Hội trường là một địa điểm tập trung trung tâm cho cộng đồng của chúng ta và đóng một vai trò quan trọng trong cuộc sống cộng đồng của chúng ta.</p>`
+    }
+  },
+  5: {
+    icon: "🌍",
+    title: {
+      de: "Besuch von Schwester Diễm Nghiêm aus Thailand",
+      en: "Visit from Sister Diễm Nghiêm from Thailand",
+      vi: "Thăm dò từ Cô Diễm Nghiêm từ Thái Lan"
+    },
+    date: "2026-07-20",
+    body: {
+      de: `<h2>Freude über internationalen Besuch</h2>
+<p>Das EIAB freut sich, die Ankunft von Schwester Diễm Nghiêm, einer verehrten Nonne aus dem Thai Plum Village in Thailand, anzukündigen. Sie wird einen Monat bei uns verbringen und ihre Erfahrungen und Lehren mit uns teilen.</p>
+
+<h3>Über Schwester Diễm Nghiêm</h3>
+<p>Schwester Diễm Nghiêm ist eine erfahrene Praktiziererin mit über 20 Jahren Erfahrung in der Zen-Meditation. Sie ist bekannt für ihre tiefe Weisheit und ihre mitfühlende Unterrichtweise.</p>
+
+<h3>Geplante Aktivitäten</h3>
+<ul>
+  <li>Täglich geführte Meditationen</li>
+  <li>Vorträge über Dharma und Praxis</li>
+  <li>Einzelne Gespräche (Dharma-Gespräche)</li>
+  <li>Kulturelle Abende mit Liedern und Geschichten</li>
+</ul>
+
+<h3>Teilnahme</h3>
+<p>Alle Sangha-Mitglieder und Freunde sind eingeladen, an diesen besonderen Veranstaltungen teilzunehmen.</p>`,
+      en: `<h2>Joy Over International Visit</h2>
+<p>EIAB is delighted to announce the arrival of Sister Diễm Nghiêm, a venerated nun from Thai Plum Village in Thailand. She will spend a month with us and share her experiences and teachings.</p>
+
+<h3>About Sister Diễm Nghiêm</h3>
+<p>Sister Diễm Nghiêm is an experienced practitioner with over 20 years of experience in Zen meditation. She is known for her deep wisdom and compassionate teaching style.</p>
+
+<h3>Planned Activities</h3>
+<ul>
+  <li>Daily guided meditations</li>
+  <li>Dharma talks and teachings</li>
+  <li>Individual conversations (Dharma dialogues)</li>
+  <li>Cultural evenings with songs and stories</li>
+</ul>
+
+<h3>Participation</h3>
+<p>All Sangha members and friends are invited to participate in these special events.</p>`,
+      vi: `<h2>Niềm vui về Lần thăm dò Quốc tế</h2>
+<p>EIAB rất vui mừng thông báo sự xuất hiện của Cô Diễm Nghiêm, một vị sư cô được kính trọng từ Thai Plum Village ở Thái Lan. Cô sẽ dành một tháng với chúng tôi và chia sẻ kinh nghiệm và những lời dạy của cô.</p>`
+    }
+  },
+  6: {
+    icon: "💚",
+    title: {
+      de: "Spendenaufruf für das Dachenerneuerungsprojekt",
+      en: "Fundraiser for Roof Renovation Project",
+      vi: "Gây quỹ cho Dự án Thay thế Mái nhà"
+    },
+    date: "2026-06-05",
+    body: {
+      de: `<h2>Helfen Sie uns, unsere Geschichte zu bewahren</h2>
+<p>Das EIAB bewirtschaftet ein historisches Gebäude, das bis ins 19. Jahrhundert zurückdatiert. Das Dach dieser wunderschönen Struktur benötigt dringend Erneuerung, um das Gebäude und sein kulturelles Erbe zu schützen.</p>
+
+<h3>Die Herausforderung</h3>
+<p>Das aktuelle Dach zeigt Zeichen des Alters und der Abnutzung. Eine rechtzeitige Erneuerung ist notwendig, um Wasserschäden zu verhindern und die strukturelle Integrität des Gebäudes zu gewährleisten.</p>
+
+<h3>Die Lösung</h3>
+<p>Wir planen eine umfassende Dachenerneuerung mit modernen, nachhaltigen Materialien. Das neue Dach wird nicht nur funktional, sondern auch energieeffizient sein.</p>
+
+<h3>Wie Sie helfen können</h3>
+<p>Wir rufen alle Freunde und Unterstützer auf, zu diesem wichtigen Projekt beizutragen. Jede Spende hilft uns, dieses historische Gebäude zu bewahren und unsere Gemeinschaft zu schützen.</p>
+
+<p><strong>Bankverbindung:</strong><br>
+EIAB<br>
+IBAN: DE27 3705 0299 0341 5529 32<br>
+BIC: COKSDE33</p>`,
+      en: `<h2>Help Us Preserve Our History</h2>
+<p>EIAB maintains a historic building dating back to the 19th century. The roof of this beautiful structure urgently needs renovation to protect the building and its cultural heritage.</p>
+
+<h3>The Challenge</h3>
+<p>The current roof shows signs of age and wear. Timely renovation is necessary to prevent water damage and ensure the structural integrity of the building.</p>
+
+<h3>The Solution</h3>
+<p>We plan a comprehensive roof renovation using modern, sustainable materials. The new roof will be not only functional but also energy-efficient.</p>
+
+<h3>How You Can Help</h3>
+<p>We invite all friends and supporters to contribute to this important project. Every donation helps us preserve this historic building and protect our community.</p>
+
+<p><strong>Bank Details:</strong><br>
+EIAB<br>
+IBAN: DE27 3705 0299 0341 5529 32<br>
+BIC: COKSDE33</p>`,
+      vi: `<h2>Giúp chúng tôi bảo tồn Lịch sử của chúng tôi</h2>
+<p>EIAB quản lý một tòa nhà lịch sử từ thế kỷ 19. Mái nhà của cấu trúc tuyệt đẹp này cần được sửa chữa khẩn cấp để bảo vệ tòa nhà và di sản văn hóa của nó.</p>
+
+<h3>Thách thức</h3>
+<p>Mái nhà hiện tại cho thấy các dấu hiệu tuổi tác và mài mòn. Sửa chữa kịp thời là cần thiết để ngăn chặn thiệt hại từ nước và đảm bảo tính toàn vẹn có cấu trúc của tòa nhà.</p>`
+    }
+  },
+  8: {
+    icon: "🏗️",
+    title: {
+      de: "Wir haben die Genehmigung erhalten, mit dem Bau der lang erwarteten Meditationshalle des EIAB zu beginnen",
+      en: "We have received permission to proceed with construction of EIAB's long-awaited meditation hall"
+    },
+    date: "2025-01-07",
+    body: {
+      de: `<p class="lede"><em>Liebe Freunde des EIAB,</em></p>
+
+<p>Wir haben wunderbare Neuigkeiten zu Weihnachten zu verkünden! Wir haben soeben die Genehmigung der zuständigen Behörden erhalten, mit dem Bau der lang erwarteten Meditationshalle des EIAB fortzufahren.</p>
+
+<p>Dieses wunderschöne zweistöckige Gebäude, das an unser Hauptgebäude, das Asoka-Institut, angebaut werden soll, wird den Namen <strong>„Große Friedenshalle des Zen-Meisters Thich Nhat Hanh"</strong> tragen, um unseren Lehrer und sein Lebenswerk für den Weltfrieden zu ehren. Mehr dazu lesen und sehen Sie im <a href="https://www.eiab.eu/_files/ugd/d17071_ead7dd2f688a4d75963b54e0a55cef7d.pdf" target="_blank" rel="noopener noreferrer">EIAB-Magazin 2023, Seite 21</a>.</p>
+
+<p>Wir glauben, dass diese Halle ein Symbol der Hoffnung sein wird und allen, die sich in diesen unruhigen, gewalttätigen Zeiten an das Institut wenden, eine spirituelle Zuflucht bietet. Die Bauarbeiten werden im März 2025 beginnen.</p>
+
+<h3>Ein langer, kurvenreicher Weg</h3>
+<p>Wie Sie vielleicht wissen, war es ein langer, kurvenreicher Weg, die Genehmigung zu erhalten. Viele Menschen haben uns geholfen, Hindernisse zu überwinden und unseren Mut nicht zu verlieren. Wir sind sehr dankbar für ihr Wissen, ihre Erfahrung, ihre Führung und ihre Ermutigung. Einflussreiche Unterstützung erhielten wir auch vom Thich Nhat Hanh Center for Mindfulness in Public Health an der Harvard T.H. Chan School of Public Health, mit dem wir hoffen, eines Tages internationale Versammlungen in unserer neuen Halle abhalten zu können.</p>
+
+<h3>Unser herzlicher Dank</h3>
+<p>Unser besonderer Dank gilt der Stadt Waldbröl und dem Landkreis Gummersbach, die bei der Entscheidung über unseren Antrag ihr Herz geöffnet haben. Ein großes Dankeschön auch an die Baubehörde und die örtlichen und regionalen Denkmalschutzbehörden für die Annahme unseres Antrags. Ein herzliches Dankeschön auch an unseren Architekten und unseren Anwalt, die mit unermüdlichem Einsatz jeden Schritt mit uns gegangen sind.</p>
+
+<p>Wir danken Ihnen allen aus tiefstem Herzen. Ohne Ihre Unterstützung hätten wir niemals so weit kommen können. Mit Ihrer anhaltenden Unterstützung und Großzügigkeit kann unsere Vision der Großen Halle des Friedens von Zen-Meister Thich Nhat Hanh nun Wirklichkeit werden.</p>
+
+<blockquote>Wir wünschen Ihnen eine Weihnachtszeit voller Frieden und Dankbarkeit in Ihren Herzen sowie Stille und Ruhe, um die Freude, die sie bringen, voll und ganz zu erleben.</blockquote>
+
+<p class="signoff">In tiefer Dankbarkeit, Liebe und Hochachtung,<br><strong>Die Mönche und Nonnen des EIAB</strong></p>`,
+      en: `<p class="lede"><em>Dear Friends of EIAB,</em></p>
+
+<p>We have wonderful news to announce for Christmas! We have just received permission from relevant authorities to proceed with construction of EIAB's long-awaited meditation hall.</p>
+
+<p>This beautiful two-storey structure – which shall adjoin our main building, the Asoka Institute – shall be called the <strong>Zen Master Thich Nhat Hanh Great Hall of Peace</strong>, to honor our teacher and his life's work for world peace. You can read and see more in <a href="https://www.eiab.eu/_files/ugd/d17071_ead7dd2f688a4d75963b54e0a55cef7d.pdf" target="_blank" rel="noopener noreferrer">EIAB's 2023 Magazine, page 21</a>.</p>
+
+<p>We believe this hall will stand as a symbol of hope, offering spiritual refuge for all who turn to the Institute in these troubled, violent times. Construction will begin in March 2025.</p>
+
+<h3>A long and winding road</h3>
+<p>As you may know, obtaining the permit has been a long, winding road. Many people have helped us to overcome obstacles and keep up our spirits. We are deeply grateful for their knowledge, expertise, guidance and encouragement. We also received influential support from The Thich Nhat Hanh Center for Mindfulness in Public Health at the Harvard T.H. Chan School of Public Health, with whom we hope one day to convene international gatherings in our new hall.</p>
+
+<h3>Our heartfelt thanks</h3>
+<p>Our special thanks go to the town of Waldbröl and the district of Gummersbach for opening their hearts when deciding upon the merits of our application. A big thank you, also, to the building authorities and local and regional heritage protection authorities for accepting our proposal. We also offer deepest thanks to our architect and lawyer who, with unwavering commitment, have walked every step with us.</p>
+
+<p>We thank you all from the bottom of our hearts. Without your support, we could never have come this far. With your continued support and generosity, our vision for the Zen Master Thich Nhat Hanh Great Hall of Peace can now become a reality.</p>
+
+<blockquote>May we wish you a Christmas season full of peace and gratitude in your hearts, along with stillness and silence in which to fully experience the joy they bring.</blockquote>
+
+<p class="signoff">With deep gratitude, love and respect,<br><strong>The monks and nuns of the EIAB</strong></p>`
+    }
+  }
+};
+
+const LANG_MAP = {DE:'de', ENG:'en', VI:'vi'};
+function currentLangFromShared(){
+  var stored = (window.EIAB_I18N && window.EIAB_I18N.getLang()) || 'DE';
+  return LANG_MAP[stored] || 'de';
+}
+let currentLang = currentLangFromShared();
+
+function getParams() {
+  const params = new URLSearchParams(window.location.search);
+  return { id: parseInt(params.get('id')) || 1 };
+}
+
+function renderArticle() {
+  const { id } = getParams();
+  const article = NEWS_ARTICLES[id];
+
+  if (!article) {
+    document.getElementById('article').innerHTML = '<p>Artikel nicht gefunden.</p>';
+    document.getElementById('article-media').innerHTML = '';
+    return;
+  }
+
+  const availableLangs = Object.keys(article.title);
+  const lang = availableLangs.includes(currentLang) ? currentLang : availableLangs[0];
+  const date = new Date(article.date).toLocaleDateString('de-DE', {day: '2-digit', month: '2-digit', year: 'numeric'});
+
+  // Render article
+  document.getElementById('article').innerHTML = `
+    <div class="article-head">
+      <div class="article-date">${date}</div>
+      <h1 class="article-title">${article.title[lang]}</h1>
+    </div>
+    <div class="article-body">
+      ${article.body[lang]}
+    </div>
+  `;
+
+  // Render media placeholder
+  document.getElementById('article-media').innerHTML = `
+    <span class="caption">EIAB — Waldbröl</span>
+  `;
+
+  // Update back button
+  document.querySelector('.back').href = 'news.html';
+}
+
+window.addEventListener('eiab:langchange', function(e){
+  currentLang = LANG_MAP[e.detail.lang] || 'de';
+  renderArticle();
+});
+
+renderArticle();
+</script>
+</body>
+</html>

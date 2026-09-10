@@ -1,0 +1,419 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="icon" type="image/png" href="../img/logo.png">
+<title>Programm — EIAB Waldbröl</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:ital,opsz,wght@0,8..60,300;0,8..60,400;0,8..60,600;1,8..60,300;1,8..60,400&family=Be+Vietnam+Pro:wght@300;400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../css/tokens.css">
+<script src="../js/nav.js"></script>
+<script src="../js/footer.js"></script>
+<script src="../js/programs.js"></script>
+<script src="../js/labels.js"></script>
+<script src="../js/teachers.js"></script>
+<style>
+html{-webkit-text-size-adjust:100%}
+body{margin:0;background:var(--mist);color:var(--pine);font-family:var(--serif);
+  font-size:clamp(1rem,.96rem + .2vw,1.09rem);line-height:1.6}
+h1,h2,h3{font-family:var(--serif);font-weight:300;line-height:1.14;margin:0;letter-spacing:-.012em}
+h1{font-size:clamp(2rem,1.2rem + 3vw,3.6rem)}
+h2{font-size:1.35rem;font-weight:400}
+p{margin:0 0 1.1em}
+a{color:inherit;text-decoration:none}
+button{border:0;background:none;font:inherit;cursor:pointer}
+input,select{font-family:var(--sans);font-size:.9rem}
+:focus-visible{outline:2px solid var(--plum);outline-offset:3px;border-radius:2px}
+.wrap{max-width:1240px;margin-inline:auto;padding-inline:var(--gutter)}
+.sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0)}
+
+
+.mast{padding-block:clamp(2.6rem,6vw,4.4rem) clamp(1.6rem,3vw,2.2rem)}
+.mast .kicker{font-family:var(--sans);font-size:.83rem;color:var(--moss);margin-bottom:1rem}
+.mast h1{max-width:16ch}
+.mast .lede{max-width:56ch;margin-top:1.3rem;font-size:1.12rem;color:var(--pine-soft)}
+
+.subnav{border-bottom:1px solid rgba(27,42,34,.15);background:rgba(255,255,255,.3)}
+.subnav-in{display:flex;gap:1.6rem;font-family:var(--sans);font-size:.83rem;overflow-x:auto}
+.subnav a{white-space:nowrap;text-decoration:none;color:var(--pine-soft);padding:.85rem 0;border-bottom:2px solid transparent}
+.subnav a:hover{color:var(--pine)}
+.subnav a[aria-current]{color:var(--pine);border-bottom-color:var(--plum);font-weight:500}
+
+
+.content-top{padding:2rem var(--gutter);background:var(--mist-deep);border-bottom:1px solid rgba(27,42,34,.08)}
+.content-top h1{font-size:clamp(1.8rem,2.2rem + 2vw,3rem)}
+
+.filters-section{background:linear-gradient(135deg,rgba(78,107,85,.08) 0%,rgba(185,174,156,.08) 100%);border-bottom:1px solid rgba(27,42,34,.12);padding:2.2rem var(--gutter);box-shadow:0 2px 8px rgba(27,42,34,.06)}
+.filters-grid{max-width:1240px;margin-inline:auto;display:grid;grid-template-columns:repeat(auto-fit,minmax(320px,1fr));gap:2.2rem}
+.filter-group{display:flex;flex-direction:column;gap:1rem}
+.filter-label{font-family:var(--sans);font-size:.85rem;font-weight:600;color:var(--pine);text-transform:uppercase;letter-spacing:.03em}
+
+.chips-container{display:flex;gap:.7rem;flex-wrap:wrap;align-items:center}
+.chip{font-family:var(--sans);font-size:.82rem;padding:.6rem 1.2rem;border:1.5px solid rgba(27,42,34,.22);border-radius:99px;background:rgba(255,255,255,.7);color:var(--pine);cursor:pointer;transition:all .2s;font-weight:500}
+.chip:hover{border-color:var(--moss);background:#fff;transform:translateY(-1px)}
+.chip.active{background:var(--pine);color:#fff;border-color:var(--pine);box-shadow:0 4px 12px rgba(78,107,85,.2)}
+
+.filter-group select,.filter-group input{padding:.65rem .85rem;border:1.5px solid rgba(27,42,34,.22);border-radius:3px;font-size:.9rem;background:#fff;color:var(--pine);font-family:var(--sans);transition:.15s;width:100%}
+.filter-group select:hover,.filter-group input:hover{border-color:var(--moss)}
+.filter-group select:focus,.filter-group input:focus{outline:none;border-color:var(--moss);box-shadow:0 0 0 3px rgba(78,107,85,.1)}
+.filter-group select[multiple]{padding:.4rem}
+.filter-group select[multiple] option{padding:.4rem;margin:.2rem 0}
+
+.results-section{padding:2.2rem var(--gutter)}
+.results-wrap{max-width:1240px;margin-inline:auto}
+
+.course-list{display:flex;flex-direction:column;gap:1.2rem}
+.course-item{position:relative;background:#fff;border:1px solid rgba(27,42,34,.1);border-radius:4px;padding:1.6rem;transition:all .2s;display:grid;grid-template-columns:1fr auto;gap:2rem;align-items:start}
+.course-title .card-link{color:inherit;text-decoration:none}
+.course-title .card-link::after{content:"";position:absolute;inset:0}
+.course-info a{position:relative;z-index:1;color:inherit;text-decoration:underline;text-decoration-color:transparent;transition:text-decoration-color .15s}
+.course-info a:hover{text-decoration-color:currentColor}
+.course-item:hover{border-color:var(--moss);box-shadow:0 4px 12px rgba(27,42,34,.08)}
+.course-item-left{}
+.course-item-meta{display:flex;gap:1rem;flex-wrap:wrap;margin-bottom:.8rem;font-family:var(--sans);font-size:.85rem}
+.date{color:var(--pine-soft);display:flex;gap:.4rem}
+.code{background:rgba(27,42,34,.08);padding:.3rem .6rem;border-radius:3px;color:var(--moss);font-weight:500}
+.langs{display:flex;gap:.4rem}
+.lang-tag{font-size:.75rem;font-weight:600;padding:.2rem .5rem;border-radius:3px;background:var(--stone-pale);color:#5C5140}
+.lang-tag.de{background:#D9E0D2;color:#3D5343}
+.lang-tag.en{background:#DAE1E6;color:#3C4E5A}
+.lang-tag.vi{background:#E8D7DB;color:#6B3D4A}
+.course-title{font-size:1.15rem;font-weight:400;color:var(--pine);margin-bottom:.6rem;line-height:1.4}
+.course-info{font-family:var(--sans);font-size:.85rem;color:var(--pine-soft);display:flex;gap:1.2rem;flex-wrap:wrap}
+.course-info span{display:flex;gap:.4rem}
+.course-item-right{text-align:right;display:flex;flex-direction:column;align-items:flex-end;gap:.6rem;justify-content:flex-start}
+.course-type{font-family:var(--sans);font-size:.8rem;font-weight:500;color:var(--moss);background:rgba(78,107,85,.08);padding:.4rem .8rem;border-radius:3px;white-space:nowrap}
+.course-instructor{font-family:var(--sans);font-size:.85rem;color:var(--pine-soft)}
+.status-badge{font-family:var(--sans);font-size:.75rem;font-weight:600;padding:.35rem .7rem;border-radius:3px;white-space:nowrap}
+.status-badge.closed{background:rgba(27,42,34,.1);color:var(--pine-soft)}
+.status-badge.fully-booked{background:#F4E2D8;color:#8A4A25}
+
+#empty{display:none;padding:3rem 2rem;text-align:center;background:rgba(237,238,231,.8);border-radius:4px;border:1px dashed rgba(27,42,34,.12)}
+#empty.show{display:block}
+
+
+@media (max-width:900px){
+  .filters-grid{grid-template-columns:1fr}
+  .course-item{grid-template-columns:1fr;gap:1rem}
+  .course-item-right{text-align:left;align-items:flex-start;flex-direction:row;flex-wrap:wrap}
+}
+@media (max-width:560px){
+  .filters-grid{grid-template-columns:1fr;gap:1.4rem}
+  .chips-container{gap:.5rem}
+  .chip{padding:.5rem .9rem;font-size:.75rem}
+  .course-item{padding:1.2rem}
+  .course-title{font-size:1rem}
+}
+</style>
+</head>
+<body>
+
+<eiab-header current="programm" base="../"></eiab-header>
+
+<eiab-subnav section="programm" current="program.html" base="../"></eiab-subnav>
+
+<div class="wrap mast">
+    <div class="kicker">Programm</div>
+    <h1>Retreats im eiab</h1>
+    <p class="lede">Wochenenden, ganze Wochen und Online-Kurse — filtern Sie nach Format, Sprache oder Kursnamen und finden Sie das Passende für sich.</p>
+</div>
+
+
+<div class="filters-section">
+  <div class="filters-grid">
+    <div class="filter-group">
+      <label class="filter-label" id="label-format">Format</label>
+      <div class="chips-container" id="format-chips">
+        <button class="chip active" data-format="all"></button>
+        <button class="chip" data-format="retreat"></button>
+        <button class="chip" data-format="online"></button>
+        <button class="chip" data-format="session"></button>
+        <button class="chip" data-format="week"></button>
+      </div>
+    </div>
+
+    <div class="filter-group">
+      <label class="filter-label" id="label-lang">Sprache</label>
+      <div class="chips-container" id="lang-chips">
+        <button class="chip active" data-lang="all"></button>
+        <button class="chip" data-lang="de"></button>
+        <button class="chip" data-lang="en"></button>
+        <button class="chip" data-lang="vi"></button>
+      </div>
+    </div>
+
+    <div class="filter-group">
+      <label class="filter-label" id="label-status">Verfügbarkeit</label>
+      <div class="chips-container" id="status-chips">
+        <button class="chip active" data-status="all"></button>
+        <button class="chip" data-status="open"></button>
+      </div>
+    </div>
+
+    <div class="filter-group">
+      <label for="search-filter" class="filter-label">🔍 <span id="label-search">Kursnamen</span></label>
+      <input type="text" id="search-filter" placeholder="Kurs suchen...">
+    </div>
+
+    <div class="filter-group">
+      <label for="month-filter" class="filter-label" id="label-month">Monat</label>
+      <select id="month-filter">
+          <option value="all"></option>
+          <option value="september"></option>
+          <option value="october"></option>
+          <option value="november"></option>
+          <option value="december"></option>
+      </select>
+    </div>
+
+    <div class="filter-group">
+      <label for="instructor-filter" class="filter-label" id="label-instructor">Kurslehrer</label>
+      <select id="instructor-filter">
+        <option value="all" id="opt-all-teachers">Alle Lehrer</option>
+      </select>
+    </div>
+  </div>
+</div>
+
+<div class="results-section">
+  <div class="results-wrap">
+    <div class="course-list" id="courses"></div>
+    <div id="empty"><p id="empty-msg">Keine Kurse gefunden. Bitte verändere deine Filter.</p></div>
+  </div>
+</div>
+
+<eiab-footer base="../"></eiab-footer>
+
+<script>
+const COURSES = window.EIAB_PROGRAMS;
+const LABELS = window.EIAB_LABELS || { type: {}, lang: {}, status: {} };
+const LANG_MAP = {DE: 'de', ENG: 'en', VI: 'vi'};
+
+function currentLang(){
+  const stored = (window.EIAB_I18N && window.EIAB_I18N.getLang()) || 'DE';
+  return LANG_MAP[stored] || 'de';
+}
+function tl(field){
+  if(!field) return '';
+  const lang = currentLang();
+  return field[lang] || field.de || '';
+}
+function esc(s){
+  return String(s == null ? '' : s).replace(/[&<>"]/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+}
+// course.instructor is either an array of js/teachers.js registry ids (rendered as
+// clickable links to each person's page) or a plain fallback string (e.g. "EIAB-Sangha",
+// a role description) for courses with no single identifiable, registered instructor.
+function instructorHtml(instructor){
+  if(Array.isArray(instructor)){
+    const registry = window.EIAB_TEACHERS || {};
+    return instructor.map(id => {
+      const t = registry[id];
+      const name = t ? t.name : id;
+      return `<a href="../personen/person.html?id=${encodeURIComponent(id)}">${esc(name)}</a>`;
+    }).join(', ');
+  }
+  return esc(instructor);
+}
+
+// This page's own static filter UI strings — separate from EIAB_LABELS, which only
+// covers course-data values (type/lang/status), not filter chrome like group labels.
+const UI = {
+  all: {de:'Alle', en:'All', vi:'Tất cả'},
+  onlyOpen: {de:'Nur offene', en:'Open only', vi:'Chỉ còn chỗ'},
+  labelFormat: {de:'Format', en:'Format', vi:'Hình thức'},
+  labelLang: {de:'Sprache', en:'Language', vi:'Ngôn ngữ'},
+  labelStatus: {de:'Verfügbarkeit', en:'Availability', vi:'Tình trạng chỗ'},
+  labelSearch: {de:'Kursnamen', en:'Course name', vi:'Tên khóa học'},
+  labelMonth: {de:'Monat', en:'Month', vi:'Tháng'},
+  labelInstructor: {de:'Kurslehrer', en:'Teacher', vi:'Giảng viên'},
+  searchPlaceholder: {de:'Kurs suchen...', en:'Search courses...', vi:'Tìm khóa học...'},
+  allTeachers: {de:'Alle Lehrer', en:'All teachers', vi:'Tất cả giảng viên'},
+  emptyMsg: {de:'Keine Kurse gefunden. Bitte verändere deine Filter.', en:'No courses found. Please adjust your filters.', vi:'Không tìm thấy khóa học nào. Vui lòng thay đổi bộ lọc.'},
+  months: {
+    all: {de:'Alle', en:'All', vi:'Tất cả'},
+    september: {de:'September', en:'September', vi:'Tháng 9'},
+    october: {de:'Oktober', en:'October', vi:'Tháng 10'},
+    november: {de:'November', en:'November', vi:'Tháng 11'},
+    december: {de:'Dezember', en:'December', vi:'Tháng 12'}
+  }
+};
+
+function applyFilterUI(){
+  const set = (id, text) => { const el = document.getElementById(id); if(el) el.textContent = text; };
+  set('label-format', tl(UI.labelFormat));
+  set('label-lang', tl(UI.labelLang));
+  set('label-status', tl(UI.labelStatus));
+  set('label-search', tl(UI.labelSearch));
+  set('label-month', tl(UI.labelMonth));
+  set('label-instructor', tl(UI.labelInstructor));
+  set('opt-all-teachers', tl(UI.allTeachers));
+  set('empty-msg', tl(UI.emptyMsg));
+
+  const searchInput = document.getElementById('search-filter');
+  if(searchInput) searchInput.placeholder = tl(UI.searchPlaceholder);
+
+  document.querySelectorAll('#format-chips .chip').forEach(chip => {
+    chip.textContent = chip.dataset.format === 'all' ? tl(UI.all) : tl(LABELS.type[chip.dataset.format]);
+  });
+  document.querySelectorAll('#lang-chips .chip').forEach(chip => {
+    chip.textContent = chip.dataset.lang === 'all' ? tl(UI.all) : tl(LABELS.lang[chip.dataset.lang]);
+  });
+  document.querySelectorAll('#status-chips .chip').forEach(chip => {
+    chip.textContent = chip.dataset.status === 'all' ? tl(UI.all) : tl(UI.onlyOpen);
+  });
+
+  document.querySelectorAll('#month-filter option').forEach(opt => {
+    opt.textContent = tl(UI.months[opt.value]);
+  });
+}
+
+function formatDate(dateStr) {
+  const date = new Date(dateStr + 'T00:00:00Z');
+  return date.toLocaleDateString('de-DE', {weekday: 'short', day: '2-digit', month: '2-digit', year: 'numeric'});
+}
+
+function renderCourses() {
+  const typeFilter = document.querySelector('.chip.active[data-format]')?.dataset.format || 'all';
+  const langFilter = document.querySelector('.chip.active[data-lang]')?.dataset.lang || 'all';
+  const statusFilter = document.querySelector('.chip.active[data-status]')?.dataset.status || 'all';
+  const searchFilter = document.getElementById('search-filter').value.toLowerCase();
+  
+  // Get selected months from multiselect dropdown
+  const monthSelect = document.getElementById('month-filter');
+  const selectedMonths = Array.from(monthSelect.selectedOptions).map(opt => opt.value);
+  const monthFilter = selectedMonths.length === 0 ? ['all'] : selectedMonths;
+  
+  const instructorFilter = document.getElementById('instructor-filter').value;
+
+  const filtered = COURSES.filter(c => {
+    const typeMatch = typeFilter === 'all' || c.type === typeFilter;
+    const langMatch = langFilter === 'all' || c.langs.includes(langFilter);
+    const statusMatch = statusFilter === 'all' || (c.status || 'open') === statusFilter;
+    const searchMatch = c.title.toLowerCase().includes(searchFilter);
+    const monthMatch = monthFilter.includes('all') || monthFilter.includes(c.month);
+    const instructorMatch = instructorFilter === 'all' || (Array.isArray(c.instructor)
+      ? c.instructor.includes(instructorFilter)
+      : c.instructor === instructorFilter);
+    return typeMatch && langMatch && statusMatch && searchMatch && monthMatch && instructorMatch;
+  }).sort((a, b) => a.dateStart.localeCompare(b.dateStart));
+
+  const container = document.getElementById('courses');
+  const empty = document.getElementById('empty');
+
+  container.innerHTML = '';
+
+  if (filtered.length === 0) {
+    empty.classList.add('show');
+    return;
+  }
+
+  empty.classList.remove('show');
+
+  filtered.forEach(course => {
+    // A plain <div>, not <a> — instructor names inside need their own links to
+    // personen/person.html, and an <a> can't contain another <a>. The course title
+    // becomes a "stretched link" (::after covers the whole card) so the card still
+    // behaves like one big link everywhere except over an instructor name.
+    const item = document.createElement('div');
+    item.className = 'course-item';
+    const courseHref = course.detailHref || ('retreat-detail.html?code=' + encodeURIComponent(course.id));
+
+    const langTags = course.langs.map(l => `<span class="lang-tag ${l}">${tl(LABELS.lang[l]) || l.toUpperCase()}</span>`).join('');
+    const dateRange = course.dateStart === course.dateEnd
+      ? formatDate(course.dateStart)
+      : `${formatDate(course.dateStart)} – ${formatDate(course.dateEnd)}`;
+    const statusBadge = course.status && course.status !== 'open'
+      ? `<div class="status-badge ${course.status}">${tl(LABELS.status[course.status])}</div>`
+      : '';
+
+    item.innerHTML = `
+      <div class="course-item-left">
+        <div class="course-item-meta">
+          <span class="date">${dateRange}</span>
+          <span class="code">${course.id}</span>
+          <div class="langs">${langTags}</div>
+        </div>
+        <h3 class="course-title"><a class="card-link" href="${courseHref}">${course.title}</a></h3>
+        <div class="course-info">
+          <span> ${instructorHtml(course.instructor)}</span>
+        </div>
+      </div>
+      <div class="course-item-right">
+        <div class="course-type">${tl(LABELS.type[course.type])}</div>
+        ${statusBadge}
+      </div>
+    `;
+
+    container.appendChild(item);
+  });
+}
+
+// Event listeners for format chips
+document.querySelectorAll('#format-chips .chip').forEach(chip => {
+  chip.addEventListener('click', () => {
+    document.querySelectorAll('#format-chips .chip').forEach(c => c.classList.remove('active'));
+    chip.classList.add('active');
+    renderCourses();
+  });
+});
+
+// Event listeners for language chips
+document.querySelectorAll('#lang-chips .chip').forEach(chip => {
+  chip.addEventListener('click', () => {
+    document.querySelectorAll('#lang-chips .chip').forEach(c => c.classList.remove('active'));
+    chip.classList.add('active');
+    renderCourses();
+  });
+});
+
+// Event listeners for availability (status) chips
+document.querySelectorAll('#status-chips .chip').forEach(chip => {
+  chip.addEventListener('click', () => {
+    document.querySelectorAll('#status-chips .chip').forEach(c => c.classList.remove('active'));
+    chip.classList.add('active');
+    renderCourses();
+  });
+});
+
+document.getElementById('search-filter').addEventListener('input', renderCourses);
+document.getElementById('month-filter').addEventListener('change', renderCourses);
+document.getElementById('instructor-filter').addEventListener('change', renderCourses);
+
+// Populate the instructor filter from whichever instructors actually appear in the data,
+// so it stays correct as courses/instructors are added or removed. course.instructor is
+// either an array of js/teachers.js ids or a plain fallback string — the filter's option
+// value is always a single id (or the raw string for the fallback case).
+const instructorOptions = new Map(); // value -> label
+COURSES.forEach(c => {
+  if(Array.isArray(c.instructor)){
+    c.instructor.forEach(id => {
+      const t = (window.EIAB_TEACHERS || {})[id];
+      instructorOptions.set(id, t ? t.name : id);
+    });
+  } else {
+    instructorOptions.set(c.instructor, c.instructor);
+  }
+});
+const instructorSelect = document.getElementById('instructor-filter');
+Array.from(instructorOptions.entries())
+  .sort((a, b) => a[1].localeCompare(b[1]))
+  .forEach(([value, label]) => {
+    const opt = document.createElement('option');
+    opt.value = value;
+    opt.textContent = label;
+    instructorSelect.appendChild(opt);
+  });
+
+// Initial render
+applyFilterUI();
+renderCourses();
+window.addEventListener('eiab:langchange', () => {
+  applyFilterUI();
+  renderCourses();
+});
+</script>
+</body>
+</html>

@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="icon" type="image/png" href="../img/logo.png">
+<title>Waldbröler Sangha — EIAB Waldbröl</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:ital,opsz,wght@0,8..60,300;0,8..60,400;0,8..60,600;1,8..60,300;1,8..60,400&family=Be+Vietnam+Pro:wght@300;400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../css/tokens.css">
+<script src="../js/nav.js"></script>
+<script src="../js/footer.js"></script>
+<style>
+html{-webkit-text-size-adjust:100%}
+body{margin:0;background:var(--mist);color:var(--pine);font-family:var(--serif);
+  font-size:clamp(1rem,.96rem + .2vw,1.07rem);line-height:1.6;font-variant-numeric:oldstyle-nums}
+h1,h2{font-family:var(--serif);font-weight:300;line-height:1.14;margin:0;letter-spacing:-.012em}
+h1{font-size:clamp(2.1rem,1.4rem + 2.6vw,3.4rem)}
+h2{font-size:1.35rem;font-weight:400}
+p{margin:0 0 1.1em}
+a{color:inherit}
+img{max-width:100%;display:block}
+:focus-visible{outline:2px solid var(--plum);outline-offset:3px;border-radius:2px}
+.wrap{max-width:1240px;margin-inline:auto;padding-inline:var(--gutter)}
+.sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0)}
+
+.mast{padding-block:clamp(2.4rem,5.5vw,3.8rem) clamp(1.4rem,3vw,2rem)}
+.mast .kicker{font-family:var(--sans);font-size:.83rem;color:var(--moss);margin-bottom:1rem}
+.mast .lede{max-width:56ch;margin-top:1.2rem;font-size:1.12rem;color:var(--pine-soft)}
+
+.layout{display:grid;grid-template-columns:1fr 320px;gap:clamp(2rem,6vw,4rem);
+  padding-block:clamp(1.5rem,4vw,2.5rem) clamp(3rem,6vw,4.5rem);align-items:start}
+.photo{border-radius:3px;overflow:hidden}
+.photo img{width:100%;height:100%;object-fit:cover}
+.photo .cap{font-family:var(--sans);font-size:.76rem;color:var(--pine-soft);margin-top:.6rem}
+
+.facts{margin:0;padding:0;list-style:none;border-top:1px solid rgba(27,42,34,.2)}
+.facts li{padding:.85rem 0;border-bottom:1px solid rgba(27,42,34,.13)}
+.facts span{display:block;font-family:var(--sans);font-size:.75rem;color:var(--moss);margin-bottom:.22rem}
+.facts p{margin:0;font-size:1rem;line-height:1.45}
+.facts a{border-bottom:1px solid var(--moss);text-decoration:none}
+
+.body{max-width:66ch;padding-block:0 clamp(3rem,6vw,4.5rem)}
+.body h2{margin-bottom:1rem}
+
+@media (max-width:800px){
+  .layout{grid-template-columns:1fr}
+}
+</style>
+</head>
+<body>
+
+<eiab-header current="besuch" base="../"></eiab-header>
+
+<div class="wrap mast">
+  <div class="kicker">Regelmäßige Praxis</div>
+  <h1>Waldbröler Sangha</h1>
+  <p class="lede">Die lokale Übungsgemeinschaft des EIAB trifft sich wöchentlich vor Ort — offen für alle, die gemeinsam sitzen und sich austauschen möchten.</p>
+</div>
+
+<div class="wrap layout">
+  <div class="photo">
+    <img src="../img/foto-sangha.jpg" alt="Meditationskissen und -matten, in Reihen auf dem Boden eines Meditationsraums ausgelegt">
+    <div class="cap">Foto: Sitzplätze in der Meditationshalle des EIAB</div>
+  </div>
+
+  <div>
+    <ul class="facts">
+      <li><span>Wann</span><p>Mittwochs, 19:00–21:00 Uhr</p></li>
+      <li><span>Wo</span><p>Vor Ort im EIAB, Waldbröl</p></li>
+      <li><span>Teilnahme</span><p>Ohne Anmeldung — alle sind willkommen</p></li>
+      <li><span>Mehr dazu</span><p><a href="https://www.waldbroelsangha.de" target="_blank" rel="noopener noreferrer">waldbroelsangha.de</a></p></li>
+    </ul>
+  </div>
+</div>
+
+<main class="wrap">
+  <div class="body">
+  <h2>Worum es geht</h2>
+  <p>Die Waldbröler Sangha ist die lokale Übungsgemeinschaft rund um das EIAB. Einmal wöchentlich kommen wir vor Ort zusammen, um gemeinsam zu sitzen und uns über das Leben und die Praxis der Achtsamkeit auszutauschen.</p>
+  <p>Sie brauchen keine Erfahrung und keine Anmeldung — kommen Sie einfach vorbei. Wegbeschreibung und Kontakt finden Sie auf der <a href="../info/kontakt.html">Anfahrt-und-Kontakt-Seite</a>.</p>
+</div>
+</main>
+
+<eiab-footer base="../"></eiab-footer>
+
+</body>
+</html>

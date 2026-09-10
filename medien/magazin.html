@@ -1,0 +1,314 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="icon" type="image/png" href="../img/logo.png">
+<title>EIAB Magazin — Lesbar online</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:ital,opsz,wght@0,8..60,300;0,8..60,400;0,8..60,600;1,8..60,300;1,8..60,400&family=Be+Vietnam+Pro:wght@300;400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../css/tokens.css">
+<script src="../js/nav.js"></script>
+<script src="../js/footer.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js"></script>
+<style>
+html{-webkit-text-size-adjust:100%}
+body{margin:0;background:var(--mist);color:var(--pine);font-family:var(--serif);
+  font-size:clamp(1rem,.96rem + .2vw,1.09rem);line-height:1.6}
+h1,h2{font-family:var(--serif);font-weight:300;line-height:1.14;margin:0;letter-spacing:-.012em}
+h1{font-size:clamp(2.3rem,1.4rem + 3.6vw,4rem)}
+h2{font-size:1.35rem;font-weight:400}
+p{margin:0 0 1.1em}
+a{color:inherit}
+:focus-visible{outline:2px solid var(--plum);outline-offset:3px;border-radius:2px}
+.wrap{max-width:1240px;margin-inline:auto;padding-inline:var(--gutter)}
+.sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0)}
+
+.subnav{border-bottom:1px solid rgba(27,42,34,.15);background:rgba(255,255,255,.3)}
+.subnav-in{display:flex;gap:1.6rem;font-family:var(--sans);font-size:.83rem;overflow-x:auto}
+.subnav a{white-space:nowrap;text-decoration:none;color:var(--pine-soft);padding:.85rem 0;border-bottom:2px solid transparent}
+.subnav a:hover{color:var(--pine)}
+.subnav a[aria-current]{color:var(--pine);border-bottom-color:var(--plum);font-weight:500}
+
+
+.mast{padding-block:clamp(2.6rem,6vw,4.4rem) clamp(1.6rem,3vw,2.2rem)}
+.mast .kicker{font-family:var(--sans);font-size:.83rem;color:var(--moss);margin-bottom:1rem}
+.mast h1{max-width:16ch}
+.mast .lede{max-width:56ch;margin-top:1.3rem;font-size:1.12rem;color:var(--pine-soft)}
+
+/* magazine grid */
+.magazines{display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:2.2rem;
+  padding-block:clamp(2rem,5vw,3.2rem)}
+.mag-card{cursor:pointer;text-decoration:none;color:var(--pine);
+  display:flex;flex-direction:column;gap:.8rem;transition:all .2s}
+.mag-card:hover{transform:translateY(-4px)}
+.mag-cover{aspect-ratio:3/4;border-radius:3px;position:relative;overflow:hidden;
+  background:linear-gradient(135deg,#C8BFAD 0%,#8B8B7A 50%,#4E6B55 100%);
+  box-shadow:0 2px 8px rgba(27,42,34,.12);transition:box-shadow .2s}
+.mag-card:hover .mag-cover{box-shadow:0 8px 24px rgba(27,42,34,.18)}
+.mag-cover img{width:100%;height:100%;object-fit:cover;display:block}
+.mag-cover-badge{position:absolute;left:.6rem;bottom:.6rem;font-family:var(--sans);font-size:.72rem;
+  font-weight:500;color:#F4F6EE;background:rgba(27,42,34,.55);backdrop-filter:blur(2px);
+  padding:.22rem .55rem;border-radius:99px;letter-spacing:.03em}
+
+.mag-info{display:flex;gap:.6rem;justify-content:center}
+.mag-btn{font-family:var(--sans);font-size:.82rem;font-weight:500;border:1px solid rgba(27,42,34,.26);
+  background:rgba(255,255,255,.5);color:var(--pine);padding:.5rem 1rem;border-radius:3px;
+  cursor:pointer;transition:.15s;flex:1;text-align:center}
+.mag-btn:hover{border-color:var(--moss);background:#fff}
+
+/* modal */
+.modal{display:none;position:fixed;inset:0;z-index:100;background:rgba(27,42,34,.8);
+  backdrop-filter:blur(4px);align-items:center;justify-content:center;padding:1rem}
+.modal.open{display:flex}
+.modal-content{background:#fff;border-radius:4px;width:100%;max-width:100%;height:90vh;max-height:90vh;
+  display:flex;flex-direction:column;box-shadow:0 20px 60px rgba(27,42,34,.3)}
+.modal-controls{display:flex;gap:.8rem;align-items:center;padding:1rem;
+  border-bottom:1px solid rgba(27,42,34,.14);background:rgba(27,42,34,.03);flex-wrap:wrap}
+.modal-title{flex:1;font-weight:500;color:var(--pine);margin:0;font-size:1.05rem}
+.mbtn{border:1px solid rgba(27,42,34,.22);background:rgba(255,255,255,.6);
+  border-radius:3px;padding:.4rem .7rem;cursor:pointer;font-family:var(--sans);font-size:.78rem;
+  color:var(--pine);transition:.15s}
+.mbtn:hover{border-color:var(--moss);background:#fff}
+.mbtn:disabled{opacity:.4;cursor:not-allowed}
+.mpage{display:flex;gap:.4rem;align-items:center;font-family:var(--sans);font-size:.78rem;color:var(--pine-soft)}
+.mpage input{width:3rem;padding:.25rem .4rem;border:1px solid rgba(27,42,34,.22);border-radius:2px;
+  font-family:var(--sans);font-size:.78rem}
+.mpage input:focus{border-color:var(--moss);outline:none}
+.modal-close{width:32px;height:32px;border:1px solid rgba(27,42,34,.22);background:rgba(255,255,255,.6);
+  border-radius:50%;cursor:pointer;font-size:1.1rem;display:flex;align-items:center;justify-content:center;
+  color:var(--pine-soft)}
+.modal-close:hover{background:#fff;color:var(--pine)}
+
+.modal-canvas{flex:1;overflow:auto;display:flex;align-items:flex-start;justify-content:center;
+  padding:1.5rem;background:rgba(27,42,34,.05)}
+#pdf-canvas{flex:0 0 auto;box-shadow:0 2px 12px rgba(27,42,34,.15);border-radius:2px}
+.zoom-level{font-family:var(--sans);font-size:.78rem;color:var(--pine-soft);min-width:3.4em;text-align:center}
+
+
+@media (max-width:900px){
+  .magazines{grid-template-columns:repeat(auto-fill,minmax(180px,1fr));gap:1.6rem}
+  .modal-content{max-width:95vw}
+}
+@media (max-width:560px){
+  .magazines{grid-template-columns:repeat(2,1fr);gap:1.2rem}
+  .mag-cover-text .year{font-size:2.2rem}
+}
+</style>
+</head>
+<body>
+
+<eiab-header current="medien" base="../"></eiab-header>
+
+<eiab-subnav section="medien" current="magazin.html" base="../"></eiab-subnav>
+
+<div class="wrap mast">
+  <div class="kicker">Medien</div>
+  <h1>EIAB Magazin</h1>
+  <p class="lede">Jährlich erscheint unser Magazin in Deutsch und Englisch. Lesen Sie alle Ausgaben online.</p>
+</div>
+
+<main class="wrap">
+  <div class="magazines" id="magazines">
+    <!-- populated by JS -->
+  </div>
+</main>
+
+<!-- PDF Viewer Modal -->
+<div class="modal" id="pdf-modal">
+  <div class="modal-content">
+    <div class="modal-controls">
+      <h3 class="modal-title" id="modal-title"></h3>
+      <div style="flex:1"></div>
+      <button class="mbtn" id="prev-btn" aria-label="Vorherige Seite">← Vorh.</button>
+      <div class="mpage">
+        <input type="number" id="page-num" min="1" value="1" aria-label="Seitennummer">
+        <span>/ <span id="page-count">0</span></span>
+      </div>
+      <button class="mbtn" id="next-btn" aria-label="Nächste Seite">Nächste →</button>
+      <button class="mbtn" id="zoom-out-btn" aria-label="Verkleinern">−</button>
+      <span class="zoom-level" id="zoom-level">100%</span>
+      <button class="mbtn" id="zoom-in-btn" aria-label="Vergrößern">+</button>
+      <button class="mbtn" id="zoom-fit-btn" aria-label="An Fenster anpassen">Einpassen</button>
+      <a class="mbtn" id="download-btn" target="_blank" aria-label="Herunterladen">⬇</a>
+      <button class="modal-close" id="close-modal" aria-label="Schließen">×</button>
+    </div>
+    <div class="modal-canvas">
+      <canvas id="pdf-canvas"></canvas>
+    </div>
+  </div>
+</div>
+
+<eiab-footer current="magazin" base="../"></eiab-footer>
+
+<script>
+pdfjsLib.GlobalWorkerOptions.workerSrc = 'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.worker.min.js';
+
+const MAGAZINES = [
+  {year: 2025, de: 'https://bf0be4ee-fa5c-417d-9759-6259566ccb01.filesusr.com/ugd/423b37_a866afbb27e94c3aa46dd4d219e309e9.pdf', en: 'https://bf0be4ee-fa5c-417d-9759-6259566ccb01.filesusr.com/ugd/423b37_53b751f19f1f4bbeb6f894f0675ea4da.pdf'},
+  {year: 2024, de: 'https://bf0be4ee-fa5c-417d-9759-6259566ccb01.filesusr.com/ugd/423b37_8c8d11b42b19458893f5c4f217ccf025.pdf', en: 'https://bf0be4ee-fa5c-417d-9759-6259566ccb01.filesusr.com/ugd/423b37_06e9a3da502e45ba937f2c4e06f36faa.pdf'},
+  {year: 2023, de: 'https://bf0be4ee-fa5c-417d-9759-6259566ccb01.filesusr.com/ugd/d17071_50967da3506e49b4979c10958f656cdb.pdf', en: 'https://bf0be4ee-fa5c-417d-9759-6259566ccb01.filesusr.com/ugd/d17071_ead7dd2f688a4d75963b54e0a55cef7d.pdf'},
+  {year: 2022, de: 'https://bf0be4ee-fa5c-417d-9759-6259566ccb01.filesusr.com/ugd/d17071_9b2218d54a39416fa086d14e32cab6f4.pdf', en: 'https://bf0be4ee-fa5c-417d-9759-6259566ccb01.filesusr.com/ugd/d17071_dcf57a5375de4f58a37471ae37e6e226.pdf'},
+  {year: 2021, de: 'https://bf0be4ee-fa5c-417d-9759-6259566ccb01.filesusr.com/ugd/d17071_969ad3fdf69f44a89b4ef11283615169.pdf', en: 'https://bf0be4ee-fa5c-417d-9759-6259566ccb01.filesusr.com/ugd/d17071_4217897be2504d4496f24b73ded3d7c1.pdf'},
+  {year: 2020, de: 'https://bf0be4ee-fa5c-417d-9759-6259566ccb01.filesusr.com/ugd/d17071_5c675c70766c45a9aa87b81ed16adc19.pdf', en: 'https://bf0be4ee-fa5c-417d-9759-6259566ccb01.filesusr.com/ugd/d17071_4409505a81b2473f954c0c9edd08c1e0.pdf'},
+  {year: 2019, de: 'https://bf0be4ee-fa5c-417d-9759-6259566ccb01.filesusr.com/ugd/d17071_90409dff4da84d11a1d1c86b0a536698.pdf', en: 'https://bf0be4ee-fa5c-417d-9759-6259566ccb01.filesusr.com/ugd/d17071_5387bc1f7fa84c5ab1050694dec1e57b.pdf'},
+  {year: 2018, de: 'https://bf0be4ee-fa5c-417d-9759-6259566ccb01.filesusr.com/ugd/d17071_03d3230e9df84a56a08499f0ecbb4767.pdf', en: 'https://bf0be4ee-fa5c-417d-9759-6259566ccb01.filesusr.com/ugd/d17071_05a219e9527943f3a611f6b7f807f696.pdf'},
+  {year: 2017, de: 'https://bf0be4ee-fa5c-417d-9759-6259566ccb01.filesusr.com/ugd/d17071_6f5f6e35e80a474daea5caa19c7eedee.pdf', en: 'https://bf0be4ee-fa5c-417d-9759-6259566ccb01.filesusr.com/ugd/d17071_69599eab315d44ad9185c6323b102b45.pdf'},
+  {year: 2016, de: 'https://bf0be4ee-fa5c-417d-9759-6259566ccb01.filesusr.com/ugd/d17071_0178540226c74c1c927648ad6c6ef9bb.pdf', en: 'https://bf0be4ee-fa5c-417d-9759-6259566ccb01.filesusr.com/ugd/d17071_7b1907ea52614dc0957b9e457c1ffd59.pdf'},
+  {year: 2015, de: 'https://bf0be4ee-fa5c-417d-9759-6259566ccb01.filesusr.com/ugd/d17071_a8f89d487d1749e0814f09cca85ed4f4.pdf', en: 'https://bf0be4ee-fa5c-417d-9759-6259566ccb01.filesusr.com/ugd/d17071_8d2900e1175f464b92a2160b245105d8.pdf'},
+  {year: 2014, de: 'https://bf0be4ee-fa5c-417d-9759-6259566ccb01.filesusr.com/ugd/d17071_fd784be2f5a94020aed3b76dadfce81c.pdf', en: 'https://bf0be4ee-fa5c-417d-9759-6259566ccb01.filesusr.com/ugd/d17071_9f20f02155f14b7c8c1ad5285a480a2e.pdf'},
+  {year: 2013, de: 'https://bf0be4ee-fa5c-417d-9759-6259566ccb01.filesusr.com/ugd/d17071_aafff351b997435b84bd0ef2a978e95c.pdf', en: 'https://bf0be4ee-fa5c-417d-9759-6259566ccb01.filesusr.com/ugd/d17071_b724f418d9274b9cb58f197b65187e33.pdf'},
+  {year: 2012, de: 'https://bf0be4ee-fa5c-417d-9759-6259566ccb01.filesusr.com/ugd/d17071_de648586a93b46bfbbf2baa385f25516.pdf', en: 'https://bf0be4ee-fa5c-417d-9759-6259566ccb01.filesusr.com/ugd/d17071_78189123a282441895d1fb68e3d95974.pdf'},
+];
+
+let currentPdf = null;
+let currentPage = 1;
+let totalPages = 0;
+let currentScale = null;
+
+function renderMagazines(){
+  const container = document.getElementById('magazines');
+
+  MAGAZINES.forEach(mag => {
+    const card = document.createElement('div');
+    card.className = 'mag-card';
+    card.innerHTML = `
+      <div class="mag-cover">
+        <img src="../img/magazin/${mag.year}.png" alt="Titelseite EIAB Magazin ${mag.year}" loading="lazy">
+        <span class="mag-cover-badge">${mag.year}</span>
+      </div>
+      <div class="mag-info">
+        <button class="mag-btn" data-url="${mag.de}" data-lang="DE">DE</button>
+        <button class="mag-btn" data-url="${mag.en}" data-lang="EN">EN</button>
+      </div>
+    `;
+
+    card.querySelectorAll('.mag-btn').forEach(btn => {
+      btn.addEventListener('click', (e) => {
+        e.preventDefault();
+        const url = btn.dataset.url;
+        const lang = btn.dataset.lang;
+        openMagazine(url, `EIAB Magazin ${mag.year} (${lang})`);
+      });
+    });
+
+    container.appendChild(card);
+  });
+}
+
+async function openMagazine(url, title){
+  document.getElementById('modal-title').textContent = title;
+  document.getElementById('download-btn').href = url;
+  document.getElementById('pdf-modal').classList.add('open');
+
+  try {
+    currentPdf = await pdfjsLib.getDocument(url).promise;
+    totalPages = currentPdf.numPages;
+    document.getElementById('page-count').textContent = totalPages;
+    currentPage = 1;
+    currentScale = null;
+    document.getElementById('page-num').value = 1;
+    renderPage(1, {fit: true});
+  } catch(e){
+    console.error('PDF loading error:', e);
+    alert('Fehler beim Laden des PDF. Bitte versuchen Sie es später erneut.');
+  }
+}
+
+function computeFitScale(page, container){
+  const cs = getComputedStyle(container);
+  const availW = container.clientWidth - parseFloat(cs.paddingLeft) - parseFloat(cs.paddingRight);
+  const availH = container.clientHeight - parseFloat(cs.paddingTop) - parseFloat(cs.paddingBottom);
+  const base = page.getViewport({scale: 1});
+  return Math.max(0.1, Math.min(availW / base.width, availH / base.height, 2.5));
+}
+
+async function renderPage(num, opts){
+  opts = opts || {};
+  if(!currentPdf || num < 1 || num > totalPages) return;
+  currentPage = num;
+  document.getElementById('page-num').value = num;
+
+  const page = await currentPdf.getPage(num);
+  const container = document.querySelector('.modal-canvas');
+  const fitScale = computeFitScale(page, container);
+
+  if(opts.fit || !currentScale){
+    currentScale = fitScale;
+  }
+
+  const viewport = page.getViewport({scale: currentScale});
+  const canvas = document.getElementById('pdf-canvas');
+
+  canvas.width = viewport.width;
+  canvas.height = viewport.height;
+
+  const ctx = canvas.getContext('2d');
+  await page.render({canvasContext: ctx, viewport}).promise;
+
+  document.getElementById('prev-btn').disabled = num === 1;
+  document.getElementById('next-btn').disabled = num === totalPages;
+  document.getElementById('zoom-level').textContent = Math.round(currentScale / fitScale * 100) + '%';
+}
+
+ function closePdf()  {
+     document.getElementById('modal-title').textContent = '';
+     document.getElementById('download-btn').href = undefined;
+     totalPages = 0;
+     currentPage = 1;
+     currentScale = null;
+     currentPdf = null;
+     document.getElementById('pdf-modal').classList.remove('open');
+ }
+
+let resizeTimer;
+window.addEventListener('resize', () => {
+  if(!currentPdf) return;
+  clearTimeout(resizeTimer);
+  resizeTimer = setTimeout(() => renderPage(currentPage), 150);
+});
+
+document.getElementById('prev-btn').addEventListener('click', () => renderPage(currentPage - 1));
+document.getElementById('next-btn').addEventListener('click', () => renderPage(currentPage + 1));
+document.getElementById('page-num').addEventListener('change', (e) => {
+  const num = parseInt(e.target.value) || 1;
+  renderPage(num);
+});
+
+document.getElementById('zoom-in-btn').addEventListener('click', () => {
+  currentScale = Math.min((currentScale || 1) * 1.25, 5);
+  renderPage(currentPage);
+});
+document.getElementById('zoom-out-btn').addEventListener('click', () => {
+  currentScale = Math.max((currentScale || 1) / 1.25, 0.2);
+  renderPage(currentPage);
+});
+document.getElementById('zoom-fit-btn').addEventListener('click', () => {
+  renderPage(currentPage, {fit: true});
+});
+
+document.getElementById('close-modal').addEventListener('click', () => {
+    closePdf();
+});
+
+document.getElementById('pdf-modal').addEventListener('click', (e) => {
+  if(e.target === document.getElementById('pdf-modal')){
+    document.getElementById('pdf-modal').classList.remove('open');
+    currentPdf = null;
+  }
+});
+
+document.addEventListener('keydown', (e) => {
+  if(!currentPdf || !document.getElementById('pdf-modal').classList.contains('open')) return;
+  if(e.key === 'ArrowLeft') renderPage(currentPage - 1);
+  if(e.key === 'ArrowRight') renderPage(currentPage + 1);
+  if(e.key === 'Escape') {
+      closePdf();
+  }
+});
+
+renderMagazines();
+</script>
+</body>
+</html>

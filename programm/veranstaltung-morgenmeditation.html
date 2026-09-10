@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="icon" type="image/png" href="../img/logo.png">
+  <title>Online Morgenmeditation — EIAB Waldbröl</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Source+Serif+4:ital,opsz,wght@0,8..60,300;0,8..60,400;0,8..60,600;1,8..60,300;1,8..60,400&family=Be+Vietnam+Pro:wght@300;400;500;600&display=swap"
+    rel="stylesheet">
+  <link rel="stylesheet" href="../css/tokens.css">
+  <script src="../js/nav.js"></script>
+  <script src="../js/footer.js"></script>
+  <style>
+    html {
+      -webkit-text-size-adjust: 100%
+    }
+
+    body {
+      margin: 0;
+      background: var(--mist);
+      color: var(--pine);
+      font-family: var(--serif);
+      font-size: clamp(1rem, .96rem + .2vw, 1.07rem);
+      line-height: 1.6;
+      font-variant-numeric: oldstyle-nums
+    }
+
+    h1, h2 {
+      font-family: var(--serif);
+      font-weight: 300;
+      line-height: 1.14;
+      margin: 0;
+      letter-spacing: -.012em
+    }
+
+    h1 {
+      font-size: clamp(2.1rem, 1.4rem + 2.6vw, 3.4rem)
+    }
+
+    h2 {
+      font-size: 1.35rem;
+      font-weight: 400
+    }
+
+    p {
+      margin: 0 0 1.1em
+    }
+
+    a {
+      color: inherit
+    }
+
+    :focus-visible {
+      outline: 2px solid var(--plum);
+      outline-offset: 3px;
+      border-radius: 2px
+    }
+
+    .wrap {
+      max-width: 1240px;
+      margin-inline: auto;
+      padding-inline: var(--gutter)
+    }
+
+    .sr {
+      position: absolute;
+      width: 1px;
+      height: 1px;
+      overflow: hidden;
+      clip: rect(0 0 0 0)
+    }
+
+    .mast {
+      padding-block: clamp(2.4rem, 5.5vw, 3.8rem) clamp(1.4rem, 3vw, 2rem)
+    }
+
+    .mast .kicker {
+      font-family: var(--sans);
+      font-size: .83rem;
+      color: var(--moss);
+      margin-bottom: 1rem
+    }
+
+    .mast .lede {
+      max-width: 56ch;
+      margin-top: 1.2rem;
+      font-size: 1.12rem;
+      color: var(--pine-soft)
+    }
+
+    .layout {
+      display: grid;
+      grid-template-columns:280px 1fr;
+      gap: clamp(2rem, 6vw, 4rem);
+      padding-block: clamp(1.5rem, 4vw, 2.5rem) clamp(3rem, 6vw, 4.5rem);
+      align-items: start
+    }
+
+    img {
+      max-width: 100%;
+      display: block
+    }
+
+    .photo {
+      border-radius: 3px;
+      overflow: hidden;
+      aspect-ratio: 2/3
+    }
+
+    .photo img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover
+    }
+
+    .facts {
+      margin: 0;
+      padding: 0;
+      list-style: none;
+      border-top: 1px solid rgba(27, 42, 34, .2)
+    }
+
+    .facts li {
+      padding: .85rem 0;
+      border-bottom: 1px solid rgba(27, 42, 34, .13)
+    }
+
+    .facts span {
+      display: block;
+      font-family: var(--sans);
+      font-size: .75rem;
+      color: var(--moss);
+      margin-bottom: .22rem
+    }
+
+    .facts p {
+      margin: 0;
+      font-size: 1rem;
+      line-height: 1.45
+    }
+
+    .join {
+      display: inline-block;
+      margin-top: 1.4rem;
+      font-family: var(--sans);
+      font-size: .92rem;
+      font-weight: 500;
+      background: var(--pine);
+      color: var(--mist);
+      text-decoration: none;
+      padding: .8rem 1.6rem;
+      border-radius: 99px
+    }
+
+    .join:hover {
+      background: var(--pine-soft)
+    }
+
+    .body {
+      max-width: 66ch;
+      padding-block: 0 clamp(3rem, 6vw, 4.5rem)
+    }
+
+    .body h2 {
+      margin-bottom: 1rem
+    }
+
+    @media (max-width: 700px) {
+      .layout {
+        grid-template-columns:1fr
+      }
+
+      .photo {
+        max-width: 220px
+      }
+    }
+  </style>
+</head>
+<body>
+
+<eiab-header current="besuch" base="../"></eiab-header>
+
+<div class="wrap mast">
+  <div class="kicker">Regelmäßige Praxis</div>
+  <h1>Online Morgenmeditation</h1>
+  <p class="lede">Jeden Morgen gemeinsam sitzen — wo auch immer Sie gerade sind. Eine kurze, geführte Sitzmeditation mit
+    Lesungen und dem Chanten des Namens von Avalokiteshvara, dem Bodhisattva des tiefen Zuhörens und Mitgefühls.</p>
+</div>
+
+<div class="wrap layout">
+  <img src="../img/foto-achtsamkeitstag.jpg" alt="Kleine sitzende Buddha-Statue mit aufsteigendem Räucherwerk-Rauch">
+
+  <div>
+    <ul class="facts">
+      <li><span>Wann</span>
+        <p>Täglich, 07:00–07:30 Uhr</p></li>
+      <li><span>Teilnahme</span>
+        <p>Per Zoom, ohne Anmeldung — einfach dazukommen</p></li>
+      <li><span>Kosten</span>
+        <p>Kostenfrei</p></li>
+      <li><span>Sprache</span>
+        <p>Deutsch</p></li>
+    </ul>
+    <a class="join" href="https://plumvillage.zoom.us/j/95080940014?pwd=UVcwelpUdnNOQ1ZsZHpwQWlYejBKQT09"
+       target="_blank" rel="noopener noreferrer">Jetzt per Zoom teilnehmen</a>
+    <p style="margin-top:.9rem;font-family:var(--sans);font-size:.82rem;color:var(--pine-soft)">Meeting-ID: 950 8094
+      0014 · Passwort: 268202</p>
+  </div>
+</div>
+
+<main class="wrap">
+  <div class="body">
+    <h2>Worum es geht</h2>
+    <p>Die Morgenmeditation ist eine ruhige, geführte Sitzmeditation zum Start in den Tag. Wir sitzen gemeinsam in
+      Stille, hören eine kurze Lesung und chanten gemeinsam den Namen von Avalokiteshvara — dem Bodhisattva, der für
+      tiefes Zuhören und Mitgefühl steht.</p>
+    <p>Es braucht keine Erfahrung und keine Anmeldung. Richten Sie sich zu Hause einen einfachen, ruhigen Sitzplatz ein
+      und kommen Sie pünktlich dazu — die gemeinsame Energie der Gruppe trägt die Praxis auch über Bildschirme
+      hinweg.</p>
+  </div>
+</main>
+
+<eiab-footer base="../"></eiab-footer>
+
+</body>
+</html>

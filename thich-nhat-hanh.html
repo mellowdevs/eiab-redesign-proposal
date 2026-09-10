@@ -1,0 +1,949 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="icon" type="image/png" href="./img/logo.png">
+  <title>Thích Nhất Hạnh — EIAB Waldbröl</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Source+Serif+4:ital,opsz,wght@0,8..60,300;0,8..60,400;0,8..60,600;1,8..60,300;1,8..60,400&family=Be+Vietnam+Pro:wght@300;400;500;600&display=swap"
+    rel="stylesheet">
+  <link rel="stylesheet" href="./css/tokens.css">
+  <script src="./js/nav.js"></script>
+  <script src="./js/footer.js"></script>
+  <style>
+    html {
+      -webkit-text-size-adjust: 100%;
+      scroll-behavior: smooth
+    }
+
+    body {
+      margin: 0;
+      background: var(--mist);
+      color: var(--pine);
+      font-family: var(--serif);
+      font-size: clamp(1rem, .96rem + .2vw, 1.09rem);
+      line-height: 1.68;
+      font-variant-numeric: oldstyle-nums
+    }
+
+    h1, h2, h3 {
+      font-family: var(--serif);
+      font-weight: 300;
+      line-height: 1.14;
+      margin: 0;
+      letter-spacing: -.012em
+    }
+
+    h2 {
+      font-size: clamp(1.6rem, 1.3rem + 1.3vw, 2.2rem)
+    }
+
+    h3 {
+      font-size: 1.15rem;
+      font-weight: 400
+    }
+
+    p {
+      margin: 0 0 1.1em;
+      max-width: 64ch
+    }
+
+    a {
+      color: inherit
+    }
+
+    img {
+      max-width: 100%;
+      display: block
+    }
+
+    :focus-visible {
+      outline: 2px solid var(--plum);
+      outline-offset: 3px;
+      border-radius: 2px
+    }
+
+    .wrap {
+      max-width: 1240px;
+      margin-inline: auto;
+      padding-inline: var(--gutter)
+    }
+
+    .sr {
+      position: absolute;
+      width: 1px;
+      height: 1px;
+      overflow: hidden;
+      clip: rect(0 0 0 0)
+    }
+
+    /* ---- hero ---- */
+    .hero {
+      position: relative;
+      min-height: min(72vh, 600px);
+      display: flex;
+      align-items: flex-end;
+      overflow: hidden;
+      background: #0B0B0A
+    }
+
+    .hero img {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: 60% 30%;
+      opacity: .92
+    }
+
+    .hero::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      z-index: 1;
+      background: linear-gradient(0deg, rgba(6, 6, 5, .92) 0%, rgba(6, 6, 5, .55) 38%, rgba(6, 6, 5, .08) 68%, rgba(6, 6, 5, .28) 100%)
+    }
+
+    .hero-in {
+      position: relative;
+      z-index: 2;
+      padding-block: clamp(3rem, 10vh, 6rem) clamp(2.4rem, 6vh, 3.6rem);
+      color: #F6F5F0;
+      width: 100%
+    }
+
+    .hero .years {
+      font-family: var(--sans);
+      font-size: .8rem;
+      letter-spacing: .14em;
+      color: #D9C79A;
+      margin-bottom: .9rem;
+      display: inline-flex;
+      align-items: center;
+      gap: .6rem
+    }
+
+    .hero .years::before {
+      content: "";
+      width: 28px;
+      height: 1px;
+      background: #D9C79A
+    }
+
+    .hero h1 {
+      font-size: clamp(2.6rem, 1.6rem + 4.6vw, 5rem);
+      color: #FBFAF5;
+      text-wrap: balance
+    }
+
+    .hero .role {
+      max-width: 52ch;
+      margin-top: 1.3rem;
+      font-size: 1.14rem;
+      line-height: 1.6;
+      color: rgba(246, 245, 240, .88)
+    }
+
+    /* ---- pull quote in hero ---- */
+    .hero-quote {
+      margin-top: 1.8rem;
+      border-left: 2px solid #D9C79A;
+      padding-left: 1.3rem;
+      max-width: 44ch
+    }
+
+    .hero-quote p {
+      font-style: italic;
+      font-size: 1.22rem;
+      line-height: 1.5;
+      color: #FBFAF5;
+      margin: 0
+    }
+
+    .layout {
+      display: grid;
+      grid-template-columns:220px minmax(0, 1fr);
+      gap: clamp(2rem, 6vw, 5rem);
+      padding-block: clamp(2.8rem, 6vw, 4.4rem) clamp(2rem, 5vw, 3rem);
+      align-items: start
+    }
+
+    .index {
+      position: sticky;
+      top: 96px;
+      font-family: var(--sans);
+      font-size: .82rem
+    }
+
+    .index ol {
+      list-style: none;
+      margin: 0;
+      padding: 0;
+      display: grid;
+      gap: .15rem
+    }
+
+    .index a {
+      display: block;
+      text-decoration: none;
+      color: var(--pine-soft);
+      padding: .35rem .7rem .35rem 0;
+      border-left: 2px solid rgba(27, 42, 34, .16);
+      padding-left: .9rem;
+      transition: .15s;
+      line-height: 1.35
+    }
+
+    .index a:hover {
+      color: var(--pine);
+      border-left-color: var(--moss)
+    }
+
+    .index a.on {
+      color: var(--pine);
+      border-left-color: var(--plum);
+      font-weight: 500
+    }
+
+    .doc > section {
+      scroll-margin-top: 100px;
+      padding-bottom: clamp(2.2rem, 5vw, 3.2rem)
+    }
+
+    .doc > section + section {
+      border-top: 1px solid rgba(27, 42, 34, .15);
+      padding-top: clamp(2.2rem, 5vw, 3.2rem)
+    }
+
+    .doc h2 {
+      margin-bottom: 1.1rem
+    }
+
+    .pull {
+      border-left: 2px solid var(--stone);
+      padding-left: 1.4rem;
+      margin: 1.8em 0
+    }
+
+    .pull p {
+      font-style: italic;
+      font-size: 1.16rem;
+      line-height: 1.55;
+      color: var(--pine-soft);
+      max-width: 52ch;
+      margin: 0
+    }
+
+    .pull cite {
+      display: block;
+      font-style: normal;
+      font-family: var(--sans);
+      font-size: .78rem;
+      color: var(--moss);
+      margin-top: .6rem
+    }
+
+    .eiab-note {
+      background: var(--mist-deep);
+      border-left: 2px solid var(--moss);
+      padding: 1.3rem 1.5rem;
+      margin: 1.8em 0 0;
+      border-radius: 0 3px 3px 0;
+      max-width: 62ch
+    }
+
+    .eiab-note p {
+      margin: 0;
+      font-size: .98rem
+    }
+
+    .eiab-note a {
+      border-bottom: 1px solid var(--moss);
+      text-decoration: none
+    }
+
+    .gallery {
+      padding-block: 0 clamp(3rem, 6vw, 4.5rem)
+    }
+
+    .gallery h2 {
+      margin-bottom: 1.6rem
+    }
+
+    .gslider-main {
+      position: relative
+    }
+
+    .gslider-viewport {
+      overflow: hidden;
+      border-radius: 4px
+    }
+
+    .gslider-track {
+      display: flex;
+      transition: transform .5s cubic-bezier(.65, 0, .35, 1)
+    }
+
+    .gslide {
+      flex: 0 0 100%;
+      margin: 0;
+      position: relative;
+      aspect-ratio: 16/9;
+      cursor: zoom-in;
+      background: linear-gradient(155deg, #C8BFAD 0%, #8B8B7A 55%, #4E6B55 100%)
+    }
+
+    .gslide img {
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+      display: block
+    }
+
+    .gslide figcaption {
+      position: absolute;
+      inset: auto 0 0 0;
+      padding: 1.4rem 1.6rem;
+      font-family: var(--sans);
+      font-size: .86rem;
+      color: #F6F5F0;
+      background: linear-gradient(0deg, rgba(6, 6, 5, .72) 0%, rgba(6, 6, 5, .28) 55%, transparent 100%)
+    }
+
+    .s-nav {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      z-index: 2;
+      width: 44px;
+      height: 44px;
+      border-radius: 99px;
+      border: 1px solid rgba(246, 245, 240, .5);
+      background: rgba(11, 11, 10, .35);
+      backdrop-filter: blur(3px);
+      color: #F6F5F0;
+      font-size: 1.3rem;
+      line-height: 1;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: .15s;
+      padding: 0
+    }
+
+    .s-nav:hover {
+      background: rgba(11, 11, 10, .62);
+      border-color: #F6F5F0
+    }
+
+    .s-nav:focus-visible {
+      outline: 2px solid var(--plum);
+      outline-offset: 2px
+    }
+
+    .s-nav.prev {
+      left: .9rem
+    }
+
+    .s-nav.next {
+      right: .9rem
+    }
+
+    .gthumbs {
+      display: flex;
+      gap: .6rem;
+      overflow-x: auto;
+      padding: 1rem .1rem .3rem;
+      margin-top: .2rem;
+      scroll-behavior: smooth
+    }
+
+    .gthumbs::-webkit-scrollbar {
+      height: 5px
+    }
+
+    .gthumbs::-webkit-scrollbar-thumb {
+      background: rgba(27, 42, 34, .25);
+      border-radius: 99px
+    }
+
+    .gthumb {
+      flex: 0 0 auto;
+      width: 92px;
+      aspect-ratio: 4/5;
+      border-radius: 3px;
+      overflow: hidden;
+      border: 2px solid transparent;
+      padding: 0;
+      cursor: pointer;
+      background: none;
+      opacity: .5;
+      transition: opacity .2s, border-color .2s
+    }
+
+    .gthumb img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block
+    }
+
+    .gthumb:hover {
+      opacity: .8
+    }
+
+    .gthumb:focus-visible {
+      outline: 2px solid var(--plum);
+      outline-offset: 2px
+    }
+
+    .gthumb[aria-current="true"] {
+      opacity: 1;
+      border-color: var(--plum)
+    }
+
+    .gallery .credit {
+      margin: 1rem 0 0;
+      font-family: var(--sans);
+      font-size: .72rem;
+      color: var(--pine-soft);
+      opacity: .7
+    }
+
+    @media (max-width: 620px) {
+      .gslide {
+        aspect-ratio: 4/5
+      }
+
+      .s-nav {
+        width: 38px;
+        height: 38px;
+        font-size: 1.1rem
+      }
+
+      .gthumb {
+        width: 72px
+      }
+    }
+
+    /* ---- lightbox ---- */
+    .lightbox {
+      position: fixed;
+      inset: 0;
+      z-index: 300;
+      background: rgba(6, 6, 5, .96);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      opacity: 0;
+      visibility: hidden;
+      transition: opacity .25s
+    }
+
+    .lightbox.open {
+      opacity: 1;
+      visibility: visible
+    }
+
+    .lightbox-frame {
+      max-width: min(90vw, 1100px);
+      max-height: 86vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding-inline: 4rem
+    }
+
+    .lightbox-frame img {
+      max-width: 100%;
+      max-height: 74vh;
+      width: auto;
+      height: auto;
+      object-fit: contain;
+      display: block;
+      border-radius: 2px
+    }
+
+    .lightbox-frame figcaption {
+      margin-top: 1.1rem;
+      color: #F6F5F0;
+      font-family: var(--sans);
+      font-size: .88rem;
+      text-align: center;
+      max-width: 60ch
+    }
+
+    .lightbox-close {
+      position: absolute;
+      top: 1.3rem;
+      right: 1.5rem;
+      width: 2.6rem;
+      height: 2.6rem;
+      border-radius: 99px;
+      border: 1px solid rgba(246, 245, 240, .4);
+      background: rgba(255, 255, 255, .06);
+      color: #F6F5F0;
+      font-size: 1.3rem;
+      line-height: 1;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: .15s;
+      padding: 0
+    }
+
+    .lightbox-close:hover {
+      background: rgba(255, 255, 255, .16)
+    }
+
+    .lightbox-nav {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      width: 3rem;
+      height: 3rem;
+      border-radius: 99px;
+      border: 1px solid rgba(246, 245, 240, .4);
+      background: rgba(255, 255, 255, .06);
+      color: #F6F5F0;
+      font-size: 1.5rem;
+      line-height: 1;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: .15s;
+      padding: 0
+    }
+
+    .lightbox-nav:hover {
+      background: rgba(255, 255, 255, .16)
+    }
+
+    .lightbox-nav.prev {
+      left: 1rem
+    }
+
+    .lightbox-nav.next {
+      right: 1rem
+    }
+
+    .lightbox-counter {
+      position: absolute;
+      bottom: 1.3rem;
+      left: 50%;
+      transform: translateX(-50%);
+      color: rgba(246, 245, 240, .65);
+      font-family: var(--sans);
+      font-size: .76rem;
+      letter-spacing: .03em
+    }
+
+    @media (max-width: 620px) {
+      .lightbox-frame {
+        padding-inline: 3.2rem
+      }
+
+      .lightbox-nav {
+        width: 2.4rem;
+        height: 2.4rem;
+        font-size: 1.2rem
+      }
+
+      .lightbox-nav.prev {
+        left: .3rem
+      }
+
+      .lightbox-nav.next {
+        right: .3rem
+      }
+    }
+
+    .timeline {
+      margin: 1.6rem 0 0;
+      padding: 0;
+      list-style: none;
+      border-top: 1px solid rgba(27, 42, 34, .2)
+    }
+
+    .timeline li {
+      display: grid;
+      grid-template-columns:5.5rem 1fr;
+      gap: 1.2rem;
+      padding: .9rem 0;
+      border-bottom: 1px solid rgba(27, 42, 34, .13)
+    }
+
+    .timeline b {
+      font-family: var(--sans);
+      font-size: .85rem;
+      color: var(--moss);
+      font-weight: 500
+    }
+
+    .timeline p {
+      margin: 0;
+      font-size: .98rem
+    }
+
+    @media (max-width: 900px) {
+      .layout {
+        grid-template-columns:1fr
+      }
+
+      .index {
+        position: static;
+        border-bottom: 1px solid rgba(27, 42, 34, .15);
+        padding-bottom: 1.4rem
+      }
+
+      .index ol {
+        grid-template-columns:1fr 1fr;
+        display: grid;
+        gap: .1rem
+      }
+    }
+
+    @media (max-width: 620px) {
+      .timeline li {
+        grid-template-columns:1fr;
+        gap: .15rem
+      }
+    }
+  </style>
+</head>
+<body>
+
+<eiab-header current="thay" base="./"></eiab-header>
+
+<div class="hero">
+  <img src="./img/thay-hero.jpg" alt="Thích Nhất Hạnh bei einer Lehrrede, mit erhobener Hand in einer segnenden Geste">
+  <div class="wrap hero-in">
+    <div class="years">1926 – 2022</div>
+    <h1>Thích Nhất Hạnh</h1>
+    <p class="role">Zen-Meister, Dichter und Friedensaktivist. Gründer der Plum-Village-Tradition und im Jahr 2008
+      Gründer des Europäischen Instituts für Angewandten Buddhismus.</p>
+    <div class="hero-quote">
+      <p>„Once there is seeing, there must be acting."</p>
+    </div>
+  </div>
+</div>
+
+<div class="wrap layout">
+
+  <nav class="index" aria-label="Auf dieser Seite">
+    <ol>
+      <li><a href="#fruehe-jahre" class="on">Frühe Jahre</a></li>
+      <li><a href="#engagierter-buddhismus">Engagierter Buddhismus</a></li>
+      <li><a href="#exil">Exil</a></li>
+      <li><a href="#plum-village">Plum Village</a></li>
+      <li><a href="#eiab">Das EIAB</a></li>
+      <li><a href="#vermaechtnis">Vermächtnis</a></li>
+    </ol>
+  </nav>
+
+  <div class="doc">
+
+    <section id="fruehe-jahre">
+      <h2>Frühe Jahre</h2>
+      <p>Thích Nhất Hạnh wurde 1926 in Zentralvietnam geboren und trat bereits mit sechzehn Jahren in ein Zen-Kloster
+        ein. Aus dieser frühen Entscheidung erwuchs ein Lebensweg, der ihn zu einem der einflussreichsten buddhistischen
+        Lehrer des 20. und 21. Jahrhunderts machen sollte — bekannt weit über die Grenzen Vietnams und des Buddhismus
+        hinaus schlicht als „Thầy", Lehrer.</p>
+    </section>
+
+    <section id="engagierter-buddhismus">
+      <h2>Engagierter Buddhismus</h2>
+      <p>Während des Vietnamkriegs entwickelte Thầy, was heute als „Engagierter Buddhismus" bekannt ist: eine Haltung,
+        die kontemplative Praxis nicht dem gesellschaftlichen Handeln entgegensetzt, sondern beides miteinander
+        verbindet. Statt sich in Klostermauern zurückzuziehen oder sich ausschließlich politisch zu engagieren, gründete
+        er Hilfsorganisationen, Schulen und Verlage, die Nothilfe und spirituelle Praxis miteinander verbanden.</p>
+      <p>Sein unermüdlicher Einsatz für Frieden blieb nicht unbemerkt: 1967 nominierte ihn Martin Luther King Jr. für
+        den Friedensnobelpreis.</p>
+    </section>
+
+    <section id="exil">
+      <h2>Exil</h2>
+      <p>Für sein öffentliches Eintreten für Frieden wurde Thầy aus Vietnam verbannt. Es folgten 39 Jahre im Exil —
+        Jahre, in denen er nicht resignierte, sondern eine neue geistige Heimat aufbaute, die Menschen aus aller Welt
+        erreichen sollte.</p>
+    </section>
+
+    <section id="plum-village">
+      <h2>Plum Village</h2>
+      <p>1982 gründete Thầy in Frankreich das Kloster Plum Village, das mit der Zeit zum größten buddhistischen Kloster
+        im Westen heranwuchs. Seine Lehre machte Achtsamkeit alltagstauglich: bewusstes Gehen, Essen und Atmen wurden zu
+        Übungswegen, die keine Vorkenntnisse erforderten. Die von ihm formulierten Fünf Achtsamkeitsübungen wurden von
+        mehr als 100.000 Menschen weltweit als Übungsgrundlage angenommen.</p>
+      <div class="pull">
+        <p>Achtsamkeit ist keine Flucht aus der Gesellschaft, sondern die Rückkehr zu uns selbst, um zu sehen, was
+          geschieht.</p>
+        <cite>Sinngemäß nach Thích Nhất Hạnh</cite>
+      </div>
+    </section>
+
+    <section id="eiab">
+      <h2>Das EIAB</h2>
+      <p>2008 gründete Thầy in Waldbröl das Europäische Institut für Angewandten Buddhismus — eine nicht
+        gewinnorientierte Einrichtung, die seine Lehre für Menschen aus ganz Europa zugänglich machen sollte. Bis heute
+        lebt und übt hier eine Gemeinschaft von Mönchen und Nonnen in seiner Tradition weiter.</p>
+      <div class="eiab-note">
+        <p>Die ausführliche Geschichte der Gründung, des historischen Gebäudes und seiner Bedeutung finden Sie auf der
+          Seite <a href="history.html">Das Haus und seine Geschichte</a>.</p>
+      </div>
+    </section>
+
+    <section id="vermaechtnis">
+      <h2>Spätere Jahrzehnte und Vermächtnis</h2>
+      <p>In den folgenden Jahrzehnten gründete Thầy weitere Klöster auf mehreren Kontinenten, rief die Jugendbewegung
+        „Wake Up" ins Leben und brachte Achtsamkeitsprogramme in Schulen. Sein zugänglicher, undogmatischer Lehrstil
+        machte die Praxis der Achtsamkeit für Menschen ganz unterschiedlicher Herkunft und Überzeugung erfahrbar.</p>
+      <p>Thích Nhất Hạnh starb am 22. Januar 2022 im Từ-Hiếu-Tempel in Huế, Vietnam — dem Kloster, in dem er einst als
+        junger Mönch ordiniert worden war. Er hinterließ eine weltweite Gemeinschaft von rund 700 monastischen
+        Schülerinnen und Schülern in elf Klöstern sowie unzählige Laienpraktizierende, die seine Lehre heute
+        weitertragen.</p>
+
+      <ul class="timeline">
+        <li><b>1926</b>
+          <p>Geboren in Zentralvietnam</p></li>
+        <li><b>1942</b>
+          <p>Eintritt ins Kloster als junger Mönch</p></li>
+        <li><b>1960er</b>
+          <p>Engagierter Buddhismus während des Vietnamkriegs</p></li>
+        <li><b>1967</b>
+          <p>Nominierung für den Friedensnobelpreis durch Martin Luther King Jr.</p></li>
+        <li><b>1982</b>
+          <p>Gründung von Plum Village in Frankreich</p></li>
+        <li><b>2008</b>
+          <p>Gründung des EIAB in Waldbröl</p></li>
+        <li><b>2022</b>
+          <p>Gestorben im Từ-Hiếu-Tempel, Huế</p></li>
+      </ul>
+    </section>
+
+  </div>
+</div>
+
+<div class="wrap gallery">
+  <h2>Bilder eines Lebens</h2>
+  <div class="gslider">
+    <div class="gslider-main">
+      <button class="s-nav prev" type="button" aria-label="Vorheriges Bild">‹</button>
+      <div class="gslider-viewport">
+        <div class="gslider-track">
+          <figure class="gslide" tabindex="0" role="button" aria-label="Bild vergrößern"><img
+            src="./img/thay-ordination-1942.jpg"
+            alt="Porträt des jungen Thích Nhất Hạnh kurz nach seiner Novizen-Ordination um 1942" loading="lazy">
+            <figcaption>Kurz nach der Ordination, 1942</figcaption>
+          </figure>
+          <figure class="gslide" tabindex="0" role="button" aria-label="Bild vergrößern"><img
+            src="./img/thay-martin-luther-king.jpg"
+            alt="Historische Aufnahme von Thích Nhất Hạnh mit Martin Luther King Jr." loading="lazy">
+            <figcaption>Mit Martin Luther King Jr.</figcaption>
+          </figure>
+          <figure class="gslide" tabindex="0" role="button" aria-label="Bild vergrößern"><img
+            src="./img/thay-calligraphy.jpg" alt="Thích Nhất Hạnh beim achtsamen Schreiben eines Kalligrafie-Spruchs"
+            loading="lazy">
+            <figcaption>Achtsames Schreiben einer Kalligrafie</figcaption>
+          </figure>
+          <figure class="gslide" tabindex="0" role="button" aria-label="Bild vergrößern"><img
+            src="./img/thay-lamp-ceremony.jpg"
+            alt="Thích Nhất Hạnh entzündet lächelnd eine Öllampe während einer Zeremonie" loading="lazy">
+            <figcaption>Entzünden einer Öllampe während einer Zeremonie</figcaption>
+          </figure>
+          <figure class="gslide" tabindex="0" role="button" aria-label="Bild vergrößern"><img
+            src="./img/thay-community-meditation.jpg"
+            alt="Thích Nhất Hạnh bei einer Sitzmeditation im Freien, umgeben von der Gemeinschaft und einem Kind"
+            loading="lazy">
+            <figcaption>Sitzmeditation mit der Gemeinschaft</figcaption>
+          </figure>
+          <figure class="gslide" tabindex="0" role="button" aria-label="Bild vergrößern"><img
+            src="./img/thay-mit-kindern.jpg"
+            alt="Thích Nhất Hạnh mit erhobenen Händen inmitten einer Gruppe lachender Kinder" loading="lazy">
+            <figcaption>Ein Spiel mit den Kindern</figcaption>
+          </figure>
+          <figure class="gslide" tabindex="0" role="button" aria-label="Bild vergrößern"><img
+            src="./img/thay-begegnung-familie.jpg"
+            alt="Thích Nhất Hạnh im liebevollen Gespräch mit einer älteren Frau und einem Kind" loading="lazy">
+            <figcaption>Begegnung mit Besucherfamilien</figcaption>
+          </figure>
+          <figure class="gslide" tabindex="0" role="button" aria-label="Bild vergrößern"><img
+            src="./img/thay-walking-vietnam.jpg"
+            alt="Gehmeditation mit Mönchen, Nonnen und der Gemeinschaft bei Thầys Rückkehr nach Vietnam" loading="lazy">
+            <figcaption>Gehmeditation bei Thầys Rückkehr nach Vietnam</figcaption>
+          </figure>
+          <figure class="gslide" tabindex="0" role="button" aria-label="Bild vergrößern"><img
+            src="./img/thay-dalailama.jpg" alt="Thích Nhất Hạnh im Gespräch mit dem Dalai Lama" loading="lazy">
+            <figcaption>Im Gespräch mit dem Dalai Lama</figcaption>
+          </figure>
+        </div>
+      </div>
+      <button class="s-nav next" type="button" aria-label="Nächstes Bild">›</button>
+    </div>
+    <div class="gthumbs" role="tablist" aria-label="Bild auswählen"></div>
+  </div>
+  <p class="credit">Fotos: Plum Village / Thai Plum Village</p>
+</div>
+
+<div class="lightbox" role="dialog" aria-modal="true" aria-label="Bildergalerie, Vollbildansicht">
+  <button class="lightbox-close" type="button" aria-label="Schließen">✕</button>
+  <button class="lightbox-nav prev" type="button" aria-label="Vorheriges Bild">‹</button>
+  <div class="lightbox-frame">
+    <img src="" alt="">
+    <figcaption></figcaption>
+  </div>
+  <button class="lightbox-nav next" type="button" aria-label="Nächstes Bild">›</button>
+  <div class="lightbox-counter"></div>
+</div>
+
+<eiab-footer base="./"></eiab-footer>
+
+<script>
+  (function () {
+    var links = [].slice.call(document.querySelectorAll('.index a'));
+    var secs = links.map(function (a) {
+      return document.querySelector(a.getAttribute('href'))
+    });
+    var io = new IntersectionObserver(function (entries) {
+      entries.forEach(function (e) {
+        if (!e.isIntersecting) return;
+        var i = secs.indexOf(e.target);
+        links.forEach(function (a, n) {
+          a.classList.toggle('on', n === i)
+        });
+      });
+    }, {rootMargin: '-100px 0px -65% 0px'});
+    secs.forEach(function (s) {
+      if (s) io.observe(s)
+    });
+  })();
+
+  (function () {
+    var gslider = document.querySelector('.gslider');
+    var lightbox = document.querySelector('.lightbox');
+    if (!gslider || !lightbox) return;
+
+    var track = gslider.querySelector('.gslider-track');
+    var slides = [].slice.call(track.children);
+    var thumbsWrap = gslider.querySelector('.gthumbs');
+    var lbImg = lightbox.querySelector('.lightbox-frame img');
+    var lbCaption = lightbox.querySelector('.lightbox-frame figcaption');
+    var lbCounter = lightbox.querySelector('.lightbox-counter');
+    var idx = 0, lastFocus = null;
+
+    // thumbnails are generated from the slides so new photos only need to be added once, above
+    slides.forEach(function (slide, i) {
+      var img = slide.querySelector('img');
+      var b = document.createElement('button');
+      b.type = 'button';
+      b.className = 'gthumb';
+      b.setAttribute('role', 'tab');
+      b.setAttribute('aria-label', 'Bild ' + (i + 1) + ' von ' + slides.length + ': ' + img.alt);
+      var t = document.createElement('img');
+      t.src = img.src;
+      t.alt = '';
+      t.loading = 'lazy';
+      b.appendChild(t);
+      b.addEventListener('click', function () {
+        goTo(i);
+      });
+      thumbsWrap.appendChild(b);
+    });
+    var thumbs = [].slice.call(thumbsWrap.children);
+
+    function updateSlider(scrollThumb) {
+      track.style.transform = 'translateX(-' + (idx * 100) + '%)';
+      thumbs.forEach(function (t, i) {
+        t.setAttribute('aria-current', i === idx ? 'true' : 'false');
+      });
+      if (scrollThumb) {
+        var active = thumbs[idx];
+        if (active) active.scrollIntoView({behavior: 'smooth', inline: 'center', block: 'nearest'});
+      }
+    }
+
+    function goTo(i) {
+      idx = (i + slides.length) % slides.length;
+      updateSlider(true);
+    }
+
+    gslider.querySelector('.s-nav.prev').addEventListener('click', function () {
+      goTo(idx - 1);
+    });
+    gslider.querySelector('.s-nav.next').addEventListener('click', function () {
+      goTo(idx + 1);
+    });
+    gslider.addEventListener('keydown', function (e) {
+      if (e.key === 'ArrowLeft') {
+        goTo(idx - 1);
+      }
+      if (e.key === 'ArrowRight') {
+        goTo(idx + 1);
+      }
+    });
+
+    function renderLB() {
+      var img = slides[idx].querySelector('img');
+      lbImg.src = img.src;
+      lbImg.alt = img.alt;
+      lbCaption.textContent = img.alt;
+      lbCounter.textContent = (idx + 1) + ' / ' + slides.length;
+    }
+
+    function openLB() {
+      lastFocus = document.activeElement;
+      renderLB();
+      lightbox.classList.add('open');
+      document.body.style.overflow = 'hidden';
+      lightbox.querySelector('.lightbox-close').focus();
+    }
+
+    function closeLB() {
+      lightbox.classList.remove('open');
+      document.body.style.overflow = '';
+      if (lastFocus) lastFocus.focus();
+    }
+
+    function goLB(delta) {
+      idx = (idx + delta + slides.length) % slides.length;
+      renderLB();
+      updateSlider(true);
+    }
+
+    slides.forEach(function (slide) {
+      slide.addEventListener('click', openLB);
+      slide.addEventListener('keydown', function (e) {
+        if (e.key === 'Enter' || e.key === ' ') {
+          e.preventDefault();
+          openLB();
+        }
+      });
+    });
+    lightbox.querySelector('.lightbox-close').addEventListener('click', closeLB);
+    lightbox.querySelector('.lightbox-nav.prev').addEventListener('click', function () {
+      goLB(-1);
+    });
+    lightbox.querySelector('.lightbox-nav.next').addEventListener('click', function () {
+      goLB(1);
+    });
+    lightbox.addEventListener('click', function (e) {
+      if (e.target === lightbox) closeLB();
+    });
+    document.addEventListener('keydown', function (e) {
+      if (!lightbox.classList.contains('open')) return;
+      if (e.key === 'Escape') closeLB();
+      if (e.key === 'ArrowLeft') goLB(-1);
+      if (e.key === 'ArrowRight') goLB(1);
+    });
+
+    updateSlider();
+  })();
+</script>
+</body>
+</html>

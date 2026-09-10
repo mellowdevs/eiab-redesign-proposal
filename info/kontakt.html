@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="icon" type="image/png" href="../img/logo.png">
+<title>Anfahrt und Kontakt — EIAB Waldbröl</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:ital,opsz,wght@0,8..60,300;0,8..60,400;0,8..60,600;1,8..60,300;1,8..60,400&family=Be+Vietnam+Pro:wght@300;400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../css/tokens.css">
+<script src="../js/nav.js"></script>
+<script src="../js/footer.js"></script>
+<style>
+html{-webkit-text-size-adjust:100%}
+body{margin:0;background:var(--mist);color:var(--pine);font-family:var(--serif);
+  font-size:clamp(1rem,.96rem + .2vw,1.07rem);line-height:1.6;font-variant-numeric:oldstyle-nums}
+h1,h2{font-family:var(--serif);font-weight:300;line-height:1.14;margin:0;letter-spacing:-.012em}
+h1{font-size:clamp(2.3rem,1.4rem + 3.6vw,4rem)}
+h2{font-size:1.35rem;font-weight:400}
+p{margin:0 0 1.1em}
+a{color:inherit}
+:focus-visible{outline:2px solid var(--plum);outline-offset:3px;border-radius:2px}
+.wrap{max-width:1240px;margin-inline:auto;padding-inline:var(--gutter)}
+.sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0)}
+
+.subnav{border-bottom:1px solid rgba(27,42,34,.15);background:rgba(255,255,255,.3)}
+.subnav-in{display:flex;gap:1.6rem;font-family:var(--sans);font-size:.83rem;overflow-x:auto}
+.subnav a{white-space:nowrap;text-decoration:none;color:var(--pine-soft);padding:.85rem 0;border-bottom:2px solid transparent}
+.subnav a:hover{color:var(--pine)}
+.subnav a[aria-current]{color:var(--pine);border-bottom-color:var(--plum);font-weight:500}
+
+.mast{padding-block:clamp(2.6rem,6vw,4.4rem) clamp(1.6rem,3vw,2.2rem)}
+.mast .kicker{font-family:var(--sans);font-size:.83rem;color:var(--moss);margin-bottom:1rem}
+.mast h1{max-width:16ch}
+.mast .lede{max-width:58ch;margin-top:1.3rem;font-size:1.12rem;color:var(--pine-soft)}
+
+.layout{display:grid;grid-template-columns:1fr 1fr;gap:clamp(2rem,6vw,5rem);
+  padding-block:clamp(2rem,5vw,3.4rem) clamp(3rem,6vw,4.5rem);align-items:start}
+
+.map{aspect-ratio:4/3;border-radius:3px;position:relative;overflow:hidden;
+  background:linear-gradient(155deg,#C8BFAD 0%,#8B8B7A 55%,#4E6B55 100%)}
+.map::after{content:"";position:absolute;inset:0;
+  background:repeating-linear-gradient(105deg,rgba(255,255,255,.06) 0 2px,transparent 2px 30px)}
+.map .pin{position:absolute;left:50%;top:46%;transform:translate(-50%,-100%);font-size:2.2rem}
+.map .cap{position:absolute;left:1.1rem;bottom:.9rem;font-family:var(--sans);font-size:.7rem;color:rgba(255,255,255,.85)}
+
+.info h2{margin-bottom:1rem}
+.fact{margin:0 0 1.3em}
+.fact span{display:block;font-family:var(--sans);font-size:.78rem;color:var(--moss);margin-bottom:.2rem}
+.fact p{margin:0;font-size:1.02rem}
+.fact a{border-bottom:1px solid var(--moss);text-decoration:none}
+address{font-style:normal}
+
+section.body{padding-block:0 clamp(3rem,6vw,4.5rem)}
+.body>div+div{margin-top:clamp(2rem,4vw,2.8rem);padding-top:clamp(1.8rem,4vw,2.4rem);border-top:1px solid rgba(27,42,34,.15)}
+.body h2{margin-bottom:1rem}
+
+.travel li{display:grid;grid-template-columns:8.5rem 1fr;gap:1.1rem;padding:.85rem 0;border-bottom:1px solid rgba(27,42,34,.12);list-style:none;font-size:.99rem}
+.travel ul{margin:1.4rem 0 0;padding:0;border-top:1px solid rgba(27,42,34,.15)}
+.travel span{font-family:var(--sans);font-size:.78rem;color:var(--moss);padding-top:.2rem}
+
+
+@media (max-width:900px){
+  .layout{grid-template-columns:1fr}
+}
+@media (max-width:560px){
+  .travel li{grid-template-columns:1fr;gap:.15rem}
+}
+</style>
+</head>
+<body>
+
+<eiab-header current="ueber-uns" base="../"></eiab-header>
+
+<eiab-subnav section="ueber-uns" current="kontakt.html" base="../"></eiab-subnav>
+
+<div class="wrap mast">
+  <div class="kicker">Die Gemeinschaft</div>
+  <h1>Anfahrt und Kontakt</h1>
+  <p class="lede">Schreiben Sie uns, rufen Sie an, oder kommen Sie einfach vorbei. Das EIAB liegt in Waldbröl im Bergischen Land, rund 70 Kilometer östlich von Köln.</p>
+</div>
+
+<main class="wrap">
+
+  <div class="layout">
+    <div class="map" aria-hidden="true">
+      <span class="pin">📍</span>
+      <span class="cap">Schaumburgweg 3, 51545 Waldbröl</span>
+    </div>
+
+    <div class="info">
+      <h2>Kontakt</h2>
+      <div class="fact">
+        <span>Adresse</span>
+        <address>EIAB<br>Schaumburgweg 3<br>51545 Waldbröl<br>Deutschland</address>
+      </div>
+      <div class="fact">
+        <span>Telefon</span>
+        <p><a href="tel:+4922919071373">+49 (0) 2291 907 1373</a></p>
+      </div>
+      <div class="fact">
+        <span>Allgemeine Anfragen</span>
+        <p><a href="mailto:info@eiab.eu">info@eiab.eu</a></p>
+      </div>
+      <div class="fact">
+        <span>Anmeldung zu Retreats und Kursen</span>
+        <p><a href="mailto:registrar@eiab.eu">registrar@eiab.eu</a></p>
+      </div>
+      <div class="fact">
+        <span>Fragen zur Website</span>
+        <p><a href="mailto:webmaster@eiab.eu">webmaster@eiab.eu</a></p>
+      </div>
+    </div>
+  </div>
+
+  <section class="body">
+    <div class="travel">
+      <h2>Anreise</h2>
+      <ul>
+        <li><span>Mit der Bahn</span>Nächste Bahnhöfe: Schladern (12 km) und Hennef/Sieg (32 km). Von beiden fährt ein Bus nach Waldbröl. Die Haltestellen „Waldbröl Kreisparkasse" und „Waldbröl Krankenhaus" liegen 5 bis 10 Minuten zu Fuß vom EIAB; vom Busbahnhof sind es 15 bis 20 Minuten. Verbindungen unter vrsinfo.de und bahn.de.</li>
+        <li><span>Mit dem Auto</span>Parkplätze stehen auf dem Gelände zur Verfügung. Bitte geben Sie bei der Anmeldung zu einem Retreat an, ob Sie Mitfahrgelegenheiten anbieten können.</li>
+        <li><span>Vom Flughafen</span>Köln/Bonn ist der nächstgelegene Flughafen. Taxi Auto-Ruf Waldbröl, Tel. 02291 92100. Ortstaxi: Taxi Hertrich, Tel. 02291 6666.</li>
+      </ul>
+    </div>
+  </section>
+
+</main>
+
+<eiab-footer current="kontakt" base="../"></eiab-footer>
+
+</body>
+</html>

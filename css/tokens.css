@@ -1,0 +1,15 @@
+:root{
+  --mist:#EDEEE7;
+  --mist-deep:#DFE2D8;
+  --pine:#1B2A22;
+  --pine-soft:#35473C;
+  --moss:#4E6B55;
+  --stone:#B9AE9C;
+  --stone-pale:#D6CDBE;
+  --plum:#7E4257;
+  --plum-lift:#95566C;
+  --gutter:clamp(1.25rem,5vw,4.5rem);
+  --serif:"Source Serif 4",Georgia,"Times New Roman",serif;
+  --sans:"Be Vietnam Pro","Helvetica Neue",Arial,sans-serif;
+}
+*{box-sizing:border-box}

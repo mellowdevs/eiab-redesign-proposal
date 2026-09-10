@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="icon" type="image/png" href="../img/logo.png">
+<title>Die Geschichte des EIAB — Waldbröl</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:ital,opsz,wght@0,8..60,300;0,8..60,400;0,8..60,600;1,8..60,300;1,8..60,400&family=Be+Vietnam+Pro:wght@300;400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../css/tokens.css">
+<script src="../js/nav.js"></script>
+<script src="../js/footer.js"></script>
+<style>
+html{-webkit-text-size-adjust:100%;scroll-behavior:smooth}
+body{margin:0;background:var(--mist);color:var(--pine);font-family:var(--serif);
+  font-size:clamp(1rem,.96rem + .2vw,1.09rem);line-height:1.66;font-variant-numeric:oldstyle-nums}
+h1,h2,h3,h4{font-family:var(--serif);font-weight:300;line-height:1.14;margin:0;letter-spacing:-.012em}
+h1{font-size:clamp(2.2rem,1.4rem + 3vw,3.8rem)}
+h2{font-size:clamp(1.45rem,1.2rem + 1.1vw,1.95rem)}
+h3{font-size:1.1rem;font-weight:400;line-height:1.3}
+p{margin:0 0 1.05em;max-width:64ch}
+a{color:inherit}
+img{max-width:100%;display:block}
+:focus-visible{outline:2px solid var(--plum);outline-offset:3px;border-radius:2px}
+.wrap{max-width:1240px;margin-inline:auto;padding-inline:var(--gutter)}
+.sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0)}
+
+.subnav{border-bottom:1px solid rgba(27,42,34,.15);background:rgba(255,255,255,.3)}
+.subnav-in{display:flex;gap:1.6rem;font-family:var(--sans);font-size:.83rem;overflow-x:auto}
+.subnav a{white-space:nowrap;text-decoration:none;color:var(--pine-soft);padding:.85rem 0;border-bottom:2px solid transparent}
+.subnav a:hover{color:var(--pine)}
+.subnav a[aria-current]{color:var(--pine);border-bottom-color:var(--plum);font-weight:500}
+
+/* masthead */
+.mast{padding-block:clamp(2.6rem,6vw,4.2rem) clamp(2rem,4vw,3rem);border-bottom:1px solid rgba(27,42,34,.15)}
+.mast .kicker{font-family:var(--sans);font-size:.83rem;color:var(--moss);margin-bottom:1rem}
+.mast h1{max-width:16ch}
+.mast .lede{max-width:56ch;margin-top:1.3rem;font-size:1.16rem;line-height:1.6;color:var(--pine-soft)}
+
+/* layout with sticky index */
+.layout{display:grid;grid-template-columns:230px minmax(0,1fr);gap:clamp(2rem,6vw,5rem);
+  padding-block:clamp(2.6rem,6vw,4rem) clamp(3.5rem,8vw,6rem);align-items:start}
+.index{position:sticky;top:96px;font-family:var(--sans);font-size:.82rem}
+.index ol{list-style:none;margin:0;padding:0;display:grid;gap:.15rem;counter-reset:i}
+.index a{display:block;text-decoration:none;color:var(--pine-soft);padding:.35rem .7rem .35rem 0;
+  border-left:2px solid rgba(27,42,34,.16);padding-left:.9rem;transition:.15s;line-height:1.35}
+.index a:hover{color:var(--pine);border-left-color:var(--moss)}
+.index a.on{color:var(--pine);border-left-color:var(--pine);font-weight:500}
+
+.doc>section{scroll-margin-top:100px;padding-bottom:clamp(2.2rem,5vw,3.2rem)}
+.doc>section+section{border-top:1px solid rgba(27,42,34,.15);padding-top:clamp(2.2rem,5vw,3.2rem)}
+.doc h2{margin-bottom:1.1rem}
+.doc sup a{font-size:.72em;color:var(--moss);text-decoration:none}
+.doc sup a:hover{text-decoration:underline}
+
+/* lead photograph */
+.figure{margin:0 0 clamp(2.2rem,5vw,3.2rem)}
+.figure img{width:100%;border-radius:3px;border:1px solid rgba(27,42,34,.15)}
+.figure figcaption{font-family:var(--sans);font-size:.78rem;color:var(--pine-soft);margin-top:.7rem}
+
+/* signature */
+.signoff{margin-top:1.8rem;padding-top:1.4rem;border-top:1px solid rgba(27,42,34,.15);
+  font-style:italic;color:var(--pine-soft);max-width:56ch}
+.signoff .date{display:block;font-style:normal;font-family:var(--sans);font-size:.82rem;margin-top:.5rem}
+
+/* endnotes */
+.endnotes{list-style:none;counter-reset:en;margin:0;padding:0;font-family:var(--sans);font-size:.86rem;
+  color:var(--pine-soft);line-height:1.6;max-width:66ch}
+.endnotes li{counter-increment:en;padding:1rem 0;border-bottom:1px solid rgba(27,42,34,.12)}
+.endnotes li:first-child{border-top:1px solid rgba(27,42,34,.18)}
+.endnotes b{display:block;font-family:var(--sans);font-size:.78rem;color:var(--moss);margin-bottom:.35rem}
+
+.stat-table{width:100%;max-width:46ch;border-collapse:collapse;margin-top:1.2rem;font-size:.86rem;font-family:var(--sans)}
+.stat-table caption{text-align:left;font-size:.78rem;color:var(--pine-soft);padding-bottom:.6rem}
+.stat-table th,.stat-table td{text-align:right;padding:.5rem .6rem;border-bottom:1px solid rgba(27,42,34,.13)}
+.stat-table th[scope="row"]{text-align:left;font-weight:400}
+.stat-table thead th{font-weight:500;color:var(--moss);border-bottom:1px solid rgba(27,42,34,.28)}
+.stat-table tfoot th,.stat-table tfoot td{border-bottom:0;border-top:1px solid rgba(27,42,34,.28);font-weight:500;color:var(--pine)}
+
+/* closing help */
+.help{background:var(--pine);color:#E9ECE3;padding-block:clamp(3rem,6vw,4.4rem)}
+.help h2{color:#F4F6EE;max-width:16ch}
+.help p{color:rgba(233,236,227,.82);max-width:50ch;margin-top:1.1rem}
+.help .acts{display:flex;flex-wrap:wrap;gap:.8rem;margin-top:2rem;font-family:var(--sans);font-size:.9rem;font-weight:500}
+.help .acts a{text-decoration:none;padding:.78rem 1.5rem;border-radius:99px}
+.a-solid{background:var(--mist);color:var(--pine)}
+.a-ghost{border:1px solid rgba(246,247,241,.5);color:#F6F7F1}
+.a-ghost:hover{background:rgba(246,247,241,.12)}
+
+
+@media (max-width:960px){
+  .layout{grid-template-columns:1fr}
+  .index{position:static;border-bottom:1px solid rgba(27,42,34,.15);padding-bottom:1.4rem}
+  .index ol{grid-template-columns:1fr 1fr;display:grid;gap:.1rem}
+}
+@media (max-width:620px){
+  .index ol{grid-template-columns:1fr}
+}
+</style>
+</head>
+<body>
+
+<eiab-header current="ueber-uns" base="../"></eiab-header>
+
+<eiab-subnav section="ueber-uns" current="history.html" base="../"></eiab-subnav>
+
+<div class="wrap mast">
+  <div class="kicker">Über uns</div>
+  <h1>Die Geschichte des EIAB</h1>
+  <p class="lede">Wie ein historisches Gebäude in Waldbröl — einst Ort großen Leidens — zu einem Zentrum für Achtsamkeit, Heilung und Frieden wurde.</p>
+</div>
+
+<div class="wrap layout">
+
+  <nav class="index" aria-label="Auf dieser Seite">
+    <ol>
+      <li><a href="#gruendung" class="on">Die Gründung 2008</a></li>
+      <li><a href="#waldbroel">Ein neues Zuhause in Waldbröl</a></li>
+      <li><a href="#gebaeude-geschichte">Die Geschichte des Gebäudes</a></li>
+      <li><a href="#nachkrieg">Nachkriegszeit</a></li>
+      <li><a href="#gebaeude-heute">Das Hauptgebäude heute</a></li>
+      <li><a href="#renovierung">Renovierung und Wiederaufbau</a></li>
+      <li><a href="#garten">Garten, Stupa und Eingangstor</a></li>
+      <li><a href="#kueche">Küche, Speisesaal und Lotusteich</a></li>
+      <li><a href="#ausblick">Die Meditationshalle und der Blick nach vorn</a></li>
+      <li><a href="#endnoten">Endnoten</a></li>
+    </ol>
+  </nav>
+
+  <div class="doc">
+
+    <section id="gruendung">
+      <h2>Die Gründung 2008</h2>
+      <p>Im September 2008 schickte Zen-Meister Thich Nhat Hanh (Thầy) eine Gruppe von 20 Mönchen und Nonnen aus Plum Village, dem von ihm gegründeten buddhistischen Kloster im Südwesten Frankreichs, in die Stadt Waldbröl, etwa eine Stunde von Köln entfernt, um in Deutschland eine nicht gewinnorientierte Einrichtung namens Europäisches Institut für Angewandten Buddhismus (EIAB) zu gründen.</p>
+      <p>Seit seiner Zeit als junger Mönch war es Thầys tiefer Wunsch, den Buddhismus in die moderne Welt zu bringen. Er wollte nicht, dass der Buddhismus ein exotisches philosophisches Ideal bliebe, das für die meisten Menschen unerreichbar ist, sondern dass Menschen aus allen Gesellschaftsschichten in der Lage wären, den Buddhismus anzuwenden, um ihr eigenes Leiden und das ihrer Familienangehörigen und der weiteren Gemeinschaft zu verringern und zu verändern. Dieser Traum wird von den Mönchen, Nonnen und Laienfreunden der Internationalen Plum Village Sangha geteilt.</p>
+      <p>Das Studienprogramm des EIAB umfasst jährliche Retreats über Ostern, Sommer und Neujahr sowie Wochenend-Achtsamkeitskurse für diejenigen, die nach Möglichkeiten suchen, mit den Belastungen und Herausforderungen des modernen Lebens umzugehen. Unter den mehr als 100 Kursen, die wir jährlich anbieten, findet sich ein breites Spektrum an Themen wie buddhistische Psychologie, Umgang mit Wut und Depression, Bewältigung psychologischer Krisen, Unterstützung bei der Heilung und Förderung einer gesunden Kommunikation zwischen Eltern und Kindern, Familienmitgliedern, Verwandten und Freunden. Wir bieten auch Kurse an, die sich unter anderem an Polizeibeamte, Politiker, Psychotherapeuten, Pädagogen und Geschäftsleute richten.</p>
+      <p>Diese sowie Programme für Jugendliche und Schüler, interreligiöser Austausch und Dialog, öffentliche Vorträge, Konzerte und die Unterstützung regionaler Aktivitäten wurden sowohl auf dem EIAB-Campus als auch in Städten in ganz Deutschland und an anderen Orten in Europa sowie auf Lehrreisen in Hongkong und Thailand organisiert. Seit ihrer Gründung hat die EIAB-Sangha Hunderttausende von Teilnehmenden erreicht und sie in die Praktiken der Achtsamkeit, der Liebe und des Verständnisses eingeführt. In vielen Fällen haben diese Praktiken zu tiefgreifender Heilung und Transformation geführt und den Menschen und ihren Familien Freude, Glück und Harmonie gebracht.</p>
+    </section>
+
+    <section id="waldbroel">
+      <h2>Ein neues Zuhause in Waldbröl</h2>
+      <p>Um Räumlichkeiten zu finden, die groß genug sind, um seine Vision eines Instituts für angewandten Buddhismus zu verwirklichen, das im Dienste ganz Europas wirkt, suchten Thầy und seine Assistenten jahrelang in Deutschland, bis sie auf Waldbröl und ein bewaldetes Anwesen mit einem großen historischen Gebäude aufmerksam wurden. Es wurde von den Bundesbehörden erworben, und am 10. September 2008 zogen wir in das, was Thầy das Asoka-Institut (Viện Vô Ưu) nannte.</p>
+      <p>Ein Jahr später hatten wir das Glück, ein zweites, kleineres Gebäude ganz in der Nähe zu erwerben. Zu Ehren des Klosters, in das Thầy in Vietnam eintrat, um Mönch zu werden, wurde dieses zweite Gebäude „Kloster des Großen Mitgefühls" genannt. In Anlehnung an den Namen der Stadt Waldbröl („Bröl" ist der Name eines Baches, der dort entspringt) lautet der vollständige Titel „Kloster des Großen Mitgefühls im Land der Wälder und Bäche" (Lâm Tuyền Địa Đại Bi Tự). Ein Teil des Asoka-Instituts dient als Unterkunft für die Mönche des EIAB, während ein Teil des Klosters des Großen Mitgefühls Wohnsitz der Nonnen ist.</p>
+    </section>
+
+    <section id="gebaeude-geschichte">
+      <h2>Die Geschichte des Gebäudes</h2>
+
+      <figure class="figure">
+        <img src="../img/foto.jpg" alt="Historische Schwarz-Weiß-Aufnahme der Heil- und Pflegeanstalt Waldbröl, umgeben von kahlen Bäumen">
+        <figcaption>Abb. — Die Heil- und Pflegeanstalt Waldbröl, um 1915. Das Gebäude beherbergt heute das Asoka-Institut des EIAB.</figcaption>
+      </figure>
+
+      <p>Das heute als Asoka-Institut bekannte Gebäude wurde zwischen 1895 und 1897 als Krankenhaus für Patienten mit geistigen und körperlichen Behinderungen errichtet.<sup><a href="#en1">i</a></sup> Das von der evangelischen Kirchengemeinde geführte Krankenhaus wurde am 9. Juni 1897 eingeweiht.<sup><a href="#en2">ii</a></sup></p>
+      <p>Nach der Machtergreifung der Nationalsozialisten 1933 gehörten geistig oder körperlich behinderte Menschen<sup><a href="#en3">iii</a></sup> zu denjenigen, die im Rahmen der nationalsozialistischen Rassenideologie Zwangssterilisationen<sup><a href="#en4">iv</a></sup>, Zwangsabtreibungen oder Euthanasie<sup><a href="#en5">v</a></sup> unterworfen wurden.</p>
+      <p>Nach der Gründung des EIAB konnten wir durch weitere historische Studien und Gespräche mit den Anwohnerinnen und Anwohnern mehr über die traumatischen Ereignisse erfahren, die<sup><a href="#en6">vi</a></sup> mit diesem Ort während der Nazizeit verbunden sind.</p>
+      <p>Auf die Frage, warum er Waldbröl für sein Institut ausgewählt hatte, sagte Thầy oft lächelnd, dass es Waldbröl war, das ihn und die Plum Village Sangha ausgewählt hat. Es war Thầys großes Mitgefühl, den Menschen zu helfen, ihr Leiden zu versöhnen und zu transformieren — nicht nur in Vietnam, sondern auf der ganzen Welt —, das ihn an diesen Ort zog. Die spirituelle Energie von Thầy und der Plum Village Sangha umarmt weiterhin alle, die dort gelitten haben, wo sich jetzt das EIAB befindet: ein Heiligtum für Versöhnung, Transformation und Frieden.</p>
+    </section>
+
+    <section id="nachkrieg">
+      <h2>Nachkriegszeit</h2>
+      <p>Nach dem Zweiten Weltkrieg wurde das Gebäude erneut zu einem Krankenhaus. Im Jahr 1969 zog das Krankenhaus in einen größeren Komplex um, und das Gebäude wurde für den Grenzschutz und damit verbundene Tätigkeiten genutzt. Von 1975 bis 2006 wurde es von der Deutschen Bundeswehr betrieben.</p>
+    </section>
+
+    <section id="gebaeude-heute">
+      <h2>Das Hauptgebäude heute</h2>
+      <p>Das Hauptgebäude hat eine Länge von 150 Metern und eine Breite von 12 bis 16 Metern. Es erstreckt sich über sechs Stockwerke, einschließlich des Untergeschosses, und umfasst eine Gesamtfläche von etwa 12.000 Quadratmetern. Diese Fläche reicht aus, um bis zu 500 Personen für Retreats und Kurse zu beherbergen.</p>
+      <p>Es gibt auch kleinere Räume für Kurse und Meetings, aber keine einzige Räumlichkeit für größere Versammlungen — weshalb das Institut von Anfang an eine Genehmigung für den Bau einer Meditationshalle beantragt hat.</p>
+    </section>
+
+    <section id="renovierung">
+      <h2>Renovierung und Wiederaufbau</h2>
+      <p>In der 10., der Jubiläumsausgabe des EIAB-Magazins, die 2018 auf unserer Website veröffentlicht wurde, beschreiben wir ausführlich die behördlichen und baulichen Hürden, die überwunden werden mussten, bevor wir das EIAB für Besucher öffnen konnten. Außerdem stellten wir einen Zeitplan für die Projekte vor, die wir durchgeführt haben, um die Unterkunfts- und Speisemöglichkeiten für Freundinnen und Freunde, die an Retreats und anderen Programmen teilnehmen, zu verbessern und um dieses denkmalgeschützte Gebäude nach höchsten Erhaltungs- und Umweltstandards zu bewahren.</p>
+      <p>Dank der Liebe, Großzügigkeit und Unterstützung vieler Freundinnen und Freunde in aller Welt konnten wir bis 2010 ein Fünftel des Asoka-Gebäudes renovieren und 2012 das Erdgeschoss fertigstellen. Wir haben das Privileg, dort eine wunderschöne Sammlung von Thầys wertvollen Kalligraphien dauerhaft auszustellen.</p>
+      <p>Mit der kontinuierlichen Unterstützung von Freundinnen und Freunden mit „grünem Daumen" wird das EIAB durch Gartenprojekte rund um das Institut weiter aufgewertet. Im Jahr 2019 haben wir zwei weitere Abschnitte des Asoka-Gebäudes renoviert. Bis 2021 wurde das gesamte Kloster des Großen Mitgefühls, einschließlich des Daches, vollständig renoviert.</p>
+    </section>
+
+    <section id="garten">
+      <h2>Garten, Stupa und Eingangstor</h2>
+      <p>Um die Energie dieses Geländes auszugleichen und von den Leiden der Menschen, die hier in früheren Zeiten lebten, zu heilen, haben wir die weitläufigen Gärten des Instituts mit buddhistischen Statuen und Themen gestaltet, die eine ruhige, friedliche Energie erzeugen. Es gibt Wege, die zur Gehmeditation einladen, und architektonische Elemente, die zur Kontemplation über die Entwicklung des buddhistischen Denkens anregen. Ein 21 Meter hoher Stupa, der eine große Bronzeglocke beherbergt, enthält in seinen Strukturelementen wesentliche buddhistische Lehren.</p>
+      <p>Wir haben auch einen Säuleneingang in das Institut eingebaut, der mit den vier Blumen des unbegrenzten Geistes geschmückt ist: liebende Güte, Mitgefühl, einfühlsame Freude und Inklusivität. Diese „Blumen" ruhen auf einem Steinbalken, der von vier Säulen getragen wird — sie stellen die vierfache Sangha des Buddha dar: Mönche, Nonnen sowie männliche und weibliche Laien. An der Spitze dieser Struktur sind zwei Kalligraphien von Thầy in deutscher Sprache eingemeißelt: „Dies ist, weil das ist" und „Frieden in sich selbst, Frieden in der Welt".</p>
+    </section>
+
+    <section id="kueche">
+      <h2>Küche, Speisesaal und Lotusteich</h2>
+      <p>Seit Herbst 2013, nach vier Jahren Planung und Bau, kann sich jeder, der zum Praktizieren ins EIAB kommt, über eine moderne Küche und einen schönen Speisesaal mit weitem Blick freuen. Davor befindet sich ein kleiner Lotusteich in Form einer Mondsichel oder eines jungen Blattes. Um den Lotusteich und den Speisesaal herum wurde eine ringförmige Straße gebaut, die die beiden Hauptbereiche des EIAB, das Asoka-Institut und das Kloster des Großen Mitgefühls, harmonisch miteinander verbindet.</p>
+    </section>
+
+    <section id="ausblick">
+      <h2>Die Meditationshalle und der Blick nach vorn</h2>
+      <p>Nach 16 Jahren, in denen wir zahllose Hindernisse überwinden konnten, wird 2025 endlich mit dem Bau unserer Meditationshalle begonnen: die Zen-Meister Thich Nhat Hanh Große Halle des Friedens. Wir werden auch die Renovierung der beiden anderen Teile des Asoka-Instituts fortsetzen. Wir hoffen, dass bis 2030 alle Gebäude des EIAB vollständig renoviert sein werden.</p>
+      <p>Es gibt noch viel zu tun, um Thầys Vision eines Instituts für angewandten Buddhismus für Europa und darüber hinaus zu verwirklichen. Wir fangen gerade erst an, das Fundament zu legen. Dennoch sind wir zuversichtlich, dass wir in der Lage sein werden, Thầys Wunsch zu erfüllen, einen Beitrag zur Linderung des Leidens in der Welt und zur Kultivierung des Friedens zu leisten.</p>
+      <p>Wir sind zuversichtlich, dass in den nächsten Jahren der Bau der Zen-Meister Thich Nhat Hanh Großen Halle des Friedens und weitere Renovierungsarbeiten am Asoka-Institut realisiert werden können — dank der Liebe und Großzügigkeit von Freundinnen und Unterstützerinnen von Thầy in aller Welt. Dies wird es einer dauerhaften Institution, die Thầys Vision des angewandten Buddhismus verkörpert, ermöglichen, sich in Europa für die Welt vollständig zu manifestieren.</p>
+
+      <p class="signoff">Bhikshu Thích Chân Pháp Ấn, und die Schwestern und Brüder des Europäischen Instituts für Angewandten Buddhismus<span class="date">22. Januar 2025</span></p>
+    </section>
+
+    <section id="endnoten">
+      <h2>Endnoten</h2>
+      <ol class="endnotes">
+        <li id="en1">Ausstellung der Deutschen Bundeswehr, 1997, 100-jähriges Jubiläum: Mit dem Bau wurde 1895 begonnen; die Fertigstellung erfolgte im Frühjahr 1897. Die ersten Patienten kamen im Juni. Das Krankenhaus verfügte über 350 Betten für geistig Behinderte und psychisch Kranke, das benachbarte Krankenhaus über 36 Betten.</li>
+        <li id="en2">Birgit Rosendahl-Kraas: <em>Die Stadt der Volkstraktorenwerke. Eine Stadtutopie im „Dritten Reich". Die Planungen und Großbauten der Deutschen Arbeitsfront für die Stadt Waldbröl.</em> Martina Galunder-Verlag, Wiehl 1999, S. 34: Am 27. Januar 1893 wurde aus diesem Anlass die „Evangelisches Krankenhaus zu Waldbröl GmbH" gegründet, das Baugelände von der evangelischen Kirchengemeinde zur Verfügung gestellt. Die Heil- und Pflegeanstalt konnte am 2. Juni 1897 eingeweiht werden, die Eröffnungsfeier des Krankenhauses fand am 9. Juni 1897 statt. Während des Ersten Weltkriegs wurde in einigen Räumen der Anstalt vom 31. August 1914 bis zum 23. September 1919 das unter militärischer Verwaltung stehende „Reservelazarett Waldbröl" eingerichtet.</li>
+        <li id="en3">Birgit Rosendahl-Kraas, S. 35: Da Waldbröl schon früh eine Hochburg des Nationalsozialismus war, geriet die Heil- und Pflegeanstalt bald in den Fokus der Machthaber. Die NS-Rassenideologie bedingte eine Selektion nach „Erbgesundheit" und „arischer Abstammung"; die eingesetzten Mittel reichten von gewaltsamer Geburtenverhütung bis zu Euthanasie-Aktionen. Auch die Waldbröler Anstalt blieb von diesem Rassismus, der sich vor allem gegen psychisch Kranke, geistig Behinderte und gesellschaftliche Randgruppen richtete, nicht verschont.</li>
+        <li id="en4">Hans Simon: <em>Zur Geschichte der Heil- und Pflegeanstalt Waldbröl 1893–1938.</em> In: Beiträge zur Oberbergischen Geschichte, hg. vom Bergischen Geschichtsverein Abteilung Oberberg e.V., Bd. 2, Gummersbach 1989, S. 140. Am 14. November 1938 begann der Umzug der Waldbröler Heil- und Pflegeanstalt in das Kloster der Franziskanermönche in Hausen bei Waldbreitbach im Westerwald. Mit dem „Gesetz zur Verhütung erbkranken Nachwuchses" (1933/34) hatten sich die Nationalsozialisten eine Legitimation für Zwangssterilisationen geschaffen, von der in Waldbröl oft Gebrauch gemacht wurde — auch gegenüber politischen Gegnern des Regimes.</li>
+        <li id="en5">Birgit Rosendahl-Kraas, S. 35.</li>
+        <li id="en6">Hans Simon, S. 126: Die fünfzigste Wiederkehr des Tages, an dem die Heil- und Pflegeanstalt Waldbröl mit rund 700 Patientinnen und Patienten sowie über 100 Beschäftigten in das Franziskanerkloster in Hausen bei Waldbreitbach umzog (14. November 1938 bis Ende Januar 1939), gab Anlass zu einem Rückblick auf die Geschichte der Anstalt. Nach Hans Simon, S. 140, die Patientenzahlen im Jahr 1938:
+          <table class="stat-table">
+            <caption>Patientinnen und Patienten der Heil- und Pflegeanstalt Waldbröl, 1938</caption>
+            <thead><tr><th scope="col">Diagnose</th><th scope="col">Frauen</th><th scope="col">Männer</th></tr></thead>
+            <tbody>
+              <tr><th scope="row">Schizophrenie</th><td>253</td><td>105</td></tr>
+              <tr><th scope="row">Lähmung</th><td>16</td><td>21</td></tr>
+              <tr><th scope="row">Schwachsinn</th><td>74</td><td>52</td></tr>
+              <tr><th scope="row">Epilepsie</th><td>67</td><td>72</td></tr>
+              <tr><th scope="row">Cholera</th><td>2</td><td>1</td></tr>
+              <tr><th scope="row">Enzephalitis</th><td>12</td><td>8</td></tr>
+              <tr><th scope="row">Alkoholismus</th><td>4</td><td>2</td></tr>
+              <tr><th scope="row">Psychopathie</th><td>2</td><td>4</td></tr>
+            </tbody>
+            <tfoot><tr><th scope="row">Gesamt</th><td>430</td><td>265</td></tr></tfoot>
+          </table>
+        </li>
+      </ol>
+    </section>
+
+  </div>
+</div>
+
+<div class="help">
+  <div class="wrap">
+    <h2>Fragen zur Geschichte des Hauses?</h2>
+    <p>Wir sprechen offen über die Vergangenheit dieses Ortes. Schreiben Sie uns, wenn Sie mehr erfahren möchten, oder besuchen Sie uns persönlich.</p>
+    <div class="acts">
+      <a class="a-solid" href="../info/kontakt.html">Kontakt aufnehmen</a>
+      <a class="a-ghost" href="ueber-uns.html">← Zurück zu Über uns</a>
+    </div>
+  </div>
+</div>
+
+<eiab-footer current="geschichte" base="../"></eiab-footer>
+
+<script>
+(function(){
+  var links=[].slice.call(document.querySelectorAll('.index a'));
+  var secs=links.map(function(a){return document.querySelector(a.getAttribute('href'))});
+  var io=new IntersectionObserver(function(entries){
+    entries.forEach(function(e){
+      if(!e.isIntersecting) return;
+      var i=secs.indexOf(e.target);
+      links.forEach(function(a,n){a.classList.toggle('on',n===i)});
+    });
+  },{rootMargin:'-100px 0px -65% 0px'});
+  secs.forEach(function(s){if(s) io.observe(s)});
+})();
+</script>
+</body>
+</html>
