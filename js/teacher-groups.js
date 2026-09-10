@@ -71,7 +71,13 @@ function eiabEnsureTeacherSearchStyles() {
     'box-shadow:9px 9px 0 -6px var(--pine-soft)}' +
     '.people-search .no-results{font-family:var(--sans);font-size:.9rem;color:var(--pine-soft);' +
     'margin-top:.9rem;display:none}' +
-    '.people-search.has-no-results .no-results{display:block}';
+    '.people-search.has-no-results .no-results{display:block}' +
+    // .person already sets its own `display:block` on the page, which otherwise
+    // out-cascades the plain [hidden] attribute (same specificity, but the page's
+    // own stylesheet loads after the browser default one) and silently keeps
+    // "hidden" cards visible — !important here is what actually hides them.
+    '.person-search-hidden{display:none !important}' +
+    '.section-search-hidden{display:none !important}';
   document.head.appendChild(style);
 }
 
@@ -173,14 +179,14 @@ window.EIAB_RENDER_TEACHER_LISTING = function (mountEl, categoryKey, opts) {
       people.forEach(function (a) {
         var name = a.querySelector('.nm');
         var match = !q || eiabFoldSearchText(name ? name.textContent : '').indexOf(q) !== -1;
-        a.hidden = !match;
+        a.classList.toggle('person-search-hidden', !match);
         if (match) anyVisible = true;
       });
       sections.forEach(function (section) {
         var visibleInSection = Array.prototype.some.call(section.querySelectorAll('.person'), function (a) {
-          return !a.hidden;
+          return !a.classList.contains('person-search-hidden');
         });
-        section.hidden = q.length > 0 && !visibleInSection;
+        section.classList.toggle('section-search-hidden', q.length > 0 && !visibleInSection);
       });
       searchBox.classList.toggle('has-no-results', q.length > 0 && !anyVisible);
     });
