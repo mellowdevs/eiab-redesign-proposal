@@ -1094,6 +1094,8 @@
       apply();
     }
 
+    var state = {lang: 'all', form: 'all'};
+
     renderNextBeat();
     renderCourseGrid();
     window.addEventListener('eiab:langchange', function () {
@@ -1101,7 +1103,6 @@
       renderCourseGrid();
     });
 
-    var state = {lang: 'all', form: 'all'};
     var chips = document.querySelectorAll('.chip');
 
     chips.forEach(function (c) {
