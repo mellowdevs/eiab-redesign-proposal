@@ -1067,8 +1067,7 @@
         })
         .sort(function (a, b) {
           return a.dateStart.localeCompare(b.dateStart);
-        })
-        .slice(0, 9);
+        });
 
       upcoming.forEach(function (course) {
         // A plain <div>, not <a> — instructor names need their own links and an <a>
@@ -1121,8 +1120,9 @@
       cards.forEach(function (card) {
         var langs = card.dataset.lang.split(' ');
         var form = card.dataset.form;
-        var ok = (state.lang === 'all' || langs.indexOf(state.lang) > -1)
+        var matches = (state.lang === 'all' || langs.indexOf(state.lang) > -1)
           && (state.form === 'all' || form === state.form);
+        var ok = matches && shown < 9;
         card.hidden = !ok;
         card.style.display = ok ? '' : 'none';
         if (ok) shown++;
